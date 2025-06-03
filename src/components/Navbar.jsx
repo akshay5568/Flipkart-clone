@@ -7,8 +7,10 @@ import { CgProfile } from "react-icons/cg";
 import { FaBoxOpen } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
+import { useState } from "react";
 
 function Navbar() {
+    const [isLogin , setLogin] = useState(true);
     return (
         <div className="p-3 ">
             <nav className=" flex pt-2 justify-between item-center" >
@@ -19,15 +21,18 @@ function Navbar() {
 
                 <div className="flex relative group items-center gap-2 w-[7rem] h-[3rem] rounded-md ml-3 justify-center bg-teal-100 hover:bg-[#2c64e3] hover:text-white" >
                     <IoMdLogIn />  
-                    <NavLink to='/login'>Login</NavLink>
+                    <NavLink to='/login'>{isLogin ? "Aditya" : "Login"}</NavLink>
                     <FaAngleDown />
 
 
-                       <div className="w-[15rem] h-[10rem] absolute text-black top-13 left-0 opacity-0 group-hover:opacity-100 bg-[#ffffff] rounded-md p-3 transition-opacity duration-300">
+                       <div className="w-[15rem] h-[10rem] absolute text-black top-14 left-0 opacity-0 group-hover:opacity-100 bg-[#ffffff] rounded-md p-3 transition-opacity duration-300">
+
+                       {isLogin ? "" : (
                         <div className="flex justify-between">
                             <h3>New Custumer?</h3>
                             <NavLink to='/signup'>Signup</NavLink>
-                        </div>
+                        </div>)} 
+                        
 
                         <div className="flex mt-3 items-center gap-2">
                             <CgProfile />
@@ -51,7 +56,7 @@ function Navbar() {
 
                 <div className="flex items-center gap-2">
                     <BsCart3 />
-                    <NavLink to='/cart'>Cart</NavLink>
+                    <NavLink to="/cart">Cart</NavLink>
                 </div>
 
                 <div className="flex items-center gap-2">

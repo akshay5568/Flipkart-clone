@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useState } from 'react';
+import { NavLink } from "react-router-dom";
 
 function LandingPage () {
 
@@ -76,14 +77,16 @@ function LandingPage () {
         return (
             
           <div className="w-full h-fit p-3 bg-[#f1f2f4]">
+            
              <div className="w-full h-[8rem] mt-3 flex items-center gap-15 bg-[#ffffff] justify-center">
-             {data1.map((item,index) => {
+             {data1.map((item,index) => {  
                   return (
-                  <div key={index}>
+             <NavLink key={index} to={`/products/${item.title}`}>
+                  <div>
                         <img className="w-[55px]"  src={item.img} alt="" />
                         <h3>{item.title}</h3>
                   </div>
-             
+             </NavLink>     
                   )
              })}
              </div>
@@ -101,17 +104,20 @@ function LandingPage () {
 
             <div className="flex w-full h-[20rem] bg-[#ffffff] mt-5">
                    <div className="flex flex-nowrap overflow-auto w-[90%] h-full gap-8 items-center p-7">
+             
                   {data2.map((item,index) => {
                         return (
+                             
                                     <div key={index} className="min-w-[15%] h-[15rem]">
-                                          <img className="w-full h-[150px] rounded-md object-top" src={item.img} alt="" />
+                                          <img className="w-[100%] h-[150px] rounded-md object-top" src={item.img} alt="" />
                                           <h3 className="pt-[50px]">{item.title}</h3> 
                                           <h3 className="text-center">₹{item.price}</h3>
-                                    </div>        
+                                    </div>  
+                                         
                         )
                   })}
+                  
                   </div>
-
                   <div className="w-[15%] bg-teal-400">
                       <img src="https://rukminim2.flixcart.com/fk-p-flap/530/810/image/ce3cf81edb760559.jpg?q=20" alt="" />
                   </div>
