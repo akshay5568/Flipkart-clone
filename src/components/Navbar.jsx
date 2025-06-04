@@ -9,12 +9,16 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
 import { useState } from "react";
 import { AiOutlineLogout } from "react-icons/ai";
+import { useSelector } from "react-redux";
 
 function Navbar() {
     const [isLogin , setLogin] = useState(true);
     const logoutFunction = () => {
         setLogin(false);
     }
+
+    const cartData = useSelector(state => state.products.cart.length);
+    
     return (
         <div className="p-3 ">
             <nav className=" flex pt-2 justify-between item-center" >
@@ -63,7 +67,10 @@ function Navbar() {
              
 
                 <div className="flex items-center gap-2">
-                    <BsCart3 />
+                    <div className="flex items-center reletive">
+                    <h6 className="bg-red-400 px-1 rounded-md text-xs">{cartData}</h6>  
+                    <BsCart3 /> 
+                    </div>
                     <NavLink to="/cart">Cart</NavLink>
                 </div>
 

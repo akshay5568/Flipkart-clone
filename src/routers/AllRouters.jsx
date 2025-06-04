@@ -11,7 +11,7 @@ function AllRoutes() {
                 <Route path="/" element={<LandingPage/>} />  
                 <Route path="/cart" element={<Cart/>} />
                 <Route path="/products/:title" element={<Products/>} />
-                <Route path="/products/:title/:index" element={<FullProductPage/>} />
+                <Route path="/products/:title/:id" element={<FullProductPage/>} />
             </Routes>
         </div>
     )

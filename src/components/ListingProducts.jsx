@@ -46,7 +46,7 @@ function ListingProducts ({catyegory}) {
                         
                 {filterByCategory.map((item,index) => {
                     return (
-                     <NavLink className="w-full h-fit flex  flex-wrap mt-4" to={`/products/${item.title}/${index}`}>
+                     <NavLink className="w-full h-fit flex  flex-wrap mt-4" to={`/products/${item.title}/${item.id}`}>
                          <div className="w-[25%] h-fit  bg-white hover:shadow-xl/30 duration-300">
                                    <div className="flex">
                                                 <img className="w-[70%] m-auto mt-5 h-[50%] rounded" src={item.img} alt="" />
