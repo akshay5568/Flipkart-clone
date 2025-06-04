@@ -8,9 +8,13 @@ import { FaBoxOpen } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
 import { useState } from "react";
+import { AiOutlineLogout } from "react-icons/ai";
 
 function Navbar() {
     const [isLogin , setLogin] = useState(true);
+    const logoutFunction = () => {
+        setLogin(false);
+    }
     return (
         <div className="p-3 ">
             <nav className=" flex pt-2 justify-between item-center" >
@@ -27,12 +31,16 @@ function Navbar() {
 
                        <div className="w-[15rem] h-[10rem] absolute text-black top-14 left-0 opacity-0 group-hover:opacity-100 bg-[#ffffff] rounded-md p-3 transition-opacity duration-300">
 
-                       {isLogin ? "" : (
+                       {isLogin ? ( (
+                        <div className="flex items-center gap-2">
+                           <AiOutlineLogout />
+                           <button onClick={logoutFunction}>Logout</button>
+                        </div>)
+                        ) : (
                         <div className="flex justify-between">
                             <h3>New Custumer?</h3>
                             <NavLink to='/signup'>Signup</NavLink>
                         </div>)} 
-                        
 
                         <div className="flex mt-3 items-center gap-2">
                             <CgProfile />
