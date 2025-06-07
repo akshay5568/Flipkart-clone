@@ -45,7 +45,7 @@ function Navbar() {
             
              
 
-            <div className="w-[15rem] h-[10rem]  absolute text-black top-12 left-0 opacity-0 group-hover:opacity-100  bg-[#ffffff] rounded-md p-3 transition-opacity duration-100 hidden group-hover:block">
+            <div className="w-[15rem] h-[10rem]  absolute text-black top-11 left-0 opacity-0 group-hover:opacity-100  bg-[#ffffff] rounded-md p-3  duration-900 hidden group-hover:block">
               {isLogin ? (
                 <div className="flex items-center gap-2">
                   <AiOutlineLogout />
