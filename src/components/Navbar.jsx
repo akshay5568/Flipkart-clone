@@ -36,12 +36,16 @@ function Navbar() {
         />
 
         <div className="flex gap-20 items-center">
-          <div className="flex relative group items-center gap-2 w-[7rem] h-[3rem] rounded-md ml-3 justify-center hover:bg-[#2c64e3] hover:text-white">
-            <IoMdLogIn />
+          <div className="flex  items-center gap-2 w-[7rem] h-[3rem] rounded-md ml-3 justify-center hover:bg-[#2c64e3] hover:text-white duration-300">
+
+            <div className="flex items-center relative group gap-3 ">
+             <IoMdLogIn />
             <NavLink to="/login">{isLogin ? "Aditya" : "Login"}</NavLink>
             <FaAngleDown />
+            
+             
 
-            <div className="w-[15rem] h-[10rem] absolute text-black top-14 left-0 opacity-0 group-hover:opacity-100 bg-[#ffffff] rounded-md p-3 transition-opacity duration-300">
+            <div className="w-[15rem] h-[10rem]  absolute text-black top-12 left-0 opacity-0 group-hover:opacity-100  bg-[#ffffff] rounded-md p-3 transition-opacity duration-100 hidden group-hover:block">
               {isLogin ? (
                 <div className="flex items-center gap-2">
                   <AiOutlineLogout />
@@ -69,6 +73,7 @@ function Navbar() {
                 <NavLink to="/wishlist">Wishlist</NavLink>
               </div>
             </div>
+          </div>
           </div>
 
           <div className="flex items-center gap-2">

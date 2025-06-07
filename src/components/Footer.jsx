@@ -7,7 +7,6 @@ import { MdOutlineStars } from "react-icons/md";
 import { MdOutlineCardGiftcard } from "react-icons/md";
 import { IoIosHelpCircleOutline } from "react-icons/io";
 
-
 function Footer() {
   return (
     <div className="w-full h-[40%] bg-[#182337] p-5 px-5">
@@ -84,22 +83,30 @@ function Footer() {
                   <p>
                     Flipkart Internet Private Limited,
                     <br /> Buildings Alyssa, Begonia & <br />
-                    Clove Embassy Tech Village,<br />Outer Ring Road,
-                    Devarabeesanahalli Village,
+                    Clove Embassy Tech Village,
+                    <br />
+                    Outer Ring Road, Devarabeesanahalli Village,
                     <br /> Bengaluru, 560103,
                     <br /> Karnataka, India
                   </p>
                 </div>
 
                 <div>
-                     <h6 className="mt-4 text-[#676970]">Social</h6>
-                     <div className="flex gap-3 mt-3 text-xl">
-                     <a href=""><CiFacebook/></a>
-                     <a href=""><FaXTwitter/></a>
-                     <a href=""><FiYoutube/></a>
-                     <a href=""><FaInstagram/></a>
-                     </div>
-                    
+                  <h6 className="mt-4 text-[#676970]">Social</h6>
+                  <div className="flex gap-3 mt-3 text-xl">
+                    <a href="">
+                      <CiFacebook />
+                    </a>
+                    <a href="">
+                      <FaXTwitter />
+                    </a>
+                    <a href="">
+                      <FiYoutube />
+                    </a>
+                    <a href="">
+                      <FaInstagram />
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -109,11 +116,14 @@ function Footer() {
                 </h4>
                 <div>
                   <p>
-                    Flipkart Internet Private Limited, <br />Buildings Alyssa, Begonia
-                    & <br />Clove Embassy Tech Village,<br /> Outer Ring Road,
-                    Devarabeesanahalli Village,<br /> Bengaluru, 560103,<br /> Karnataka,
-                    India <br />CIN : U51109KA2012PTC066107 <br />Telephone: 044-45614700 /
-                    044-67415800
+                    Flipkart Internet Private Limited, <br />
+                    Buildings Alyssa, Begonia & <br />
+                    Clove Embassy Tech Village,
+                    <br /> Outer Ring Road, Devarabeesanahalli Village,
+                    <br /> Bengaluru, 560103,
+                    <br /> Karnataka, India <br />
+                    CIN : U51109KA2012PTC066107 <br />
+                    Telephone: 044-45614700 / 044-67415800
                   </p>
                 </div>
               </div>
@@ -121,17 +131,33 @@ function Footer() {
           </div>
         </div>
       </div>
-<hr className="text-gray-600"/>
+      <hr className="text-gray-600" />
       <div>
-      
-            <div className="flex w-full p-7 justify-between text-white">
-                   <h6 className="flex items-center gap-1"><IoMdBriefcase className="text-[#ffcb00]"/>Become a Seller</h6>
-                   <h6 className="flex items-center gap-1"><MdOutlineStars className="text-[#ffcb00]"/>Advertise</h6>
-                   <h6 className="flex items-center gap-1"><MdOutlineCardGiftcard className="text-[#ffcb00]"/>Gift Cards</h6>
-                   <h6 className="flex items-center gap-1"><IoIosHelpCircleOutline className="text-[#ffcb00]"/>Help Center</h6>
-                   <h6>© 2007-2025 Flipkart.com</h6>
-                   <h6><img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/payment-method_69e7ec.svg" alt="" /></h6>
-            </div>
+        <div className="flex w-full p-7 justify-between text-white">
+          <h6 className="flex items-center gap-1">
+            <IoMdBriefcase className="text-[#ffcb00]" />
+            Become a Seller
+          </h6>
+          <h6 className="flex items-center gap-1">
+            <MdOutlineStars className="text-[#ffcb00]" />
+            Advertise
+          </h6>
+          <h6 className="flex items-center gap-1">
+            <MdOutlineCardGiftcard className="text-[#ffcb00]" />
+            Gift Cards
+          </h6>
+          <h6 className="flex items-center gap-1">
+            <IoIosHelpCircleOutline className="text-[#ffcb00]" />
+            Help Center
+          </h6>
+          <h6>© 2007-2025 Flipkart.com</h6>
+          <h6>
+            <img
+              src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/payment-method_69e7ec.svg"
+              alt=""
+            />
+          </h6>
+        </div>
       </div>
     </div>
   );
