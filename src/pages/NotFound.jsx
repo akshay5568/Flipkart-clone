@@ -1,4 +1,9 @@
+
+
 function NotFound() {
+
+  
+
   return (
     <div className="w-full h-fit bg-[#f1f3f6] pt-4">
       <div className="w-[80%] h-[23rem] bg-[#ffffff]  mt-8 m-auto  shadow-lg shadow-white-250/2">
@@ -8,6 +13,9 @@ function NotFound() {
 
       <hr className="mt-5 text-[#dddddd]" />
       <div className="w-full h-[22rem] bg-[#f1f3f6]"></div>
+
+
+
     </div>
   );
 }

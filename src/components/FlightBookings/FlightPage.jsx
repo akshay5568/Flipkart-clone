@@ -1,76 +1,21 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { IoMdSearch } from "react-icons/io";
-import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import BannerForFlight from "./BannerForFlight";
+
 function FlightPage() {
   const [from, setFrom] = useState("");
   const [to, setTO] = useState("");
 
+  const [dummyFlights , setdummyFlights]  = useState()
 
-  const dummyFlights = [
-  {
-    flightNumber: "AI202",
-    airline: "Air India",
-    img:'https://rukminim2.flixcart.com/fk-p-travel/100/100/storage/airlineLogos/airlineImage-AI.png?q=50',
-    departure: {
-      airport: "Indira Gandhi International Airport",
-      city_name: "delhi",
-      iata: "DEL",
-      time: "10:00:00"
-    },
-    arrival: {
-      airport: "Chhatrapati Shivaji Maharaj International Airport",
-      iata: "BOM",
-      city_name: "mumbai",
-      time: "12:15:00"
-    },
-    duration: "2h 15m",
-    price: 5500,
-    status: "scheduled"
-  },
-  {
-    flightNumber: "SG404",
-    airline: "SpiceJet",
-    img:'https://rukminim2.flixcart.com/fk-p-travel/100/100/storage/airlineLogos/airlineImage-S5.png?q=50',
-    departure: {
-      airport: "Indira Gandhi International Airport",
-      iata: "DEL",
-      city_name: "delhi",
-      time: "14:30:00"
-    },
-    arrival: {
-      airport: "Kempegowda International Airport",
-      iata: "BLR",
-     city_name: "Bengaluru",
-      time: "17:30:00"
-    },
-    duration: "3h 00m",
-    price: 4900,
-    status: "scheduled"
-  },
-  {
-    flightNumber: "6E333",
-    airline: "IndiGo",
-    img:'https://rukminim2.flixcart.com/fk-p-travel/100/100/storage/airlineLogos/airlineImage-6E.png?q=50',
-    departure: {
-      airport: "Chhatrapati Shivaji Maharaj International Airport",
-      city_name: "mumbai",
-      iata: "BOM",
-      time: "06:45:00"
-    },
-    arrival: {
-      airport: "Netaji Subhas Chandra Bose International Airport",
-       city_name:"Kolkata",
-      iata: "CCU",
-      time: "09:30:00"
-    },
-    duration: "2h 45m",
-    price: 5200,
-    status: "delayed"
-  }
-];
+useEffect(() => {
+    axios.get('http://localhost:8080/flights').then((res) => setdummyFlights(res.data)).catch((err) => console.log(err));
+},[])
+
+ 
+console.log(dummyFlights);
 
    const navigate = useNavigate();
 

@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 function ListingProducts({ catyegory }) {
 
   const products = useSelector((state) => state.products.products);
-
   const filterByCategory = products.filter(
     (item) => item.catyegorys == catyegory
   );
@@ -42,7 +41,7 @@ function ListingProducts({ catyegory }) {
                 <div className="w-[25%] h-fit hover:shadow-xl/30 duration-300 ">
                    <NavLink
                 className="w-fit h-fit duration-300 flex  flex-wrap mt-4"
-                to={`/products/${item.title}/${item.id}`}
+                to={`/products/${item.title}/${item._id}`}
               >
                   <div className="flex">
                     <img

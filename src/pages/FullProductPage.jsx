@@ -3,14 +3,14 @@ import { useParams } from "react-router-dom";
 import { FaRegStar } from "react-icons/fa";
 import { BsCart3 } from "react-icons/bs";
 import { ImPower } from "react-icons/im";
-import { addToCart } from "../reducers/ProductsReducer";
-
+import { addToCart, setProducts } from "../reducers/ProductsReducer";
+import axios from "axios";
+import { useEffect } from "react";
 function FullProductPage() {
   const { id } = useParams();
 
   const products = useSelector((state) => state.products.products);
-  const filteredProduct = products.filter((item) => item.id == id);
-  console.log(filteredProduct);
+  const filteredProduct = products.filter((item) => item._id == id);
 
   const dispatch = useDispatch();
 
