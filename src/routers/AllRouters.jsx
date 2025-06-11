@@ -7,6 +7,8 @@ import FullProductPage from "../pages/FullProductPage";
 import NotFound from "../pages/NotFound";
 import FlightPage from "../components/FlightBookings/FlightPage";
 import FlightBooking from "../components/FlightBookings/FlightBooking";
+import Login from "../components/Login/Login";
+import SignUP from "../components/Signup/SignUp";
 function AllRoutes() {
     return (
         <div>
@@ -18,6 +20,8 @@ function AllRoutes() {
                 <Route path="*" element={<NotFound/>} />
                 <Route path="/flight" element={<FlightPage/>} />
                 <Route path="/flightbooking" element={<FlightBooking/>} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="/signup" element={<SignUP/>} />
             </Routes>
         </div>
     )

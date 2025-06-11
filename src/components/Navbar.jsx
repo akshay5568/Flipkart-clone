@@ -12,7 +12,7 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { useSelector } from "react-redux";
 
 function Navbar() {
-  const [isLogin, setLogin] = useState(true);
+  const [isLogin, setLogin] = useState(false);
   const logoutFunction = () => {
     setLogin(false);
   };
