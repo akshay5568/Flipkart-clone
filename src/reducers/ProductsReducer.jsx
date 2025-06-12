@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-  products: [],
-   
+  products: [], 
   cart: [],
+  isLogin : false,
 };
 
 export const ProductsReducer = createSlice({
@@ -16,14 +16,18 @@ export const ProductsReducer = createSlice({
     },
 
     addToCart: (state, action) => {
-      state.cart.push(action.payload);
+      state.cart = action.payload;
     },
 
     removeCarts: (state, action) => {
-      state.cart = state.cart.filter((_, index) => index !== action.payload);
+      state.cart = state.cart.filter((item, _) =>  item._id !== action.payload);
     },
+
+    setLogin : (state , action ) => {
+      state.isLogin = action.payload;
+    }
   },
 });
 
-export const { addToCart, removeCarts, setProducts } = ProductsReducer.actions;
+export const { addToCart, removeCarts, setProducts , setLogin } = ProductsReducer.actions;
 export default ProductsReducer.reducer;

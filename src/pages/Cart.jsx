@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { removeCarts } from "../reducers/ProductsReducer";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 function Cart() {
   const [platformFee, setPlatFormFee] = useState(4);
-  const cartData = useSelector((state) => state.products.cart);  
-  console.log(cartData);
+  const cartData = useSelector((state) => state.products.cart);
+
+  
+
   const removeNestedArray = cartData.flat();
+
+  
   const TotalPrice = removeNestedArray.reduce(
     (sum, item) => sum + item.price,
     0
@@ -16,10 +21,12 @@ function Cart() {
 
   const dispatch = useDispatch();
 
-  const removeCartHandler = (itemIndex) => {
-     dispatch(removeCarts(itemIndex));
-     toast.success('Item removed from cart!');
-  }; 
+  const removeCartHandler = async (itemIndex) => {
+    console.log(itemIndex);
+    dispatch(removeCarts(itemIndex));
+    toast.success("Item removed from cart!");
+    await axios.post('http://localhost:8080/cart/remove' , {id:itemIndex});
+  };
 
   let Navigate = useNavigate();
   return cartData.length === 0 ? (
@@ -44,7 +51,6 @@ function Cart() {
 
       <hr className="mt-5 text-[#dddddd]" />
       <div className="w-full h-[22rem] bg-[#f1f3f6]"></div>
-      
     </div>
   ) : (
     <div className="flex w-full h-fit bg-[#f1f3f6] p-3">
@@ -91,12 +97,10 @@ function Cart() {
 
                   <button
                     className="mt-4 hover:text-[#2874f0]"
-                    onClick={() => removeCartHandler(index)}
+                    onClick={() => removeCartHandler(item._id)}
                   >
                     REMOVE
                   </button>
-                
-
                 </div>
               </div>
 
@@ -108,10 +112,8 @@ function Cart() {
             </div>
           );
         })}
-        
       </div>
       <ToastContainer />
-
 
       <div className="w-[25%] h-fit mt-5 bg-[#ffffff] mr-5">
         <h1 className="p-3">PRICE DEATAILS</h1>

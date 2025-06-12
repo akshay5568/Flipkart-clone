@@ -6,11 +6,15 @@ const cors = require("cors")
 const Products = require("./models/productModels");
 dotenv.config();
 const Flight = require("./models/flightModels");
+const cart = require("./models/cartModels");
+
 
 let url = process.env.MONGO_URL;
 mongoose.connect(url)
 .then(() => console.log("Connect to mongoDB"))
 .catch((err) => console.log(err))
+
+
 
 
 app.use(cors());
@@ -30,6 +34,31 @@ app.get('/flights' , async (req,res) => {
     res.json(flights);
 })
 
+
+
+app.post('/cart' , async (req,res) => {
+    const {title , img , price , discount , details , catyegorys} = req.body;
+    try {
+        cart.insertMany({title,img,price,discount,details,catyegorys});
+        console.log("Inserted");
+        
+    }
+    catch (err){
+        console.log(err);
+    }
+} ) 
+
+
+app.get('/cart' , async (req,res) => {
+    const CartData = await cart.find({});
+    res.json(CartData);
+})
+
+app.post('/cart/remove' , async (req,res) => {
+    const {id} = req.body;
+    await cart.findByIdAndDelete(id);
+    console.log("Deleted");
+});
 
 
 

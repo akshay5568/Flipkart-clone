@@ -16,6 +16,7 @@ function SignUP () {
 
                         <div className="bg-[#ffffff] w-[60%] h-full">
                                 <form action="" className="ml-9 mt-7 w-[80%] m-auto text-center">
+                                     <input className="w-full p-3 text-xl border-1  mb-3" type="text" placeholder="Name"/>
                                      <input className="w-full p-3 text-xl border-1  mb-3" type="email" placeholder="Email"/>
                                      <input className="w-full p-3 text-xl border-1 mb-3" type="password" placeholder="password"/>
                                      <h5 className="text-xs mb-3 text-gray-500">By continuing, you agree to Flipkart's Terms of Use and Privacy Policy.</h5>

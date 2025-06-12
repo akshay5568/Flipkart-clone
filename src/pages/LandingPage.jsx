@@ -10,6 +10,7 @@ import axios from "axios";
 import {  setProducts } from "../reducers/ProductsReducer";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { addToCart } from "../reducers/ProductsReducer";
 
 function LandingPage() {
 
@@ -23,6 +24,11 @@ function LandingPage() {
    }, [dispatch]);
 
   
+   useEffect ( () => {
+      axios.get('http://localhost:8080/cart')
+      .then((res) => dispatch(addToCart(res.data)))
+      .catch((err) => console.log(err))
+   } , [dispatch])
    
   return (
     <div className="w-full h-fit p-3 bg-[#f1f2f4]">

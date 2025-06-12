@@ -14,8 +14,18 @@ function FullProductPage() {
 
   const dispatch = useDispatch();
 
-  const addToCartHandler = (filteredProduct) => {
-    dispatch(addToCart(filteredProduct));
+  const [title] = filteredProduct;
+  console.log(title.title);
+  
+  const addToCartHandler = async (filteredProduct) => {
+    try{
+          dispatch(addToCart(filteredProduct));
+          await axios.post('http://localhost:8080/cart' , {title:title.title , img:title.img , price:title.price, discount:title.discount, details:title.details, catyegorys:title.catyegorys} );
+    }
+    catch (err) {
+        console.log(err);
+    }
+    
   };
 
   return (
