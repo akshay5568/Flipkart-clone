@@ -16,11 +16,15 @@ export const ProductsReducer = createSlice({
     },
 
     addToCart: (state, action) => {
+      state.cart.push(action.payload);
+    },
+
+    setToCart : (state,action) => {
       state.cart = action.payload;
     },
 
     removeCarts: (state, action) => {
-      state.cart = state.cart.filter((item, _) =>  item._id !== action.payload);
+      state.cart = state.cart.filter(item =>  item._id !== action.payload);
     },
 
     setLogin : (state , action ) => {
@@ -29,5 +33,5 @@ export const ProductsReducer = createSlice({
   },
 });
 
-export const { addToCart, removeCarts, setProducts , setLogin } = ProductsReducer.actions;
+export const { addToCart, removeCarts, setProducts , setLogin , setToCart} = ProductsReducer.actions;
 export default ProductsReducer.reducer;

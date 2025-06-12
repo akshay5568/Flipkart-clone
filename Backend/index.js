@@ -39,9 +39,7 @@ app.get('/flights' , async (req,res) => {
 app.post('/cart' , async (req,res) => {
     const {title , img , price , discount , details , catyegorys} = req.body;
     try {
-        cart.insertMany({title,img,price,discount,details,catyegorys});
-        console.log("Inserted");
-        
+        cart.insertMany({title,img,price,discount,details,catyegorys});        
     }
     catch (err){
         console.log(err);
@@ -57,7 +55,6 @@ app.get('/cart' , async (req,res) => {
 app.post('/cart/remove' , async (req,res) => {
     const {id} = req.body;
     await cart.findByIdAndDelete(id);
-    console.log("Deleted");
 });
 
 

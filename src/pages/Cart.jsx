@@ -1,7 +1,7 @@
 import { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { removeCarts } from "../reducers/ProductsReducer";
+import { addToCart, removeCarts , setToCart } from "../reducers/ProductsReducer";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 
@@ -11,18 +11,25 @@ function Cart() {
 
   
 
-  const removeNestedArray = cartData.flat();
+  // const removeNestedArray = cartData.flat();
 
   
-  const TotalPrice = removeNestedArray.reduce(
+  const TotalPrice = cartData.reduce(
     (sum, item) => sum + item.price,
     0
   );
 
+
   const dispatch = useDispatch();
 
+     useEffect ( () => {
+      axios.get('http://localhost:8080/cart')
+      .then((res) => dispatch(setToCart(res.data)))
+      .catch((err) => console.log(err))
+   } , [dispatch])
+   
+
   const removeCartHandler = async (itemIndex) => {
-    console.log(itemIndex);
     dispatch(removeCarts(itemIndex));
     toast.success("Item removed from cart!");
     await axios.post('http://localhost:8080/cart/remove' , {id:itemIndex});
@@ -65,7 +72,7 @@ function Cart() {
           </h1>
         </div>
 
-        {removeNestedArray.map((item, index) => {
+        {cartData.map((item, index) => {
           return (
             <div className="m-auto p-5 px-7 mt-4 bg-[#ffffff]">
               <div className="flex gap-5">

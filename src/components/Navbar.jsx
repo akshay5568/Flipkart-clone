@@ -7,19 +7,32 @@ import { CgProfile } from "react-icons/cg";
 import { FaBoxOpen } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { AiOutlineLogout } from "react-icons/ai";
 import { useSelector } from "react-redux";
-
+import { setProducts } from "../reducers/ProductsReducer";
+import { useDispatch } from "react-redux";
+import axios from "axios";
 function Navbar() {
-  // const [isLogin, setLogin] = useState(false);
-  // const logoutFunction = () => {
-  //   setLogin(false);
-  // };
+
+  
+  const [isLogin, setLogin] = useState(true);
+  const logoutFunction = () => {
+    setLogin(false);
+  };
+
+   const dispatch = useDispatch();
+  
+
+     useEffect(  () => {
+      axios.get("http://localhost:8080/product")
+         .then((res) => dispatch(setProducts(res.data)))
+        .catch((err) => console.log(err));
+     }, [dispatch]);
 
   const cartData = useSelector((state) => state.products.cart.length);
-
-  const isLogin = useSelector((state) => state.products.isLogin);
+  
+  // const isLogin = useSelector((state) => state.products.isLogin);
 
   return (
     <div className="p-3 w-full h-[9%]">

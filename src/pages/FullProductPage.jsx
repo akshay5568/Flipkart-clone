@@ -16,11 +16,25 @@ function FullProductPage() {
 
   const [title] = filteredProduct;
   console.log(title.title);
+
+  //   useEffect ( () => {
+  //     axios.get('http://localhost:8080/cart')
+  //     .then((res) => dispatch(addToCart(res.data)))
+  //     .catch((err) => console.log(err))
+  //  } , [dispatch])
+
+
+     useEffect(  () => {
+      axios.get("http://localhost:8080/product")
+         .then((res) => dispatch(setProducts(res.data)))
+        .catch((err) => console.log(err));
+     }, [dispatch]);
   
-  const addToCartHandler = async (filteredProduct) => {
+  const addToCartHandler = async () => {
     try{
           dispatch(addToCart(filteredProduct));
           await axios.post('http://localhost:8080/cart' , {title:title.title , img:title.img , price:title.price, discount:title.discount, details:title.details, catyegorys:title.catyegorys} );
+
     }
     catch (err) {
         console.log(err);
@@ -61,7 +75,7 @@ function FullProductPage() {
               <div className="flex items-center gap-4 mt-5">
                 <button
                   className="flex items-center gap-3 bg-[#ff9e01] p-3 px-8 text-white rounded"
-                  onClick={() => addToCartHandler(filteredProduct)}
+                  onClick={addToCartHandler}
                 >
                   {" "}
                   <BsCart3 /> ADD TO CART
