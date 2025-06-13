@@ -45,7 +45,7 @@ function ListingProducts({ catyegory }) {
               >
                   <div className="flex">
                     <img
-                      className="w-[70%] m-auto mt-5 h-[70%] rounded"
+                      className="w-[70%] m-auto mt-5 h-[80%] rounded"
                       src={item.img}
                       alt=""
                     />

@@ -23,13 +23,6 @@ function LandingPage() {
       .catch((err) => console.log(err));
    }, [dispatch]);
 
-  
-  //  useEffect ( () => {
-  //     axios.get('http://localhost:8080/cart')
-  //     .then((res) => dispatch(addToCart(res.data)))
-  //     .catch((err) => console.log(err))
-  //  } , [dispatch])
-
       useEffect ( () => {
       axios.get('http://localhost:8080/cart')
       .then((res) => dispatch(setToCart(res.data)))

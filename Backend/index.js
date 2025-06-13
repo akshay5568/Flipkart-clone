@@ -7,7 +7,9 @@ const Products = require("./models/productModels");
 dotenv.config();
 const Flight = require("./models/flightModels");
 const cart = require("./models/cartModels");
-
+const User = require("./models/userModels");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
 
 let url = process.env.MONGO_URL;
 mongoose.connect(url)
@@ -58,4 +60,17 @@ app.post('/cart/remove' , async (req,res) => {
 });
 
 
+const jwtSecret = process.env.JWT_SECRET;
+
+
+app.post('/signup' , async (req,res) => {
+    const {name , email , password} = req.body;
+    console.log(password);
+    const existingEmail = await User.findOne({email});
+    if(existingEmail) return res.status(400).send("User Already Exists");
+    const HasedPassword = await bcrypt.hash(password , 10);
+    console.log(HasedPassword);
+    await User.insertMany({name , email , password:HasedPassword});
+    res.status(201).send("User Registerd Succsessfully");
+})
 
