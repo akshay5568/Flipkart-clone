@@ -65,12 +65,22 @@ const jwtSecret = process.env.JWT_SECRET;
 
 app.post('/signup' , async (req,res) => {
     const {name , email , password} = req.body;
-    console.log(password);
     const existingEmail = await User.findOne({email});
     if(existingEmail) return res.status(400).send("User Already Exists");
     const HasedPassword = await bcrypt.hash(password , 10);
-    console.log(HasedPassword);
     await User.insertMany({name , email , password:HasedPassword});
     res.status(201).send("User Registerd Succsessfully");
 })
 
+app.post('/login' , async (req,res) => {
+    const {email , password} = req.body;
+    const user = await User.findOne({email});
+    console.log(user);
+    if(!user) return res.status(400).send("User Does not Exist");
+
+    const isMatch = await bcrypt.compare(password, user.password);
+   
+    
+    if(!isMatch) return res.status(401).send("Invaild Credeainsiol");
+    res.status(200).send("Login Successfull");
+})

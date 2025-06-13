@@ -10,7 +10,7 @@ function SignUP() {
   });
 
   const formHandler = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    setUserData({ ...userData, [e.target.name]: e.target.value }); 
   };
 
   const navigate = useNavigate();
