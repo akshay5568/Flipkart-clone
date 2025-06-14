@@ -24,7 +24,14 @@ function LandingPage() {
    }, [dispatch]);
 
       useEffect ( () => {
-      axios.get('http://localhost:8080/cart')
+        const token = localStorage.getItem("token");
+        console.log(token);
+        
+        axios.get('http://localhost:8080/cart' , {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((res) => dispatch(setToCart(res.data)))
       .catch((err) => console.log(err))
    } , [dispatch])

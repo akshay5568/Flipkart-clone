@@ -25,11 +25,15 @@ function Login() {
   const loginButtonHandler = async (e) => {
     e.preventDefault();
     try {
+
       const response = await axios.post(
         "http://localhost:8080/login",
         loginData
       );
       if (response.status === 200 || response.status === 201) {
+           localStorage.setItem("token", response.data.token);
+      console.log("Token stored:", response.data.token);
+
         setLoginData({
           email: "",
           password: "",

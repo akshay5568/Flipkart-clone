@@ -23,23 +23,37 @@ function FullProductPage() {
   //     .catch((err) => console.log(err))
   //  } , [dispatch])
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/product")
+      .then((res) => dispatch(setProducts(res.data)))
+      .catch((err) => console.log(err));
+  }, [dispatch]);
 
-     useEffect(  () => {
-      axios.get("http://localhost:8080/product")
-         .then((res) => dispatch(setProducts(res.data)))
-        .catch((err) => console.log(err));
-     }, [dispatch]);
-  
   const addToCartHandler = async () => {
-    try{
-          dispatch(addToCart(filteredProduct));
-          await axios.post('http://localhost:8080/cart' , {title:title.title , img:title.img , price:title.price, discount:title.discount, details:title.details, catyegorys:title.catyegorys} );
 
+  const token = localStorage.getItem("token");
+  console.log(token);
+    try {
+
+      dispatch(addToCart(filteredProduct));
+      await axios.post("http://localhost:8080/cart", {
+        title: title.title,
+        img: title.img,
+        price: title.price,
+        discount: title.discount,
+        details: title.details,
+        catyegorys: title.catyegorys,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+    } catch (err) {
+      console.log(err);
     }
-    catch (err) {
-        console.log(err);
-    }
-    
   };
 
   return (

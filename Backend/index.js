@@ -10,6 +10,8 @@ const cart = require("./models/cartModels");
 const User = require("./models/userModels");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const cookeParser = require("cookie-parser");
+
 
 let url = process.env.MONGO_URL;
 mongoose.connect(url)
@@ -21,6 +23,7 @@ mongoose.connect(url)
 
 app.use(cors());
 app.use(express.json());
+app.use(cookeParser());
 app.listen(8080, () => {
     console.log("Port Is Listening : 8080");
 })
@@ -39,18 +42,38 @@ app.get('/flights' , async (req,res) => {
 
 
 app.post('/cart' , async (req,res) => {
-    const {title , img , price , discount , details , catyegorys} = req.body;
+
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).send("No token provided or invalid format");
+  }
+    const token = req.headers.authorization.split(" ")[1];
+
+    if(!token) return res.status(401).send("No Token Provided");
+
     try {
-        cart.insertMany({title,img,price,discount,details,catyegorys});        
+        const decode = jwt.verify(token, process.env.JWT_SECRET);
+        const userId = decode.userId;
+         const {title , img , price , discount , details , catyegorys} = req.body;
+        await cart.create({userId,title,img,price,discount,details,catyegorys});  
+         res.status(201).send("Item Added To Cart");      
     }
     catch (err){
-        console.log(err);
+        console.log(err.data);
+        res.status(501).send("Faild To add Items");
     }
 } ) 
 
 
 app.get('/cart' , async (req,res) => {
-    const CartData = await cart.find({});
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).send("No token provided or invalid format");
+  }
+    const token = req.headers.authorization.split(" ")[1];
+    const decode = jwt.verify(token, process.env.JWT_SECRET);
+
+    const CartData = await cart.find({userId : decode.userId});
     res.json(CartData);
 })
 
@@ -80,7 +103,8 @@ app.post('/login' , async (req,res) => {
 
     const isMatch = await bcrypt.compare(password, user.password);
    
-    
     if(!isMatch) return res.status(401).send("Invaild Credeainsiol");
-    res.status(200).send("Login Successfull");
+
+    const token = jwt.sign({userId:user._id}, process.env.JWT_SECRET , {expiresIn: "7d"});
+    res.status(200).send({token});
 })

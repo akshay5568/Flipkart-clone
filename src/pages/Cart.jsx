@@ -21,18 +21,28 @@ function Cart() {
 
 
   const dispatch = useDispatch();
-
+     
      useEffect ( () => {
-      axios.get('http://localhost:8080/cart')
+      const token = localStorage.getItem("token");
+      axios.get('http://localhost:8080/cart' ,{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
       .then((res) => dispatch(setToCart(res.data)))
       .catch((err) => console.log(err))
    } , [dispatch])
    
 
   const removeCartHandler = async (itemIndex) => {
+    const token = localStorage.getItem("token");
     dispatch(removeCarts(itemIndex));
     toast.success("Item removed from cart!");
-    await axios.post('http://localhost:8080/cart/remove' , {id:itemIndex});
+    await axios.post('http://localhost:8080/cart/remove',{id:itemIndex} , {
+      headers: {
+          Authorization: `Bearer ${token}`
+        }
+    });
   };
 
   let Navigate = useNavigate();
