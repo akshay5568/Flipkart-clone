@@ -32,7 +32,6 @@ function Login() {
       );
       if (response.status === 200 || response.status === 201) {
            localStorage.setItem("token", response.data.token);
-      console.log("Token stored:", response.data.token);
 
         setLoginData({
           email: "",

@@ -7,46 +7,51 @@ import SecondProductSection from "../components/LandingPages/SecondProductSectio
 import Container from "../components/LandingPages/Container";
 import DealsProducts from "../components/LandingPages/DealsProducts";
 import axios from "axios";
-import {  setProducts } from "../reducers/ProductsReducer";
-import { useDispatch } from "react-redux";
+import { setProducts } from "../reducers/ProductsReducer";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { addToCart, setToCart } from "../reducers/ProductsReducer";
-
+import { setToCart } from "../reducers/ProductsReducer";
+import { addUsers } from "../reducers/UsersReducer";
 function LandingPage() {
+  const dispatch = useDispatch();
 
-
-   const dispatch = useDispatch();
- 
-   useEffect(  () => {
-    axios.get("http://localhost:8080/product")
-       .then((res) => dispatch(setProducts(res.data)))
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/product")
+      .then((res) => dispatch(setProducts(res.data)))
       .catch((err) => console.log(err));
-   }, [dispatch]);
+  }, [dispatch]);
 
-      useEffect ( () => {
-        const token = localStorage.getItem("token");
-        console.log(token);
-        
-        axios.get('http://localhost:8080/cart' , {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    axios
+      .get("http://localhost:8080/cart", {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((res) => dispatch(setToCart(res.data)))
-      .catch((err) => console.log(err))
-   } , [dispatch])
-   
+      .catch((err) => console.log(err));
+  }, [dispatch]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/users")
+      .then((res) => dispatch(addUsers(res.data)))
+      .catch((err) => console.log(err));
+  }, [dispatch]);
+
   return (
     <div className="w-full h-fit p-3 bg-[#f1f2f4]">
-      <TopBar/>
-      <Poster/>
-      <FirstProductSection/>
-      <SecondProductSection/>
-      <Container/>
-      <DealsProducts/>
+      <TopBar />
+      <Poster />
+      <FirstProductSection />
+      <SecondProductSection />
+      <Container />
+      <DealsProducts />
     </div>
   );
-  
 }
 
 export default LandingPage;

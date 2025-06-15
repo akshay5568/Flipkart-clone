@@ -10,7 +10,7 @@ function SignUP() {
   });
 
   const formHandler = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value }); 
+    setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
   const navigate = useNavigate();
@@ -24,6 +24,8 @@ function SignUP() {
         userData
       );
       if (response.status === 201 || response.status === 200) {
+        localStorage.setItem("token", response.data.token);
+        console.log("Token stored:", response.data.token);
         toast.success(`${userData.name} Register Succsessfully`);
         setUserData({
           name: "",
@@ -34,7 +36,6 @@ function SignUP() {
         setTimeout(() => {
           navigate("/");
         }, 2000);
-        
       } else {
         toast.error("error");
       }
