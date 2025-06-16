@@ -4,10 +4,12 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUsers } from "../../reducers/UsersReducer";
 import { jwtDecode } from "jwt-decode";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 function MyProfile() {
 
     const userInfo = useSelector((state) => state.users.users)
-    console.log(userInfo);
+
 
     const dispatch = useDispatch();
      useEffect(() => {
@@ -22,11 +24,20 @@ function MyProfile() {
 
   
    const FilteredUser = userInfo.filter(items => items._id == filterUser.userId);
-   console.log(FilteredUser);
+   const id = FilteredUser.map(items => items._id);
+   const id2 = id[0]
    
    const [isEdit , setEdit] = useState(false);
 
-  
+   const navigate = useNavigate();
+   const DeleteHandler = async () => {
+      await axios.post('http://localhost:8080/users' , {id:id2})
+      localStorage.removeItem("token");
+      toast.success("Account Was Deleted");
+      setTimeout(() => {
+          navigate('/login');
+      }, 1000)
+   }
     
     return (
         <div className="w-full h-fit bg-[#f1f3f6] p-5">
@@ -51,7 +62,7 @@ function MyProfile() {
                               </div>
 
                               <div className="flex gap-10" >
-                                 <input className="p-3 bg-[#fafafa] border-1 text-gray-400" type="text" value={FilteredUser.map(items => items.name)}/>
+                                 <input className="p-3 bg-[#fafafa] border-1 text-gray-400 cursor-not-allowed" type="text" value={FilteredUser.map(items => items.name)}/>
                                  <button>{isEdit ? "SAVE" : ""}</button>
                               </div>
                           </div>
@@ -63,13 +74,13 @@ function MyProfile() {
                               </div>
 
                               <div className="flex gap-10" >
-                                 <input className="p-3 bg-[#fafafa] border-1 text-gray-400" type="text" value={FilteredUser.map(items => items.email)}/>
+                                 <input className="p-3 bg-[#fafafa] border-1 text-gray-400 cursor-not-allowed" type="text" value={FilteredUser.map(items => items.email)}/>
                                  <button>{isEdit ? "SAVE" : ""}</button>
                               </div>
                           </div>
 
                           <div className="mt-10 text-red-600">
-                              <button>Delete Account</button>
+                              <button className="cursor-pointer" onClick={DeleteHandler}>Delete Account</button>
                           </div>
 
 

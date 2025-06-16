@@ -26,7 +26,7 @@ function Navbar() {
     toast.success("You Are Logout Now");
     setTimeout(() => {
       navigate("/login");
-    }, 2000);
+    }, 1000);
     setLogin(false);
   };
 

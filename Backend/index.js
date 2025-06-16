@@ -116,3 +116,10 @@ app.get("/users" , async (req,res) => {
      const users = await User.find({});
      res.json(users);
 })
+
+
+app.post("/users" , async (req,res) => {
+     const {id} = req.body;
+     await User.findByIdAndDelete(id);
+     res.status(200).send("User Deleted");
+})
