@@ -9,6 +9,7 @@ import FlightPage from "../components/FlightBookings/FlightPage";
 import FlightBooking from "../components/FlightBookings/FlightBooking";
 import Login from "../components/Login/Login";
 import SignUP from "../components/Signup/SignUp";
+import MyProfile from "../components/My Profile/MyProfile";
 function AllRoutes() {
     return (
         <div>
@@ -22,6 +23,7 @@ function AllRoutes() {
                 <Route path="/flightbooking" element={<FlightBooking/>} />
                 <Route path="/login" element={<Login/>} />
                 <Route path="/signup" element={<SignUP/>} />
+                <Route path="/myproflie" element={<MyProfile/>} />
             </Routes>
         </div>
     )

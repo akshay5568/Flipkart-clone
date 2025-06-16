@@ -71,9 +71,13 @@ function Navbar() {
           <div className="flex  items-center gap-2 w-[7rem] h-[3rem] rounded-md ml-3 justify-center hover:bg-[#2c64e3] hover:text-white duration-300">
             <div className="flex items-center relative group gap-3 ">
               <IoMdLogIn />
-              <NavLink to="/login">
-                {token ? `${filterUser.map((items) => items.name)}` : "Login"}
-              </NavLink>
+              <div className="flex items-center justify-center">
+                {token ? (
+                  `${filterUser.map((items) => items.name)}`
+                ) : (
+                  <NavLink to="/login">Login</NavLink>
+                )}
+              </div>
               <FaAngleDown />
 
               <div className="w-[15rem] h-[10rem]  absolute text-black top-5 opacity-0 group-hover:opacity-100 bg-[#ffffff] rounded-md p-3 hidden group-hover:block">
