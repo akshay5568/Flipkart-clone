@@ -123,3 +123,14 @@ app.post("/users" , async (req,res) => {
      await User.findByIdAndDelete(id);
      res.status(200).send("User Deleted");
 })
+
+app.post('/userdelete', async (req,res) => {
+   const authHeader = req.headers.authorization;
+   const token = req.headers.authorization.split(" ")[1];
+   const decode = jwt.verify(token, process.env.JWT_SECRET);
+   const userId = decode.userId;
+    const data = req.body;
+    await User.findByIdAndUpdate(userId,data);
+    res.send("User Updeted Sucsesfully");
+});
+
