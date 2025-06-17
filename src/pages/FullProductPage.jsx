@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { FaRegStar } from "react-icons/fa";
 import { BsCart3 } from "react-icons/bs";
 import { ImPower } from "react-icons/im";
@@ -14,14 +14,15 @@ function FullProductPage() {
 
   const dispatch = useDispatch();
 
-  const [title] = filteredProduct;
-  console.log(title.title);
+  const navigate = useNavigate()
+
 
   //   useEffect ( () => {
   //     axios.get('http://localhost:8080/cart')
   //     .then((res) => dispatch(addToCart(res.data)))
   //     .catch((err) => console.log(err))
   //  } , [dispatch])
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     axios
@@ -30,10 +31,14 @@ function FullProductPage() {
       .catch((err) => console.log(err));
   }, [dispatch]);
 
+  const [title] = filteredProduct;
+  console.log(title.title);
+
   const addToCartHandler = async () => {
 
   const token = localStorage.getItem("token");
   console.log(token);
+
     try {
 
       dispatch(addToCart(filteredProduct));
@@ -87,13 +92,20 @@ function FullProductPage() {
               </div>
 
               <div className="flex items-center gap-4 mt-5">
-                <button
+                {token ? <button
                   className="flex items-center gap-3 bg-[#ff9e01] p-3 px-8 text-white rounded"
                   onClick={addToCartHandler}
                 >
                   {" "}
                   <BsCart3 /> ADD TO CART
-                </button>
+                </button> : <button
+                  className="flex items-center gap-3 bg-[#ff9e01] p-3 px-8 text-white rounded"
+                  onClick={()=> navigate('/login')}
+                >
+                  {" "}
+                  <BsCart3 /> ADD TO CART
+                </button>}
+
                 <button className="flex items-center gap-3 bg-[#fb641b] p-3 px-13 text-white rounded">
                   <ImPower />
                   BUY NOW

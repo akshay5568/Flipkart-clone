@@ -46,30 +46,26 @@ function MyProfile() {
     setEdit(() => false);
   };
 
-  const [inputData , setInputData] = useState({
-    name:"",
-    email:""
-  })
+  const [inputData, setInputData] = useState({
+    name: "",
+    email: "",
+  });
 
   const inputdata = (e) => {
-      const {name , value} = e.target;
-      setInputData({...inputData, [name]:value})
-  }
+    const { name, value } = e.target;
+    setInputData({ ...inputData, [name]: value });
+  };
   const saveHandler = async () => {
-        await axios.post('http://localhost:8080/userdelete', inputData, {
-            headers:{
-                Authorization:`Bearer ${token}`
-            }
-        });
-        setTimeout(() => {
-   toast.success("Info Updated Succsesfully");
-        navigate("/");
-        },1000)
-     
-  }
-
- 
-
+    await axios.post("http://localhost:8080/userdelete", inputData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setTimeout(() => {
+      toast.success("Info Updated Succsesfully");
+      navigate("/");
+    }, 1000);
+  };
 
   return (
     <div className="w-full h-fit bg-[#f1f3f6] p-5">
@@ -109,7 +105,6 @@ function MyProfile() {
                   onChange={inputdata}
                   required
                 />
-               
               </div>
             </div>
 
@@ -128,7 +123,6 @@ function MyProfile() {
                   name="email"
                   required
                 />
-             
               </div>
             </div>
 
@@ -136,16 +130,27 @@ function MyProfile() {
               <button className="cursor-pointer" onClick={DeleteHandler}>
                 Delete Account
               </button>
-              {isEdit ? (  
-                <button onClick={cancelHandler} className="text-[#2874f0] cursor-pointer">
+              {isEdit ? (
+                <button
+                  onClick={cancelHandler}
+                  className="text-[#2874f0] cursor-pointer"
+                >
                   Cancel
                 </button>
               ) : (
-                 <button onClick={editHandler} className="text-[#2874f0] cursor-pointer">
+                <button
+                  onClick={editHandler}
+                  className="text-[#2874f0] cursor-pointer"
+                >
                   Edit
                 </button>
               )}
-                 <button onClick={saveHandler} className="text-[#2874f0] font-semibold cursor-pointer">{isEdit ? "SAVE" : ""}</button>
+              <button
+                onClick={saveHandler}
+                className="text-[#2874f0] font-semibold cursor-pointer"
+              >
+                {isEdit ? "SAVE" : ""}
+              </button>
             </div>
 
             <img

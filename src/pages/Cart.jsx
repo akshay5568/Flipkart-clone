@@ -9,10 +9,10 @@ function Cart() {
   const [platformFee, setPlatFormFee] = useState(4);
   const cartData = useSelector((state) => state.products.cart);
 
-  
 
   // const removeNestedArray = cartData.flat();
 
+  const token = localStorage.getItem("token");
   
   const TotalPrice = cartData.reduce(
     (sum, item) => sum + item.price,

@@ -24,7 +24,6 @@ function LandingPage() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
     axios
       .get("http://localhost:8080/cart", {
         headers: {

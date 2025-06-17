@@ -41,6 +41,10 @@ function Navbar() {
   }
 
   const dispatch = useDispatch();
+  const isCart = () => {
+      navigate('/login');
+      toast.success("please Login First");
+  }
 
   useEffect(() => {
     axios
@@ -93,10 +97,10 @@ function Navbar() {
                   </div>
                 )}
 
-                <div className="flex mt-3 items-center gap-2">
+                {user ? <div className="flex mt-3 items-center gap-2">
                   <CgProfile />
                   <NavLink to="/myproflie">My Profile</NavLink>
-                </div>
+                </div> : ""}
 
                 <div className="flex mt-3 items-center gap-2">
                   <FaBoxOpen />
@@ -113,10 +117,10 @@ function Navbar() {
 
           <div className="flex items-center gap-2">
             <div className="flex items-center reletive">
-              <h6 className="bg-red-400 px-1 rounded-md text-xs">{cartData}</h6>
+              <h6 className="bg-red-400 px-1 rounded-md text-xs">{user ? cartData : ""}</h6>
               <BsCart3 />
             </div>
-            <NavLink to="/cart">Cart</NavLink>
+            {user ? <NavLink to="/cart">Cart</NavLink> : <NavLink to="/login">Cart</NavLink> }
           </div>
 
           <div className="flex items-center gap-2">
