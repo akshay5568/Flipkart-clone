@@ -48,9 +48,9 @@ function TopBar () {
         {data1.map((item, index) => {
           return (
             <NavLink key={index} to={item.title == "Flight Bookings" ? `/flight` : `/products/${item.title}`}>
-              <div>
+              <div>    
                 <img className="w-[55px]" src={item.img} alt="" />
-                <h3>{item.title}</h3>
+                <h3 className="text-sm font-semibold">{item.title}</h3>           
               </div>
             </NavLink>
           );
