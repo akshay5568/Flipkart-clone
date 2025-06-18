@@ -46,7 +46,7 @@ function FirstProductSection() {
 
   return (
     <div className="flex w-full h-[22vw] bg-[#ffffff] mt-5">
-      <div className="flex flex-nowrap overflow-auto scrollbar-hide w-[90%] h-full gap-8 items-center p-7">
+      <div className="flex flex-nowrap overflow-auto scrollbar-hide w-[90%] h-full gap-10 items-center p-7">
         {FistProductList.map((item, index) => {
           return (
             <div key={index} className="min-w-[15%] w-[15%] h-[15vw]">
@@ -55,7 +55,7 @@ function FirstProductSection() {
                 to={`/products/${item.title}/${item._id}`}
               >
                 <img
-                  className="w-[100%] h-[150px] rounded-md object-top"
+                  className="w-[100%] h-[150px] rounded-md object-fit"
                   src={item.img}
                   alt=""
                 />
