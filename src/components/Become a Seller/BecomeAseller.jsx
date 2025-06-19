@@ -1,4 +1,15 @@
+import { Navigate, useNavigate } from "react-router-dom";
+
+useNavigate
+
 function BecomeAseller() {
+
+  const Navigate = useNavigate();
+
+  const startSelling = () => {
+      Navigate('/sell-register');
+  }
+  
   return (
     <div className="w-full h-fit bg-[#ffffff]">
       <div className="w-full relative">
@@ -9,6 +20,7 @@ function BecomeAseller() {
           src="https://static-assets-web.flixcart.com/fk-sp-static/images/prelogin/banner/Desktop_sell.webp"
           alt=""
         />
+      <button onClick={startSelling} className="absolute top-[31%] right-[10%] rounded  text-xl p-3 bg-[#ffcd00]">Start Selling</button>
       </div>
       <div className="w-full h-fit ">
         <div className="m-auto w-[90%] bg-[#ffffff] h-[10vw] shadow-2xl rounded-md">
@@ -84,7 +96,7 @@ function BecomeAseller() {
           </div>
           <div>
             <img
-              src="https://img1a.flixcart.com/fk-sp-static/images/Onboarding_logo_Percent.svg"
+              src="https://img1a.flixcart.com/fk-sp-static/images/Onboarding_logo_Percent.svg"     
               alt=""
             />{" "}
             <h3 className="mt-3 font-bold text-[#3d464d]">Higher Profits</h3>
@@ -173,6 +185,7 @@ function BecomeAseller() {
           </div>
         </div>
       </div>
+
     </div>
   );
 }
