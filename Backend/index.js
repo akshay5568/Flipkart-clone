@@ -112,32 +112,51 @@ app.post("/login", async (req, res) => {
   res.status(200).send({ token });
 });
 
-
-app.get("/users" , async (req,res) => {
-     const users = await User.find({});
-     res.json(users);
-})
-
-
-app.post("/users" , async (req,res) => {
-     const {id} = req.body;
-     await User.findByIdAndDelete(id);
-     res.status(200).send("User Deleted");
-})
-
-app.post('/userdelete', async (req,res) => {
-   const authHeader = req.headers.authorization;
-   const token = req.headers.authorization.split(" ")[1];
-   const decode = jwt.verify(token, process.env.JWT_SECRET);
-   const userId = decode.userId;
-    const data = req.body;
-    await User.findByIdAndUpdate(userId,data);
-    res.send("User Updeted Sucsesfully");
+app.get("/users", async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
 });
 
+app.post("/users", async (req, res) => {
+  const { id } = req.body;
+  await User.findByIdAndDelete(id);
+  res.status(200).send("User Deleted");
+});
 
-app.post('/seller-register' , async (req,res) => {
-    const {name , email, password} = req.body;
+app.post("/userdelete", async (req, res) => {
+  const authHeader = req.headers.authorization;
+  const token = req.headers.authorization.split(" ")[1];
+  const decode = jwt.verify(token, process.env.JWT_SECRET);
+  const userId = decode.userId;
+  const data = req.body;
+  await User.findByIdAndUpdate(userId, data);
+  res.send("User Updeted Sucsesfully");
+});
+
+app.post("/seller-register", async (req, res) => {
+  const { name, email, password } = req.body;
+  const existingEmail = await Seller.findOne({ email });
+  try {
+    if (existingEmail) {
+      return res.status(400).send("Seller Already Exists");
+    }
     const HasedPassword = await bcrypt.hash(password, 10);
-    await Seller.insertMany({name,email,password:HasedPassword}); 
-})
+    await Seller.insertMany({ name, email, password: HasedPassword });
+    res.status(200).send("User Registered Succsessfully");
+  } catch (err) {
+    res.status(500).send("Server Error");
+  }
+});
+
+app.post("/seller-login", async (req, res) => {
+  const { email, password } = req.body;
+  const user = await Seller.findOne({ email });
+  try {
+    if (!user) return res.status(400).send("Seller Does Not Exist");
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(401).send("Invalid Deatails");
+    res.status(200).send("Login Sucsessfull");
+  } catch (errr) {
+    res.status(500).send("Server Error");
+  }
+});

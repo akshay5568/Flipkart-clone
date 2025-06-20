@@ -12,6 +12,8 @@ import SignUP from "../components/Signup/SignUp";
 import MyProfile from "../components/My Profile/MyProfile";
 import BecomeAseller from "../components/Become a Seller/BecomeAseller";
 import RegisterForm from "../components/Become a Seller/RegisterForm";
+import UploadProducts from "../components/Become a Seller/UploadProducts";
+import SellerLogin from "../components/Become a Seller/SellerLogin";
 function AllRoutes() {
     return (
         <div>
@@ -28,6 +30,8 @@ function AllRoutes() {
                 <Route path="/myproflie" element={<MyProfile/>} />
                 <Route path="/sell-online" element={<BecomeAseller/>} />     
                 <Route path="/sell-register" element={<RegisterForm/>} />    
+                <Route path="/upload-products" element={<UploadProducts/>} />    
+                <Route path="/seller-login" element={<SellerLogin/>} />    
             </Routes>
         </div>
     )

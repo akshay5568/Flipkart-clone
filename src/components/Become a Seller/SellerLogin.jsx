@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { toast,ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
-function RegisterForm() {
-  const [sellerData, setSellerData] = useState({
-    name: "",
+function SellerLogin() {
+    const [sellerData, setSellerData] = useState({
     email: "",
     password: "",
   });
@@ -20,8 +19,8 @@ function RegisterForm() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/seller-register", sellerData);
-      toast.success("User Registered Successfully");
+      await axios.post("http://localhost:8080/seller-login", sellerData);
+      toast.success("Login Successfully");
       setSellerData({
         name: "",
         email: "",
@@ -31,7 +30,7 @@ function RegisterForm() {
             navigate('/upload-products');
       } , 1000)
     } catch (err) {
-      toast.error("User Already Exist");
+      toast.error("Invail Seller Deatails");
       setSellerData({
         name: "",
         email: "",
@@ -42,7 +41,7 @@ function RegisterForm() {
   };
 
   const loginHandler = () => {
-      navigate('/seller-login');
+      navigate('/sell-register');
   }
   
 
@@ -52,15 +51,7 @@ function RegisterForm() {
         <div className="w-[70%] h-[35vw] m-auto">
           <div className="text-center p-3 mt-7">
             <form onSubmit={submitHandler}>
-              <input
-                className="p-2 w-[50%] border-1 border-gray-400 m-3 rounded-md"
-                placeholder="Name"
-                type="text"
-                name="name"
-                value={sellerData.name}
-                onChange={handleChange}
-                required
-              />
+
               <input
                 className="p-2 w-[50%] border-1 border-gray-400 m-3 rounded-md"
                 placeholder="Email"
@@ -85,13 +76,18 @@ function RegisterForm() {
                 className="bg-[#0066cc] px-7 py-1 p-1 rounded text-sm text-white mt-7"
                 type="submit"
               >
-                Register & Continue
+                 Login
               </button>
               <br />
 
-              <h1 className="text-[#0066cc] mt-7 cursor-pointer" onClick={loginHandler}>I Have an already account</h1>
+              <h1
+                className="text-[#0066cc] mt-7 cursor-pointer"
+                onClick={loginHandler}
+              >
+                I don't Have an Account
+              </h1>
             </form>
-            <ToastContainer/>
+            <ToastContainer />
           </div>
         </div>
         <div className="w-[30%]">
@@ -124,4 +120,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default SellerLogin;
