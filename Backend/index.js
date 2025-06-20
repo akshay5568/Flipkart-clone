@@ -11,6 +11,7 @@ const User = require("./models/userModels");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const cookeParser = require("cookie-parser");
+const Seller = require("./models/sellerModels");
 
 let url = process.env.MONGO_URL;
 mongoose
@@ -134,3 +135,9 @@ app.post('/userdelete', async (req,res) => {
     res.send("User Updeted Sucsesfully");
 });
 
+
+app.post('/seller-register' , async (req,res) => {
+    const {name , email, password} = req.body;
+    const HasedPassword = await bcrypt.hash(password, 10);
+    await Seller.insertMany({name,email,password:HasedPassword}); 
+})
