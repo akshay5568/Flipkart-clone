@@ -135,7 +135,6 @@ app.post("/userdelete", async (req, res) => {
 });
 
 app.post("/seller-register", async (req, res) => {
-  const authHeader = req.headers.authorization;
   const token = req.headers.authorization.split(" ")[1];
   const decode = jwt.verify(token, process.env.JWT_SECRET);
   const userId = decode.userId;

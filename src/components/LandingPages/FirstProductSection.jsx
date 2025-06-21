@@ -55,7 +55,7 @@ function FirstProductSection() {
                 to={`/products/${item.title}/${item._id}`}
               >
                 <img
-                  className="w-[100%] h-[150px] rounded-md object-fit"
+                  className="w-[80%] h-[130px] rounded-md object-fit m-auto"
                   src={item.img}
                   alt=""
                 />

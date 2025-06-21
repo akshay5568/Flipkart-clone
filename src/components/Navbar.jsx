@@ -77,7 +77,7 @@ function Navbar() {
               <IoMdLogIn className="text-2xl" />
               <div className="w-[7vw] flex items-center justify-center">
                 {token ? (
-                  `${filterUser.map((items) => items.name)}`
+                  `${filterUser.map((items) => items.name.substring(0,10) + "...")}`
                 ) : (
                   <NavLink to="/login">Login</NavLink>
                 )}

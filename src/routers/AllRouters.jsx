@@ -29,7 +29,7 @@ function AllRoutes() {
                 <Route path="/signup" element={<SignUP/>} />
                 <Route path="/myproflie" element={<MyProfile/>} />
                 <Route path="/sell-online" element={<BecomeAseller/>} />     
-                <Route path="/sell-register" element={<RegisterForm/>} />    
+                <Route path="/seller-register" element={<RegisterForm/>} />    
                 <Route path="/upload-products" element={<UploadProducts/>} />    
                 <Route path="/seller-login" element={<SellerLogin/>} />    
             </Routes>

@@ -1,16 +1,15 @@
 import { Navigate, useNavigate } from "react-router-dom";
+import SellerNavbar from "./SellerNavbar";
 
 useNavigate
 
 function BecomeAseller() {
 
-  const Navigate = useNavigate();
 
-  const startSelling = () => {
-      Navigate('/sell-register');
-  }
   
   return (
+    <>
+    <SellerNavbar/>
     <div className="w-full h-fit bg-[#ffffff]">
       <div className="w-full relative">
         <h1 className="absolute top-[35%] text-4xl left-[5%] text-[#333333] font-semibold">
@@ -20,7 +19,6 @@ function BecomeAseller() {
           src="https://static-assets-web.flixcart.com/fk-sp-static/images/prelogin/banner/Desktop_sell.webp"
           alt=""
         />
-      <button onClick={startSelling} className="absolute top-[31%] right-[10%] rounded  text-xl p-3 bg-[#ffcd00]">Start Selling</button>
       </div>
       <div className="w-full h-fit ">
         <div className="m-auto w-[90%] bg-[#ffffff] h-[10vw] shadow-2xl rounded-md">
@@ -187,6 +185,7 @@ function BecomeAseller() {
       </div>
 
     </div>
+    </>
   );
 }
 
