@@ -12,6 +12,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const cookeParser = require("cookie-parser");
 const Seller = require("./models/sellerModels");
+const { jwtDecode } = require("jwt-decode");
 
 let url = process.env.MONGO_URL;
 mongoose
@@ -89,11 +90,11 @@ app.post("/signup", async (req, res) => {
   const existingEmail = await User.findOne({ email });
   if (existingEmail) return res.status(400).send("User Already Exists");
   const HasedPassword = await bcrypt.hash(password, 10);
-  await User.insertMany({ name, email, password: HasedPassword });
-  const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+  const user = await User.insertMany({name, email, password: HasedPassword });
+  const token = jwt.sign({ userId: user[0]._id }, process.env.JWT_SECRET, {
     expiresIn: "7d",
   });
-  res.status(201).send("User Registerd Succsessfully");
+  res.status(201).send({massage:"User Registerd Succsessfully"  , token, userId:user[0]._id});
 });
 
 app.post("/login", async (req, res) => {
@@ -134,14 +135,18 @@ app.post("/userdelete", async (req, res) => {
 });
 
 app.post("/seller-register", async (req, res) => {
-  const { name, email, password } = req.body;
+  const authHeader = req.headers.authorization;
+  const token = req.headers.authorization.split(" ")[1];
+  const decode = jwt.verify(token, process.env.JWT_SECRET);
+  const userId = decode.userId;
+  const {name, email, password } = req.body;
   const existingEmail = await Seller.findOne({ email });
   try {
     if (existingEmail) {
       return res.status(400).send("Seller Already Exists");
     }
     const HasedPassword = await bcrypt.hash(password, 10);
-    await Seller.insertMany({ name, email, password: HasedPassword });
+    await Seller.insertMany({userId, name, email, password: HasedPassword });
     res.status(200).send("User Registered Succsessfully");
   } catch (err) {
     res.status(500).send("Server Error");

@@ -2,8 +2,9 @@ import axios from "axios";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { toast,ToastContainer } from "react-toastify";
-
+import { jwtDecode } from "jwt-decode";
 function RegisterForm() {
+
   const [sellerData, setSellerData] = useState({
     name: "",
     email: "",
@@ -15,12 +16,18 @@ function RegisterForm() {
   };
 
   const navigate = useNavigate();
-  
+  const token = localStorage.getItem("token");
+ 
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/seller-register", sellerData);
+      await axios.post("http://localhost:8080/seller-register", sellerData, {
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      });
       toast.success("User Registered Successfully");
       setSellerData({
         name: "",

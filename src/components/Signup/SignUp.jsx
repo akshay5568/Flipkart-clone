@@ -25,7 +25,8 @@ function SignUP() {
       );
       if (response.status === 201 || response.status === 200) {
         localStorage.setItem("token", response.data.token);
-        console.log("Token stored:", response.data.token);
+        localStorage.setItem("userId", response.data.userId);
+        console.log("Token stored:", response.data.userId);
         toast.success(`${userData.name} Register Succsessfully`);
         setUserData({
           name: "",
