@@ -105,6 +105,11 @@ function SignUP() {
             >
               Sign Up
             </button>
+
+
+            <div>
+              <h1 onClick={() => navigate('/login')} className="cursor-pointer mt-9 text-[#2874f0]">Is you have already an account?</h1>
+            </div>
           </form>
 
           <ToastContainer />

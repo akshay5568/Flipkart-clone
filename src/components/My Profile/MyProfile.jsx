@@ -6,6 +6,7 @@ import { addUsers } from "../../reducers/UsersReducer";
 import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar";
 function MyProfile() {
   const userInfo = useSelector((state) => state.users.users);
 
@@ -68,6 +69,8 @@ function MyProfile() {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="w-full h-fit bg-[#f1f3f6] p-5">
       <div className="flex justify-center gap-4">
         <div className="w-[20%] h-[10vh] bg-[#ffffff] rounded">
@@ -162,6 +165,7 @@ function MyProfile() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

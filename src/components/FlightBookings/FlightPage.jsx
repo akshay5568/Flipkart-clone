@@ -3,6 +3,7 @@ import { useState,useEffect } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import BannerForFlight from "./BannerForFlight";
+import Navbar from "../Navbar";
 
 function FlightPage() {
   const [from, setFrom] = useState("");
@@ -38,6 +39,8 @@ console.log(dummyFlights);
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="w-full h-fit bg-[#f1f3f6] p-3">
       <div className="w-full h-[55vh] relative">
         <img
@@ -86,6 +89,7 @@ console.log(dummyFlights);
 
           <BannerForFlight/>
     </div>
+    </>
   );
 }
 

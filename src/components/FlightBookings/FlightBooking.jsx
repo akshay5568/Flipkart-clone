@@ -1,9 +1,12 @@
 import { useLocation } from "react-router-dom";
+import Navbar from "../Navbar";
 
 function FlightBookings() {
   const location = useLocation();
   const { Flights } = location.state || { Flights: [] };
   return (
+         <>
+         <Navbar/>
     <div className="w-full h-fit p-5 flex bg-[#f1f3f6] ">
       <div className="w-[30%] h-[50rem] bg-[#ffffff] ml-6"></div>
 
@@ -22,6 +25,7 @@ function FlightBookings() {
         {Flights.length > 0 ? (
           Flights.map((items, index) => {
             return (
+         
               <div className="flex gap-15 w-full h-fit items-center  bg-[#ffffff] mt-3 p-3 px-4 py-9 rounded hover:border border-blue-500">
                 <div className="flex gap-5 w-[15%] items-center ">
                   { <img className="w-[40px]" src={items.img} alt="" /> }
@@ -53,6 +57,7 @@ function FlightBookings() {
         )}
       </div>
     </div>
+    </>
   );
 }
 

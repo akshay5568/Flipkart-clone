@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setToCart } from "../reducers/ProductsReducer";
 import { addUsers } from "../reducers/UsersReducer";
+import Navbar from "../components/Navbar";
 function LandingPage() {
   const dispatch = useDispatch();
 
@@ -42,6 +43,8 @@ function LandingPage() {
   }, [dispatch]);
 
   return (
+    <div>
+      <Navbar/>
     <div className="w-full h-fit p-3 bg-[#f1f2f4]">
       <TopBar />
       <Poster />
@@ -49,6 +52,7 @@ function LandingPage() {
       <SecondProductSection />
       <Container />
       <DealsProducts />
+    </div>
     </div>
   );
 }

@@ -13,9 +13,6 @@ function NotFound() {
 
       <hr className="mt-5 text-[#dddddd]" />
       <div className="w-full h-[22rem] bg-[#f1f3f6]"></div>
-
-
-
     </div>
   );
 }

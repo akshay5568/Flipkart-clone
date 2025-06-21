@@ -6,6 +6,7 @@ import { ImPower } from "react-icons/im";
 import { addToCart, setProducts } from "../reducers/ProductsReducer";
 import axios from "axios";
 import { useEffect } from "react";
+import Navbar from "../components/Navbar";
 function FullProductPage() {
   const { id } = useParams();
 
@@ -62,7 +63,9 @@ function FullProductPage() {
   };
 
   return (
-    <div className="w-full h-fit bg-[#f1f3f6]">
+    <>
+    <Navbar/>
+    <div className="w-full h-fit bg-[#f1f3f6] p-3">
       {filteredProduct.map((item, i) => {
         return (
           <div key={i} className="flex w-[90%] m-auto gap-4 bg-[#ffffff] p-3">
@@ -116,6 +119,7 @@ function FullProductPage() {
         );
       })}
     </div>
+    </>
   );
 }
 

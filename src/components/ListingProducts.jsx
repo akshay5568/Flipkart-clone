@@ -4,6 +4,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import FullProductPage from "../pages/FullProductPage";
 import { useSelector } from "react-redux";
+import Navbar from "./Navbar";
 
 function ListingProducts({ catyegory }) {
 
@@ -13,6 +14,8 @@ function ListingProducts({ catyegory }) {
   );
 
   return (
+    <>
+    <Navbar/>
     <div className="w-full h-fit bg-[#f1f3f6] flex gap-3 p-3">
       <div className="w-[20%] h-[50rem] bg-[#ffffff]"></div>
 
@@ -81,6 +84,7 @@ function ListingProducts({ catyegory }) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 export default ListingProducts;

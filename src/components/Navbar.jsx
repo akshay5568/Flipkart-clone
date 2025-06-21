@@ -42,9 +42,9 @@ function Navbar() {
 
   const dispatch = useDispatch();
   const isCart = () => {
-      navigate('/login');
-      toast.success("please Login First");
-  }
+    navigate("/login");
+    toast.success("please Login First");
+  };
 
   useEffect(() => {
     axios
@@ -56,9 +56,9 @@ function Navbar() {
   const cartData = useSelector((state) => state.products.cart.length);
 
   return (
-    <div className="p-3 w-full h-[9%]">
-      <nav className=" flex pt-1 justify-between item-center">
-        <NavLink to="/">
+    <div className="p-3 w-full h-[9%] bg-[#ffffff]">
+      <nav className="w-full flex gap-3 pt-1 justify-between item-center">
+        <NavLink className="flex items-center mr-10" to="/">
           <img
             src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
             alt=""
@@ -71,11 +71,11 @@ function Navbar() {
           placeholder="🔍  Search For Products, Brands and More"
         />
 
-        <div className="flex gap-20 items-center">
-          <div className="flex  items-center gap-2 w-[7rem] h-[3rem] rounded-md ml-3 justify-center hover:bg-[#2c64e3] hover:text-white duration-300">
-            <div className="flex items-center relative group gap-3 ">
-              <IoMdLogIn />
-              <div className="flex items-center justify-center">
+        <div className="w-fit flex gap-20 items-center">
+          <div className="w-fit flex  items-center gap-2 w-[8vw] h-[3rem] rounded-md ml-3 justify-center hover:bg-[#2c64e3] hover:text-white duration-300">
+            <div className="w-fit flex items-center relative group">
+              <IoMdLogIn className="text-2xl" />
+              <div className="w-[7vw] flex items-center justify-center">
                 {token ? (
                   `${filterUser.map((items) => items.name)}`
                 ) : (
@@ -97,10 +97,14 @@ function Navbar() {
                   </div>
                 )}
 
-                {user ? <div className="flex mt-3 items-center gap-2">
-                  <CgProfile />
-                  <NavLink to="/myproflie">My Profile</NavLink>
-                </div> : ""}
+                {user ? (
+                  <div className="flex mt-3 items-center gap-2">
+                    <CgProfile />
+                    <NavLink to="/myproflie">My Profile</NavLink>
+                  </div>
+                ) : (
+                  ""
+                )}
 
                 <div className="flex mt-3 items-center gap-2">
                   <FaBoxOpen />
@@ -117,15 +121,23 @@ function Navbar() {
 
           <div className="flex items-center gap-2">
             <div className="flex items-center reletive">
-              <h6 className="bg-red-400 px-1 rounded-md text-xs">{user ? cartData : ""}</h6>
-              <BsCart3 />
+              <h6 className="bg-red-400 px-1 rounded-md text-xs">
+                {user ? cartData : ""}
+              </h6>
+              <BsCart3 className="text-2xl" />
             </div>
-            {user ? <NavLink to="/cart">Cart</NavLink> : <NavLink to="/login">Cart</NavLink> }
+            {user ? (
+              <NavLink to="/cart">Cart</NavLink>
+            ) : (
+              <NavLink to="/login">Cart</NavLink>
+            )}
           </div>
 
-          <div className="flex items-center gap-2">
-            <CiShop />
-            <NavLink to="/sell-online">Become a Seller</NavLink>
+          <div className="w-[11vw] flex items-center gap-2">
+            <CiShop className="text-3xl" />
+            <NavLink className="" to="/sell-online">
+              Become a Seller
+            </NavLink>
           </div>
 
           <div className="flex items-center pr-9">

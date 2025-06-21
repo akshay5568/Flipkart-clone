@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addToCart, removeCarts , setToCart } from "../reducers/ProductsReducer";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import Navbar from "../components/Navbar";
 
 function Cart() {
   const [platformFee, setPlatFormFee] = useState(4);
@@ -46,7 +47,10 @@ function Cart() {
   };
 
   let Navigate = useNavigate();
-  return cartData.length === 0 ? (
+  return (
+    <>
+    <Navbar/>
+  {cartData.length === 0 ? (
     <div className="w-full h-fit bg-[#f1f3f6] pt-4">
       <div className="w-[80%] h-[23rem] bg-[#ffffff] m-auto shadow-lg shadow-white-250/2">
         <img
@@ -156,7 +160,9 @@ function Cart() {
         <hr className="border-dashed mb-2 text-gray-300 m-4" />
       </div>
     </div>
-  );
+  
+  )
+ } </>);
 }
 
 export default Cart;
