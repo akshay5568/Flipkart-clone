@@ -17,10 +17,12 @@ function RegisterForm() {
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
- 
+
+  
 
 
   const submitHandler = async (e) => {
+ 
     e.preventDefault();
     try {
       await axios.post("http://localhost:8080/seller-register", sellerData, {
@@ -38,7 +40,7 @@ function RegisterForm() {
             navigate('/upload-products');
       } , 1000)
     } catch (err) {
-      toast.error("User Already Exist");
+      toast.error(err.response.data);
       setSellerData({
         name: "",
         email: "",
@@ -61,7 +63,7 @@ function RegisterForm() {
             <form onSubmit={submitHandler}>
               <input
                 className="p-2 w-[50%] border-1 border-gray-400 m-3 rounded-md"
-                placeholder="Name"
+                placeholder="BrandName"
                 type="text"
                 name="name"
                 value={sellerData.name}

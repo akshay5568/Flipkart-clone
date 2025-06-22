@@ -90,11 +90,17 @@ app.post("/signup", async (req, res) => {
   const existingEmail = await User.findOne({ email });
   if (existingEmail) return res.status(400).send("User Already Exists");
   const HasedPassword = await bcrypt.hash(password, 10);
-  const user = await User.insertMany({name, email, password: HasedPassword });
+  const user = await User.insertMany({ name, email, password: HasedPassword });
   const token = jwt.sign({ userId: user[0]._id }, process.env.JWT_SECRET, {
     expiresIn: "7d",
   });
-  res.status(201).send({massage:"User Registerd Succsessfully"  , token, userId:user[0]._id});
+  res
+    .status(201)
+    .send({
+      massage: "User Registerd Succsessfully",
+      token,
+      userId: user[0]._id,
+    });
 });
 
 app.post("/login", async (req, res) => {
@@ -135,20 +141,25 @@ app.post("/userdelete", async (req, res) => {
 });
 
 app.post("/seller-register", async (req, res) => {
-  const token = req.headers.authorization.split(" ")[1];
-  const decode = jwt.verify(token, process.env.JWT_SECRET);
-  const userId = decode.userId;
-  const {name, email, password } = req.body;
+  const { name, email, password } = req.body;
   const existingEmail = await Seller.findOne({ email });
-  try {
-    if (existingEmail) {
-      return res.status(400).send("Seller Already Exists");
-    }
+  if (existingEmail) {
+    return res.status(400).send("Seller Already Exist");
+  }
+  const token = req.headers.authorization.split(" ")[1];
+  if (!token) return res.status(400).send("Unauthrised");
+  const decode = jwtDecode(token, process.env.JWT_SECRET);
+  const userId = decode.userId;
+  console.log(userId);
+
+  const isUserIdSame = await User.findById(userId);
+
+  if (isUserIdSame.email == email) {
     const HasedPassword = await bcrypt.hash(password, 10);
-    await Seller.insertMany({userId, name, email, password: HasedPassword });
+    await Seller.insertMany({ userId, name, email, password: HasedPassword });
     res.status(200).send("User Registered Succsessfully");
-  } catch (err) {
-    res.status(500).send("Server Error");
+  } else {
+    res.status(400).send("Your email is not matching to your flipkart account");  
   }
 });
 
