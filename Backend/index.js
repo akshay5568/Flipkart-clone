@@ -150,7 +150,7 @@ app.post("/seller-register", async (req, res) => {
   if (!token) return res.status(400).send("Unauthrised");
   const decode = jwtDecode(token, process.env.JWT_SECRET);
   const userId = decode.userId;
-  console.log(userId);
+
 
   const isUserIdSame = await User.findById(userId);
 
@@ -167,11 +167,24 @@ app.post("/seller-login", async (req, res) => {
   const { email, password } = req.body;
   const user = await Seller.findOne({ email });
   try {
-    if (!user) return res.status(400).send("Seller Does Not Exist");
+    if (!user) return res.status(400).send("Seller Does Not Exist");   
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).send("Invalid Deatails");
     res.status(200).send("Login Sucsessfull");
   } catch (errr) {
     res.status(500).send("Server Error");
   }
-});
+}); 
+
+
+app.get('/sell-users' , async (req,res) => {
+    const sellUsers = await Seller.find({});
+    res.json(sellUsers);
+})
+
+app.post('/sell-users' , async (req,res) => {
+        const {id} = req.body;
+        const user = await Seller.findById(id);
+        const token = jwt.sign({SellerId:user.userId}, process.env.JWT_SECRET);
+        res.status(200).send({token});
+})

@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { toast,ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 function RegisterForm() {
-
   const [sellerData, setSellerData] = useState({
     name: "",
     email: "",
@@ -18,17 +17,13 @@ function RegisterForm() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  
-
-
   const submitHandler = async (e) => {
- 
     e.preventDefault();
     try {
       await axios.post("http://localhost:8080/seller-register", sellerData, {
-        headers:{
-          Authorization:`Bearer ${token}`
-        }
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       toast.success("User Registered Successfully");
       setSellerData({
@@ -37,8 +32,8 @@ function RegisterForm() {
         password: "",
       });
       setTimeout(() => {
-            navigate('/upload-products');
-      } , 1000)
+        navigate("/upload-products");
+      }, 1000);
     } catch (err) {
       toast.error(err.response.data);
       setSellerData({
@@ -51,9 +46,8 @@ function RegisterForm() {
   };
 
   const loginHandler = () => {
-      navigate('/seller-login');
-  }
-  
+    navigate("/seller-login");
+  };
 
   return (
     <div className="w-full h-fit bg-[#ffffff] p-3">
@@ -98,9 +92,14 @@ function RegisterForm() {
               </button>
               <br />
 
-              <h1 className="text-[#0066cc] mt-7 cursor-pointer" onClick={loginHandler}>I Have an already account</h1>
+              <h1
+                className="text-[#0066cc] mt-7 cursor-pointer"
+                onClick={loginHandler}
+              >
+                I Have an already account
+              </h1>
             </form>
-            <ToastContainer/>
+            <ToastContainer />
           </div>
         </div>
         <div className="w-[30%]">
