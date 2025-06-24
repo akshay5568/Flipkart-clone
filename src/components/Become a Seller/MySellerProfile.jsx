@@ -8,8 +8,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import SellerNavbar from "./SellerNavbar";
 function MyProfile() {
-  const userInfo = useSelector((state) => state.sellUsers.sellUsers);
-  console.log(userInfo);
+
   
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,20 +18,33 @@ function MyProfile() {
       .catch((err) => console.log(err));
   }, [dispatch]);
 
-  useEffect(() => {
-        const respons = axios.post('http://localhost:8080/sell-users' )
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err));
-        const token = localStorage.setItem("token" , respons.data.token); 
-        console.log(token);
+
+     useEffect(() => {
+      const fatch = async () => {
+           const respons = await axios.post('http://localhost:8080/sell-users', {id:userID})       
+           localStorage.setItem("token" , respons.data.token); 
+           fatch();
+      }
+    
   } , [])
 
-  let token = localStorage.getItem("token");
-  let filterUser = jwtDecode(token);
-  console.log(filterUser.userId);
+
+  const userInfo = useSelector((state) => state.sellUsers.sellUsers);
   
+  let token = localStorage.getItem("token");
+  
+  
+  let filterUser = jwtDecode(token);
+ 
+  
+  let userID = filterUser.SellerId;
+
+  
+  
+
+
   const FilteredUser = userInfo.filter(
-    (items) => items._id == filterUser.userId
+    (items) => items.userId == filterUser.userId  
   );
   const id = FilteredUser.map((items) => items._id);
   const id2 = id[0];
@@ -66,12 +78,15 @@ function MyProfile() {
     const { name, value } = e.target;
     setInputData({ ...inputData, [name]: value });
   };
+
+
   const saveHandler = async () => {
-    await axios.post("http://localhost:8080/userdelete", inputData, {
+    await axios.post("http://localhost:8080/userdelete", inputData, {   
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
+
     setTimeout(() => {
       toast.success("Info Updated Succsesfully");
       navigate("/");
@@ -88,7 +103,7 @@ function MyProfile() {
             <div>
               <img
                 className="w-[50px] h-[50-px]"
-                src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/profile-pic-male_4811a1.svg"
+                src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/profile-pic-male_4811a1.svg"   
                 alt=""
               />
             </div>

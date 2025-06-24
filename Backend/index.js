@@ -184,7 +184,12 @@ app.get('/sell-users' , async (req,res) => {
 
 app.post('/sell-users' , async (req,res) => {
         const {id} = req.body;
-        const user = await Seller.findById(id);
-        const token = jwt.sign({SellerId:user.userId}, process.env.JWT_SECRET);
+        console.log(id);
+        
+        const user = await Seller.findOne({userId:id});
+        console.log(user);
+        
+        const token = jwt.sign({SellerId:user._id}, process.env.JWT_SECRET); 
+        console.log(token);
         res.status(200).send({token});
 })

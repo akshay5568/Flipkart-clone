@@ -18,7 +18,9 @@ import { ToastContainer, toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 function Navbar() {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");  
+  console.log(token);
+
   const [isLogin, setLogin] = useState(true);
 
   const logoutFunction = () => {
@@ -31,11 +33,11 @@ function Navbar() {
   };
 
   const users = useSelector((state) => state.users?.users);
-  let user;
+  let user = null;
   let filterUser;
   if (token) {
     user = jwtDecode(token);
-    filterUser = users.filter((items) => items._id == user.userId);
+    filterUser = users.filter((items) => items._id == user.userId);   
   } else {
     console.log("No user Found");
   }
@@ -77,7 +79,9 @@ function Navbar() {
               <IoMdLogIn className="text-2xl" />
               <div className="w-[7vw] flex items-center justify-center">
                 {token ? (
-                  `${filterUser.map((items) => items.name.substring(0,10) + "...")}`
+                  `${filterUser.map(
+                    (items) => items.name.substring(0, 10) + "..."
+                  )}`
                 ) : (
                   <NavLink to="/login">Login</NavLink>
                 )}
