@@ -4,7 +4,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addSellUsers } from "../../reducers/SellerUsersReducer";
 import { jwtDecode } from "jwt-decode";
-import { toast } from "react-toastify";
+import { toast , ToastContainer} from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import SellerNavbar from "./SellerNavbar";
 function MyProfile() {
@@ -29,17 +29,18 @@ function MyProfile() {
   } , [])
 
 
-  const userInfo = useSelector((state) => state.sellUsers.sellUsers);
+  const userInfo = useSelector((state) => state.sellUsers.sellUsers);   
   
   let token = localStorage.getItem("token");
   
   
   let filterUser = jwtDecode(token);
+
  
   
   let userID = filterUser.SellerId;
 
-  
+
   
 
 
@@ -49,16 +50,18 @@ function MyProfile() {
   const id = FilteredUser.map((items) => items._id);
   const id2 = id[0];
 
+   
   const [isEdit, setEdit] = useState(false);
 
   const navigate = useNavigate();
   const DeleteHandler = async () => {
-    await axios.post("http://localhost:8080/users", { id: id2 });
-    localStorage.removeItem("token");
-    toast.success("Account Was Deleted");
+    await axios.post("http://localhost:8080/seller-delete", { id: id2 });   
+    // localStorage.removeItem("token");
+    toast.success("Seller Account Was Deleted"); 
+
     setTimeout(() => {
-      navigate("/login");
-    }, 1000);
+      navigate("/sell-online");
+    }, 2000);
   };
 
   const editHandler = () => {
@@ -81,7 +84,7 @@ function MyProfile() {
 
 
   const saveHandler = async () => {
-    await axios.post("http://localhost:8080/userdelete", inputData, {   
+    await axios.post("http://localhost:8080/userdelete", inputData, {      
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -158,6 +161,7 @@ function MyProfile() {
               <button className="cursor-pointer" onClick={DeleteHandler}>
                 Delete Account
               </button>
+              <ToastContainer/>
               {isEdit ? (
                 <button
                   onClick={cancelHandler}

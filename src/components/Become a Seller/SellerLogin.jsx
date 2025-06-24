@@ -41,7 +41,7 @@ function SellerLogin() {
   };
 
   const loginHandler = () => {
-      navigate('/sell-register');
+      navigate('/seller-register');
   }
   
 
@@ -53,7 +53,7 @@ function SellerLogin() {
             <form onSubmit={submitHandler}>
 
               <input
-                className="p-2 w-[50%] border-1 border-gray-400 m-3 rounded-md"
+                className="p-2 w-[50%] border-1 border-gray-400 m-3 rounded-md"   
                 placeholder="Email"
                 type="email"
                 name="email"

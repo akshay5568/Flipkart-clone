@@ -193,3 +193,13 @@ app.post('/sell-users' , async (req,res) => {
         console.log(token);
         res.status(200).send({token});
 })
+
+
+app.post('/seller-delete', async (req,res) => {
+    const {id} = req.body;
+    //  const token = req.headers.authorization.split(" ")[1];
+    //  const id = jwtDecode(token , process.env.JWT_SECRET);
+    //  const seller = await Seller.findOne({userId:id});
+     await Seller.findByIdAndDelete(id);
+     res.status(200).send("Seller Account Was Deleted");
+})
