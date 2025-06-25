@@ -185,10 +185,8 @@ app.get('/sell-users' , async (req,res) => {
 app.post('/sell-users' , async (req,res) => {
         const {id} = req.body;
         console.log(id);
-        
         const user = await Seller.findOne({userId:id});
         console.log(user);
-        
         const token = jwt.sign({SellerId:user._id}, process.env.JWT_SECRET); 
         console.log(token);
         res.status(200).send({token});
@@ -203,3 +201,13 @@ app.post('/seller-delete', async (req,res) => {
      await Seller.findByIdAndDelete(id);
      res.status(200).send("Seller Account Was Deleted");
 })
+
+app.post('/seller-update' , async (req,res) => {
+  const token = req.headers.authorization.split(" ")[1]
+  const decode = jwtDecode(token, process.env.JWT_SECRET)
+  const userId = decode.userId;
+  const data= req.body;
+  await Seller.findOneAndUpdate({userId},data);
+  res.status(201).send("Seller Updated Sucsessfully");
+});
+

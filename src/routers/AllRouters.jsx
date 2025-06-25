@@ -15,6 +15,7 @@ import RegisterForm from "../components/Become a Seller/RegisterForm";
 import UploadProducts from "../components/Become a Seller/UploadProducts";
 import SellerLogin from "../components/Become a Seller/SellerLogin";
 import MySellerProfile from "../components/Become a Seller/MySellerProfile"
+import Dashboard from "../components/Become a Seller/Dashborad";
 function AllRoutes() {
     return (
         <div>
@@ -34,6 +35,7 @@ function AllRoutes() {
                 <Route path="/upload-products" element={<UploadProducts/>} />    
                 <Route path="/seller-login" element={<SellerLogin/>} />    
                 <Route path="/sellerprofile" element={<MySellerProfile/>} />    
+                <Route path="/seller-dashboard" element={<Dashboard/>} />    
             </Routes>
         </div>
     )

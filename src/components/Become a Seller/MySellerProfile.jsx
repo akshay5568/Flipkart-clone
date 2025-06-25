@@ -19,17 +19,10 @@ function MyProfile() {
   }, [dispatch]);
 
 
-     useEffect(() => {
-      const fatch = async () => {
-           const respons = await axios.post('http://localhost:8080/sell-users', {id:userID})       
-           localStorage.setItem("token" , respons.data.token); 
-           fatch();
-      }
-    
-  } , [])
 
 
   const userInfo = useSelector((state) => state.sellUsers.sellUsers);   
+ 
   
   let token = localStorage.getItem("token");
   
@@ -42,6 +35,14 @@ function MyProfile() {
 
 
   
+     useEffect(() => {
+      const fatch = async () => {
+           const respons = await axios.post('http://localhost:8080/sell-users', {id:userID})       
+           localStorage.setItem("token" , respons.data.token);
+             fatch()
+      }
+  
+  } , [])
 
 
   const FilteredUser = userInfo.filter(
@@ -84,16 +85,16 @@ function MyProfile() {
 
 
   const saveHandler = async () => {
-    await axios.post("http://localhost:8080/userdelete", inputData, {      
+    await axios.post("http://localhost:8080/seller-update", inputData, {         
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-
+   toast.success("Info Updated Succsesfully");
     setTimeout(() => {
-      toast.success("Info Updated Succsesfully");
-      navigate("/");
-    }, 1000);
+     
+      navigate("/sell-online");
+    }, 2000);
   };
 
   return (
@@ -102,11 +103,11 @@ function MyProfile() {
     <div className="w-full h-fit bg-[#f1f3f6] p-5">
       <div className="flex justify-center gap-4">
         <div className="w-[20%] h-[10vh] bg-[#ffffff] rounded">
-          <div className="w-full h-full flex items-center px-4 gap-7">
+          <div className="w-full h-full flex items-center px-4 gap-7">   
             <div>
               <img
                 className="w-[50px] h-[50-px]"
-                src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/profile-pic-male_4811a1.svg"   
+                src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/profile-pic-male_4811a1.svg"      
                 alt=""
               />
             </div>
@@ -146,7 +147,7 @@ function MyProfile() {
 
               <div className="flex gap-10">
                 <input
-                  className="p-3 bg-[#fafafa] border-1 text-gray-400 cursor-not-allowed"
+                  className="p-3 bg-[#fafafa] border-1 text-gray-400 cursor-not-allowed"  
                   type="text"
                   placeholder={FilteredUser.map((items) => items.email)}
                   disabled={isEdit ? false : true}
