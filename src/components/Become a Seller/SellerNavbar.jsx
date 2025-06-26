@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { addSellUsers } from "../../reducers/SellerUsersReducer";
+import { addSellUsers } from "../../reducers/SellerUsersReducer";   
 import { toast } from "react-toastify";
 
 function SellerNavbar() {
@@ -27,7 +27,7 @@ function SellerNavbar() {
   useEffect(() => {
     axios
       .get("http://localhost:8080/sell-users")
-      .then((res) => dispatch(addSellUsers(res.data)))
+      .then((res) => dispatch(addSellUsers(res.data)))   
       .catch((err) => console.log(err));
   }, [dispatch]);
 
@@ -69,13 +69,16 @@ function SellerNavbar() {
               <NavLink to="/seller-register">Upload Products</NavLink>
             )}</h3>
 
-          <h3></h3>
+          <h3 className="text-[#353535] cursor-pointer"> 
+            <NavLink to="/">Home Flipkart</NavLink>
+            </h3>
+
           <h3></h3>
         </div>
 
         <div className="flex gap-5">
           {filterSeller.length > 0 ? (
-            <button className="cursor-pointer" onClick={logoutHandler}>Logout</button>
+            <button className="cursor-pointer" onClick={logoutHandler}>Logout</button>  
           ) : (
             <>
               {" "}
@@ -87,7 +90,7 @@ function SellerNavbar() {
               </button>
               <button
                 onClick={startSelling}
-                className="cursor-pointer text-[#353535]"
+                className="cursor-pointer text-[#353535]"   
               >
                 Start Selling
               </button>
