@@ -10,6 +10,10 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  BrandName: {
+    type: String,
+    // required: true,
+  },
   price: {
     type: Number, // Better to use Number, not String
     required: true,

@@ -13,6 +13,9 @@ const bcrypt = require("bcryptjs");
 const cookeParser = require("cookie-parser");
 const Seller = require("./models/sellerModels");
 const { jwtDecode } = require("jwt-decode");
+const multer = require("multer");
+const { storage } = require("./utils/cloudnary");
+const upload = multer({ storage });
 
 let url = process.env.MONGO_URL;
 mongoose
@@ -94,13 +97,11 @@ app.post("/signup", async (req, res) => {
   const token = jwt.sign({ userId: user[0]._id }, process.env.JWT_SECRET, {
     expiresIn: "7d",
   });
-  res
-    .status(201)
-    .send({
-      massage: "User Registerd Succsessfully",
-      token,
-      userId: user[0]._id,
-    });
+  res.status(201).send({
+    massage: "User Registerd Succsessfully",
+    token,
+    userId: user[0]._id,
+  });
 });
 
 app.post("/login", async (req, res) => {
@@ -151,7 +152,6 @@ app.post("/seller-register", async (req, res) => {
   const decode = jwtDecode(token, process.env.JWT_SECRET);
   const userId = decode.userId;
 
-
   const isUserIdSame = await User.findById(userId);
 
   if (isUserIdSame.email == email) {
@@ -159,7 +159,7 @@ app.post("/seller-register", async (req, res) => {
     await Seller.insertMany({ userId, name, email, password: HasedPassword });
     res.status(200).send("User Registered Succsessfully");
   } else {
-    res.status(400).send("Your email is not matching to your flipkart account");  
+    res.status(400).send("Your email is not matching to your flipkart account");
   }
 });
 
@@ -167,47 +167,68 @@ app.post("/seller-login", async (req, res) => {
   const { email, password } = req.body;
   const user = await Seller.findOne({ email });
   try {
-    if (!user) return res.status(400).send("Seller Does Not Exist");   
+    if (!user) return res.status(400).send("Seller Does Not Exist");
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).send("Invalid Deatails");
     res.status(200).send("Login Sucsessfull");
   } catch (errr) {
     res.status(500).send("Server Error");
   }
-}); 
+});
 
+app.get("/sell-users", async (req, res) => {
+  const sellUsers = await Seller.find({});
+  res.json(sellUsers);
+});
 
-app.get('/sell-users' , async (req,res) => {
-    const sellUsers = await Seller.find({});
-    res.json(sellUsers);
-})
+app.post("/sell-users", async (req, res) => {
+  const { id } = req.body;
+  console.log(id);
+  const user = await Seller.findOne({ userId: id });
+  console.log(user);
+  const token = jwt.sign({ SellerId: user._id }, process.env.JWT_SECRET);
+  console.log(token);
+  res.status(200).send({ token });
+});
 
-app.post('/sell-users' , async (req,res) => {
-        const {id} = req.body;
-        console.log(id);
-        const user = await Seller.findOne({userId:id});
-        console.log(user);
-        const token = jwt.sign({SellerId:user._id}, process.env.JWT_SECRET); 
-        console.log(token);
-        res.status(200).send({token});
-})
+app.post("/seller-delete", async (req, res) => {
+  const { id } = req.body;
+  //  const token = req.headers.authorization.split(" ")[1];
+  //  const id = jwtDecode(token , process.env.JWT_SECRET);
+  //  const seller = await Seller.findOne({userId:id});
+  await Seller.findByIdAndDelete(id);
+  res.status(200).send("Seller Account Was Deleted");
+});
 
-
-app.post('/seller-delete', async (req,res) => {
-    const {id} = req.body;
-    //  const token = req.headers.authorization.split(" ")[1];
-    //  const id = jwtDecode(token , process.env.JWT_SECRET);
-    //  const seller = await Seller.findOne({userId:id});
-     await Seller.findByIdAndDelete(id);
-     res.status(200).send("Seller Account Was Deleted");
-})
-
-app.post('/seller-update' , async (req,res) => {
-  const token = req.headers.authorization.split(" ")[1]
-  const decode = jwtDecode(token, process.env.JWT_SECRET)
+app.post("/seller-update", async (req, res) => {
+  const token = req.headers.authorization.split(" ")[1];
+  const decode = jwtDecode(token, process.env.JWT_SECRET);
   const userId = decode.userId;
-  const data= req.body;
-  await Seller.findOneAndUpdate({userId},data);
+  const data = req.body;
+  await Seller.findOneAndUpdate({ userId }, data);
   res.status(201).send("Seller Updated Sucsessfully");
 });
 
+
+app.post('/products-images' , upload.single('image') ,  async (req,res) => {   
+    const {title,price,discount,details,catyegorys} = req.body;
+    const img = req.file.path;
+    console.log(title,price);
+    const token = req.headers.authorization.split(" ")[1];
+    const decode = jwtDecode(token, process.env.JWT_SECRET);
+    const id = decode.userId;
+    console.log(id);
+     
+    const newProduct = new Products({
+      title,
+      img,
+      price,
+      discount,
+      details,
+      catyegorys
+    })
+
+    await newProduct.save();
+    res.status(201).send({message:'Product Created Successfully', product:newProduct})
+
+})
