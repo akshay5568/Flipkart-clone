@@ -49,8 +49,10 @@ function UploadProducts() {
   return (
     <div className="w-full h-fit">
       <SellerNavbar />
-      <div className="w-[40%] h-fit bg-gray-100 mt-10 rounded-md text-center m-auto mb-9 p-5">
+        <h1 className="text-center mt-9 text-2xl font-bold text-gray-600">Upload your Products Through Fill This Form</h1>
+      <div className="w-[40%] h-fit bg-gray-100 mt-10 rounded-md m-auto mb-9 p-5">
         <form action="" onSubmit={handleSubmit} encType="multipart/form-data">
+          <label className="font-bold">Title</label>
           <input
             className="w-full p-2 border-1 mb-3"
             type="text"
@@ -61,6 +63,7 @@ function UploadProducts() {
             required
           />
           <br />
+          <label className="font-bold">Image</label>
           <input
             className="w-full p-2 border-1 mb-3"
             type="file"
@@ -70,6 +73,7 @@ function UploadProducts() {
             required
           />
           <br />
+          <label className="font-bold">Price</label>
           <input
             className="w-full p-2 border-1 mb-3"
             type="number"
@@ -80,6 +84,7 @@ function UploadProducts() {
             required
           />
           <br />
+          <label className="font-bold">Discount</label>
           <input
             className="w-full p-2 border-1 mb-3"
             type="number"
@@ -89,6 +94,7 @@ function UploadProducts() {
             onChange={handleChange}
           />
           <br />
+          <label className="font-bold">About Product Detail</label>
           <textarea
             className="w-full p-2 border-1 mb-3"
             name="details"
@@ -108,7 +114,9 @@ function UploadProducts() {
             required
           />
           <br />
-          <button className="p-1 px-5 rounded-md bg-red-300">Submit</button>   
+          <div className="text-center">
+          <button className="p-1 px-5 rounded-md bg-yellow-300">Submit</button>  
+          </div>
         </form>
       </div>
     </div>

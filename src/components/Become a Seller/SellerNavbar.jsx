@@ -53,24 +53,24 @@ function SellerNavbar() {
             />
           </NavLink>
           <h3 className="text-[#353535] cursor-pointer">
-            <NavLink to="/seller-dashboard">Dashboard</NavLink>
+            <NavLink to="/seller-dashboard" style={(e) => e.isActive ? {color:"tomato"} : {color:"black"}}>Dashboard</NavLink>
           </h3>
           <h3 className="text-[#353535] cursor-pointer">
             {filterSeller.length > 0 ? (
-              <NavLink to="/sellerprofile">My Profile</NavLink>
+              <NavLink to="/sellerprofile" style={(e) => e.isActive ? {color:"tomato"} : {color:"black"}}>My Profile</NavLink>
             ) : (
-              <NavLink to="/seller-register">My Profile</NavLink>
+              <NavLink to="/seller-register" style={(e) => e.isActive ? {color:"tomato"} : {color:"black"}}>My Profile</NavLink>
             )}
           </h3>
           <h3 className="text-[#353535] cursor-pointer"> 
             {filterSeller.length > 0 ? (
-              <NavLink to="/upload-products">Upload Products</NavLink>
+              <NavLink to="/upload-products" style={(e) => e.isActive ? {color:"tomato"} : {color:"black"}}>Upload Products</NavLink>
             ) : (
-              <NavLink to="/seller-register">Upload Products</NavLink>
+              <NavLink to="/seller-register" style={(e) => e.isActive ? {color:"tomato"} : {color:"black"}}>Upload Products</NavLink>
             )}</h3>
 
           <h3 className="text-[#353535] cursor-pointer"> 
-            <NavLink to="/">Home Flipkart</NavLink>
+            <NavLink to="/" style={(e) => e.isActive ? {color:"tomato"} : {color:"black"}}>Home Flipkart</NavLink>
             </h3>
 
           <h3></h3>
