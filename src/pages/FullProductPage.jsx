@@ -45,6 +45,7 @@ function FullProductPage() {
       dispatch(addToCart(filteredProduct));
       await axios.post("http://localhost:8080/cart", {
         title: title.title,
+        BrandName:title.BrandName,
         img: title.img,
         price: title.price,
         discount: title.discount,
@@ -80,8 +81,9 @@ function FullProductPage() {
             </div>
 
             <div className="w-[60%] h-[200rem] p-3">
+              <h1 className="text-gray-600">{item.BrandName}</h1>
+              <h1 className="">{item.title}</h1>
               <h1 className="text-gray-600">{item.details}</h1>
-              <h1 className="mb-3">{item.title}</h1>
               <h3 className="text-[#25a541]">Special Price</h3>
 
               <div className="flex items-center gap-3">

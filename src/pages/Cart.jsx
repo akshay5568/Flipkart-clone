@@ -102,7 +102,7 @@ function Cart() {
                   <h1>{item.title}</h1>
                   <div className="flex gap-3 items-center">
                     <h1 className="text-xs text-gray-500">
-                      Seller :{item.details}{" "}
+                      Seller :{item.BrandName}{" "}
                     </h1>
                     <img
                       className="w-[7vh] h-[2vh]"

@@ -52,9 +52,10 @@ app.post("/cart", async (req, res) => {
   try {
     const decode = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decode.userId;
-    const { title, img, price, discount, details, catyegorys } = req.body;
+    const { title, img, price, discount, details, catyegorys, BrandName } = req.body;
     await cart.create({
       userId,
+      BrandName,
       title,
       img,
       price,
@@ -213,14 +214,16 @@ app.post("/seller-update", async (req, res) => {
 app.post('/products-images' , upload.single('image') ,  async (req,res) => {   
     const {title,price,discount,details,catyegorys} = req.body;
     const img = req.file.path;
-    console.log(title,price);
     const token = req.headers.authorization.split(" ")[1];
     const decode = jwtDecode(token, process.env.JWT_SECRET);
     const id = decode.userId;
     console.log(id);
-     
+    const sellerInfo = await Seller.findOne({userId:id});
+    console.log(sellerInfo);
+    const BrandName = sellerInfo.name;
     const newProduct = new Products({
       title,
+      BrandName,
       img,
       price,
       discount,
