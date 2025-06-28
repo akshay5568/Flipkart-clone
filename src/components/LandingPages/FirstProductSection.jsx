@@ -52,7 +52,7 @@ function FirstProductSection() {
             <div key={index} className="min-w-[15%] w-[15%] h-[15vw]">
               <NavLink
                 className="min-w-[15%] w-[15%] h-[15vw]"
-                to={`/products/${item.title}/${item._id}`}
+                to={`/products/${encodeURIComponent(item.title)}/${item._id}`}
               >
                 <img
                   className="w-[80%] h-[130px] rounded-md object-fit m-auto"

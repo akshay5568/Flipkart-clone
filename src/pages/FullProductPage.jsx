@@ -12,7 +12,8 @@ function FullProductPage() {
 
   const products = useSelector((state) => state.products.products);
   const filteredProduct = products.filter((item) => item._id == id);
-
+  console.log(filteredProduct);
+  
   const dispatch = useDispatch();
 
   const navigate = useNavigate()
@@ -82,9 +83,9 @@ function FullProductPage() {
 
             <div className="w-[60%] h-[200rem] p-3">
               <h1 className="text-gray-600">{item.BrandName}</h1>
-              <h1 className="">{item.title}</h1>
-              <h1 className="text-gray-600">{item.details}</h1>
-              <h3 className="text-[#25a541]">Special Price</h3>
+              <h1 className="break-words mt-3">{item.title}</h1>
+              <h1 className="text-gray-600 mt-5">{item.details}</h1>
+              <h3 className="text-[#25a541] mt-3">Special Price</h3>
 
               <div className="flex items-center gap-3">
                 <h2 className="text-2xl bg-black-600">₹{item.price}</h2>

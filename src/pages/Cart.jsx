@@ -90,12 +90,14 @@ function Cart() {
           return (
             <div className="m-auto p-5 px-7 mt-4 bg-[#ffffff]">
               <div className="flex gap-5">
-                <div>
-                  <img
-                    className="w-[15vh] h-[15vh] rounded-md"
+                <div className="w-[100px] h-[100px]">
+                  <div className="w-[100px] ">
+                    <img
+                    className=" mt-3 rounded-md"
                     src={item.img}
                     alt=""
                   />
+                  </div>
                 </div>
 
                 <div>

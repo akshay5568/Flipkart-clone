@@ -54,6 +54,7 @@ function UploadProducts() {
         <form action="" onSubmit={handleSubmit} encType="multipart/form-data">
           <label className="font-bold">Title</label>
           <input
+            maxLength={100} 
             className="w-full p-2 border-1 mb-3"
             type="text"
             placeholder="Title"
@@ -115,7 +116,7 @@ function UploadProducts() {
           />
           <br />
           <div className="text-center">
-          <button className="p-1 px-5 rounded-md bg-yellow-300">Submit</button>  
+          <button className="p-1 px-5 rounded-md bg-yellow-300">Submit</button>     
           </div>
         </form>
       </div>

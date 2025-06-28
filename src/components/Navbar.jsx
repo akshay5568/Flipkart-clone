@@ -18,7 +18,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
 function Navbar() {
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");  
+  const token = localStorage.getItem("token");
   console.log(token);
 
   const [isLogin, setLogin] = useState(true);
@@ -37,7 +37,7 @@ function Navbar() {
   let filterUser;
   if (token) {
     user = jwtDecode(token);
-    filterUser = users.filter((items) => items._id == user.userId);   
+    filterUser = users.filter((items) => items._id == user.userId);
   } else {
     console.log("No user Found");
   }
@@ -131,7 +131,14 @@ function Navbar() {
               <BsCart3 className="text-2xl" />
             </div>
             {user ? (
-              <NavLink to="/cart">Cart</NavLink>
+              <NavLink
+                to="/cart"
+                style={(e) =>
+                  e.isActive ? { color: "tomato" } : { color: "black" }
+                }
+              >
+                Cart
+              </NavLink>
             ) : (
               <NavLink to="/login">Cart</NavLink>
             )}
@@ -139,9 +146,15 @@ function Navbar() {
 
           <div className="w-[11vw] flex items-center gap-2">
             <CiShop className="text-3xl" />
-            <NavLink className="" to="/sell-online">
-              Become a Seller
-            </NavLink>
+            {user ? (
+              <NavLink className="" to="/sell-online">
+                Become a Seller
+              </NavLink>
+            ) : (
+              <NavLink className="" to="/login">
+                Become a Seller
+              </NavLink>
+            )}
           </div>
 
           <div className="flex items-center pr-9">

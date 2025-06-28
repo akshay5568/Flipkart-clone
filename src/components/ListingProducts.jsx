@@ -44,7 +44,7 @@ function ListingProducts({ catyegory }) {
                 <div className="w-[25%] h-fit hover:shadow-xl/30 duration-300 ">
                    <NavLink
                 className="w-fit h-fit duration-300 flex  flex-wrap mt-4"
-                to={`/products/${item.title}/${item._id}`}
+                to={`/products/${encodeURIComponent(item.title)}/${item._id}`}
               >
                   <div className="flex">
                     <img
@@ -54,9 +54,9 @@ function ListingProducts({ catyegory }) {
                     />
                     <CiHeart className="overflow-hidden text-xl mt-5 mr-3" />
                   </div>
-                  <h1 className="mt-5 text-xs ml-3 w-[90%]">{item.title}</h1>
+                  <h1 className="mt-5 text-xs ml-3 w-[90%]">{item.title.substring(0,87) + "..."}</h1>
                   <h6 className="mt-2 text-xs ml-3 w-[90%] text-gray-600">
-                    {item.details}
+                    {item.details.substring(0,50) + "..."}
                   </h6>
                   <div className="flex w-full ml-3 mt-2 gap-3">
                     <div className="flex items-center text-xs px-3 py-1 gap-1 rounded bg-[#388e3c] text-white">
