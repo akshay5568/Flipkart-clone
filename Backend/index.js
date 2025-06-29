@@ -244,3 +244,9 @@ app.post('/products-dashboard' , async (req,res) => {
     const products = await Products.find({sellerId:id});
     res.status(201).json(products);
 })
+
+app.post('/delete-product' , async (req,res) => {
+     const {id} = req.body;
+     await Products.findByIdAndDelete(id);
+     res.status(201).send({massage:"Product delted succsesfully"})
+})
