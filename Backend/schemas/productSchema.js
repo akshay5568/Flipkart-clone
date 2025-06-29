@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 
-
 const ProductSchema = new mongoose.Schema({
-     title: {
+  title: {
     type: String,
     required: true,
+  },
+  sellerId: {
+    type:mongoose.Schema.Types.ObjectId , ref:'Seller'
   },
   img: {
     type: String,
@@ -28,6 +30,6 @@ const ProductSchema = new mongoose.Schema({
   catyegorys: {
     type: String,
   },
-})
+});
 
 module.exports = ProductSchema;

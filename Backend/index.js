@@ -223,6 +223,7 @@ app.post('/products-images' , upload.single('image') ,  async (req,res) => {
     const BrandName = sellerInfo.name;
     const newProduct = new Products({
       title,
+      sellerId:id,
       BrandName,
       img,
       price,
@@ -234,4 +235,12 @@ app.post('/products-images' , upload.single('image') ,  async (req,res) => {
     await newProduct.save();
     res.status(201).send({message:'Product Created Successfully', product:newProduct})
 
+})
+
+app.post('/products-dashboard' , async (req,res) => {
+    const token = req.headers.authorization.split(" ")[1];
+    const decode = jwtDecode(token,process.env.JWT_SECRET);
+    const id = decode.userId;
+    const products = await Products.find({sellerId:id});
+    res.status(201).json(products);
 })
