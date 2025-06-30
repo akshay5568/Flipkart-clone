@@ -37,11 +37,11 @@ function ListingProducts({ catyegory }) {
         </div>
 
 <hr  className="text-gray-100"/>
-        <div className="w-full h-fit flex  flex-wrap mt-4">
+        <div className="w-full h-fit flex gap-5 flex-wrap mt-4">
           {filterByCategory.map((item, index) => {
             return (
              
-                <div className="w-[25%] h-fit hover:shadow-xl/30 duration-300 ">
+                <div className="w-[25%] h-[50vh] hover:shadow-xl/30 duration-300 ">
                    <NavLink
                 className="w-fit h-fit duration-300 flex  flex-wrap mt-4"
                 to={`/products/${encodeURIComponent(item.title)}/${item._id}`}
@@ -52,8 +52,9 @@ function ListingProducts({ catyegory }) {
                       src={item.img}
                       alt=""
                     />
-                    <CiHeart className="overflow-hidden text-xl mt-5 mr-3" />
+                    {/* <CiHeart className="overflow-hidden text-xl mt-5 mr-3" /> */}
                   </div>
+                  
                   <h1 className="mt-5 text-xs ml-3 w-[90%]">{item.title.substring(0,87) + "..."}</h1>
                   <h6 className="mt-2 text-xs ml-3 w-[90%] text-gray-600">
                     {item.details.substring(0,50) + "..."}

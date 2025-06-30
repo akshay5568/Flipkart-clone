@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SellerNavbar from "./SellerNavbar";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast,ToastContainer } from "react-toastify";
 
 function Dashboard() {
     const token = localStorage.getItem("token")
@@ -9,7 +9,7 @@ function Dashboard() {
     const [totalProducts, setTotalProducts] = useState();
     useEffect(() => {
           const callApi = async () => {
-             const response =  await axios.post('http://localhost:8080/products-dashboard' , {} , {
+             const response =  await axios.post('http://localhost:8080/products-dashboard' , {} , {   
                 headers:{
                     Authorization: `Bearer ${token}`
                 }
@@ -28,7 +28,7 @@ function Dashboard() {
   return (
     <div>
       <SellerNavbar />
-      <div className="w-full h-[150vh] flex">
+      <div className="w-full h-full flex">
         <div className="w-[30%] bg-white">
             <div className="text-center mt-9 font-semibold text-xl">
                 <h1>Total Product Lsited : {totalProducts}</h1>
@@ -58,7 +58,7 @@ function Dashboard() {
              </div>
                )
            })}
-         
+         <ToastContainer/>
         </div>
       </div>
     </div>

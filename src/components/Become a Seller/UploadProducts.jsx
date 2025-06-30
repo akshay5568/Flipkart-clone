@@ -1,65 +1,76 @@
 import { useState } from "react";
 import SellerNavbar from "./SellerNavbar";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function UploadProducts() {
   const [productDetails, setProductDetails] = useState({
-    title:'',
-    price:'',
-    discount:"",
-    details:'',
-    catyegorys:''
-  })
+    title: "",
+    price: "",
+    discount: "",
+    details: "",
+    catyegorys: "",
+  });
   const [image, setImage] = useState(null);
-  const [preview,setPreview] = useState(null);
+  const [preview, setPreview] = useState(null);
 
   const handleChange = (e) => {
-      setProductDetails({...productDetails, [e.target.name]:e.target.value});
-  }
+    setProductDetails({ ...productDetails, [e.target.name]: e.target.value });
+  };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setImage(file);
     setPreview(URL.createObjectURL(file));
-  }
-  const token = localStorage.getItem("token")
- 
-  const handleSubmit = async (e) => {
-     e.preventDefault();
-     const formData = new FormData();
-     formData.append('title',productDetails.title);
-     formData.append('price', productDetails.price)
-     formData.append('discount', productDetails.discount)
-     formData.append('details', productDetails.details)
-     formData.append('catyegorys', productDetails.catyegorys)
-     formData.append('image', image)
+  };
+  const token = localStorage.getItem("token");
 
-     try{
-         await axios.post('http://localhost:8080/products-images', formData , {   
-           headers:{
-            Authorization:`Bearer ${token}`
-           }
-         });   
-  
-     }catch (err) {
-        console.log(err);
-     }
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", productDetails.title);
+    formData.append("price", productDetails.price);
+    formData.append("discount", productDetails.discount);
+    formData.append("details", productDetails.details);
+    formData.append("catyegorys", productDetails.catyegorys);
+    formData.append("image", image);
+
+    setProductDetails({
+      title: "",
+      price: "",
+      discount: "",
+      details: "",
+      catyegorys: "",
+    });
+
+    try {
+      await axios.post("http://localhost:8080/products-images", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+    toast.success("Product Upload Sucsessfully");
+  };
 
   return (
     <div className="w-full h-fit">
       <SellerNavbar />
-        <h1 className="text-center mt-9 text-2xl font-bold text-gray-600">Upload your Products Through Fill This Form</h1>
+      <h1 className="text-center mt-9 text-2xl font-bold text-gray-600">
+        Upload your Products Through Fill This Form
+      </h1>
       <div className="w-[40%] h-fit bg-gray-100 mt-10 rounded-md m-auto mb-9 p-5">
         <form action="" onSubmit={handleSubmit} encType="multipart/form-data">
           <label className="font-bold">Title</label>
           <input
-            maxLength={100} 
+            maxLength={100}
             className="w-full p-2 border-1 mb-3"
             type="text"
             placeholder="Title"
             name="title"
-            value={productDetails.title} 
+            value={productDetails.title}
             onChange={handleChange}
             required
           />
@@ -79,8 +90,8 @@ function UploadProducts() {
             className="w-full p-2 border-1 mb-3"
             type="number"
             placeholder="Product Price"
-             name="price"
-            value={productDetails.price} 
+            name="price"
+            value={productDetails.price}
             onChange={handleChange}
             required
           />
@@ -91,7 +102,7 @@ function UploadProducts() {
             type="number"
             placeholder="Discount"
             name="discount"
-            value={productDetails.discount} 
+            value={productDetails.discount}
             onChange={handleChange}
           />
           <br />
@@ -100,7 +111,7 @@ function UploadProducts() {
             className="w-full p-2 border-1 mb-3"
             name="details"
             placeholder="Product Details"
-            value={productDetails.details}  
+            value={productDetails.details}
             onChange={handleChange}
             required
           ></textarea>
@@ -110,13 +121,15 @@ function UploadProducts() {
             type="text"
             placeholder="catyegorys"
             name="catyegorys"
-            value={productDetails.catyegorys}  
+            value={productDetails.catyegorys}
             onChange={handleChange}
             required
           />
           <br />
           <div className="text-center">
-          <button className="p-1 px-5 rounded-md bg-yellow-300">Submit</button>     
+            <button className="p-1 px-5 rounded-md bg-yellow-300">
+              Submit
+            </button>
           </div>
         </form>
       </div>
