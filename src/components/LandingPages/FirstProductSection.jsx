@@ -54,7 +54,7 @@ function FirstProductSection() {
                 className="min-w-[15%] w-[15%] h-[15vw]"
                 to={`/products/${encodeURIComponent(item.title)}/${item._id}`}
               >
-              <div className="w-[80%] h-[60%] flex items-center">
+              <div className="w-[80%] h-[60%] flex justify-center ml-4 items-center">
                 <img
                   className="w-full h-full rounded-md m-auto"
                   src={item.img}
