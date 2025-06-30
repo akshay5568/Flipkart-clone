@@ -9,7 +9,7 @@ function Dashboard() {
     const [totalProducts, setTotalProducts] = useState();
     useEffect(() => {
           const callApi = async () => {
-             const response =  await axios.post('http://localhost:8080/products-dashboard' , {} , {   
+             const response =  await axios.post('https://flipkart-backend-h688.onrender.com/products-dashboard' , {} , {   
                 headers:{
                     Authorization: `Bearer ${token}`
                 }
@@ -22,7 +22,7 @@ function Dashboard() {
     },[])
     console.log(data);
     const DeleteHandler = async (id) => {
-          await axios.post('http://localhost:8080/delete-product' , {id});   
+          await axios.post('https://flipkart-backend-h688.onrender.com/delete-product' , {id});   
           toast.success("Product Deleted Succsesfylly");
     } 
   return (

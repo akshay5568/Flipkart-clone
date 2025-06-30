@@ -28,7 +28,7 @@ function FullProductPage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/product")
+      .get("https://flipkart-backend-h688.onrender.com/product")
       .then((res) => dispatch(setProducts(res.data)))
       .catch((err) => console.log(err));
   }, [dispatch]);
@@ -44,7 +44,7 @@ function FullProductPage() {
     try {
 
       dispatch(addToCart(filteredProduct));
-      await axios.post("http://localhost:8080/cart", {
+      await axios.post("https://flipkart-backend-h688.onrender.com/cart", {
         title: title.title,
         BrandName:title.BrandName,
         img: title.img,

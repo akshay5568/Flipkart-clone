@@ -50,7 +50,7 @@ function Navbar() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/product")
+      .get("https://flipkart-backend-h688.onrender.com/product")
       .then((res) => dispatch(setProducts(res.data)))
       .catch((err) => console.log(err));
   }, [dispatch]);

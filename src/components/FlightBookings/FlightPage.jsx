@@ -12,7 +12,7 @@ function FlightPage() {
   const [dummyFlights , setdummyFlights]  = useState()
 
 useEffect(() => {
-    axios.get('http://localhost:8080/flights').then((res) => setdummyFlights(res.data)).catch((err) => console.log(err));
+    axios.get('https://flipkart-backend-h688.onrender.com/flights').then((res) => setdummyFlights(res.data)).catch((err) => console.log(err));
 },[])
 
  

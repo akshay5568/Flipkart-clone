@@ -20,7 +20,7 @@ function SignUP() {
     console.log(userData);
     try {
       const response = await axios.post(
-        "http://localhost:8080/signup",
+        "https://flipkart-backend-h688.onrender.com/signup",
         userData
       );
       if (response.status === 201 || response.status === 200) {

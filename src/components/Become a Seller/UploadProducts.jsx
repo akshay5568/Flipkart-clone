@@ -44,7 +44,7 @@ function UploadProducts() {
     });
 
     try {
-      await axios.post("http://localhost:8080/products-images", formData, {
+      await axios.post("https://flipkart-backend-h688.onrender.com/products-images", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

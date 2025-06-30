@@ -25,7 +25,7 @@ function Cart() {
      
      useEffect ( () => {
       const token = localStorage.getItem("token");
-      axios.get('http://localhost:8080/cart' ,{
+      axios.get('https://flipkart-backend-h688.onrender.com/cart' ,{
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -39,7 +39,7 @@ function Cart() {
     const token = localStorage.getItem("token");
     dispatch(removeCarts(itemIndex));
     toast.success("Item removed from cart!");
-    await axios.post('http://localhost:8080/cart/remove',{id:itemIndex} , {
+    await axios.post('https://flipkart-backend-h688.onrender.com/cart/remove',{id:itemIndex} , {
       headers: {
           Authorization: `Bearer ${token}`
         }

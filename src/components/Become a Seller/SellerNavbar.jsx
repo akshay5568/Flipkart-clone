@@ -26,7 +26,7 @@ function SellerNavbar() {
   const dispatch = useDispatch();
   useEffect(() => {
     axios
-      .get("http://localhost:8080/sell-users")
+      .get("https://flipkart-backend-h688.onrender.com/sell-users")
       .then((res) => dispatch(addSellUsers(res.data)))   
       .catch((err) => console.log(err));
   }, [dispatch]);

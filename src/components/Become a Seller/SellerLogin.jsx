@@ -19,7 +19,7 @@ function SellerLogin() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8080/seller-login", sellerData);
+      await axios.post("https://flipkart-backend-h688.onrender.com/seller-login", sellerData);
       toast.success("Login Successfully");
       setSellerData({
         name: "",

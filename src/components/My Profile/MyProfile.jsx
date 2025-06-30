@@ -13,7 +13,7 @@ function MyProfile() {
   const dispatch = useDispatch();
   useEffect(() => {
     axios
-      .get("http://localhost:8080/users")
+      .get("https://flipkart-backend-h688.onrender.com/users")
       .then((res) => dispatch(addUsers(res.data)))
       .catch((err) => console.log(err));
   }, [dispatch]);
@@ -31,7 +31,7 @@ function MyProfile() {
 
   const navigate = useNavigate();
   const DeleteHandler = async () => {
-    await axios.post("http://localhost:8080/users", { id: id2 });
+    await axios.post("https://flipkart-backend-h688.onrender.com/users", { id: id2 });
     localStorage.removeItem("token");
     toast.success("Account Was Deleted");
     setTimeout(() => {
@@ -57,7 +57,7 @@ function MyProfile() {
     setInputData({ ...inputData, [name]: value });
   };
   const saveHandler = async () => {
-    await axios.post("http://localhost:8080/userdelete", inputData, {
+    await axios.post("https://flipkart-backend-h688.onrender.com/userdelete", inputData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

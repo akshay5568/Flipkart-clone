@@ -18,7 +18,7 @@ function LandingPage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/product")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/product`)
       .then((res) => dispatch(setProducts(res.data)))
       .catch((err) => console.log(err));
   }, [dispatch]);
@@ -26,7 +26,7 @@ function LandingPage() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     axios
-      .get("http://localhost:8080/cart", {
+      .get("https://flipkart-backend-h688.onrender.com/cart", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -37,7 +37,7 @@ function LandingPage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/users")
+      .get("https://flipkart-backend-h688.onrender.com/users")
       .then((res) => dispatch(addUsers(res.data)))
       .catch((err) => console.log(err));
   }, [dispatch]);
