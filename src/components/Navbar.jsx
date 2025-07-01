@@ -59,24 +59,17 @@ function Navbar() {
 
   return (
     <div className="p-3 w-full h-[9%] bg-[#ffffff]">
-      <nav className="w-full flex gap-3 pt-1 justify-between item-center">
-        <NavLink className="flex items-center mr-10" to="/">
+      <nav className="sm:w-full w-fit  md:flex text-sm sm:text-base gap-3 pt-1 justify-between item-center">
+        <div  className="flex w-[250px] justify- sm:w-[120px] items-center mr-10">
+          <NavLink to="/">
           <img
             src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
             alt=""
-            className="mr-3"
+            className="mr-3 "
           />
         </NavLink>
-        <input
-          className="w-[40rem] p-2 rounded-md bg-[#f0f5ff]"
-          type="text"
-          placeholder="🔍  Search For Products, Brands and More"
-        />
-
-        <div className="w-fit flex gap-20 items-center">
-          <div className="w-fit flex  items-center gap-2 w-[8vw] h-[3rem] rounded-md ml-3 justify-center hover:bg-[#2c64e3] hover:text-white duration-300">
-            <div className="w-fit flex items-center relative group">
-              <IoMdLogIn className="text-2xl" />
+        <div className="sm:hidden">
+          <IoMdLogIn className="text-2xl sm:hidden" />
               <div className="w-[7vw] flex items-center justify-center">
                 {token ? (
                   `${filterUser.map(
@@ -86,7 +79,29 @@ function Navbar() {
                   <NavLink to="/login">Login</NavLink>
                 )}
               </div>
-              <FaAngleDown />
+        </div>
+        </div>
+        
+        <input
+          className="w-[40rem] sm:inline hidden p-2 rounded-md bg-[#f0f5ff]"
+          type="text"
+          placeholder="🔍 Search For Products, Brands and More"
+        />
+
+        <div className="w-fit flex gap-20 items-center">
+          <div className="w-fit flex  items-center gap-2 w-[8vw] h-[3rem] rounded-md ml-3 justify-center hover:bg-[#2c64e3] hover:text-white duration-300">
+            <div className="w-fit flex items-center relative group">
+              <IoMdLogIn className="text-2xl sm:inline hidden" />
+              <div className="sm:w-[7vw] hidden sm:inline flex items-center justify-center">
+                {token ? (
+                  `${filterUser.map(
+                    (items) => items.name.substring(0, 10) + "..."
+                  )}`
+                ) : (
+                  <NavLink to="/login">Login</NavLink>
+                )}
+              </div>
+              <FaAngleDown className="sm:inline hidden" />
 
               <div className="w-[15rem] h-[10rem]  absolute text-black top-5 opacity-0 group-hover:opacity-100 bg-[#ffffff] rounded-md p-3 hidden group-hover:block">
                 {filterUser ? (
@@ -163,6 +178,11 @@ function Navbar() {
             </NavLink>
           </div>
         </div>
+        <input
+          className="w-[100%] pr-4 sm:hidden p-2 rounded-md bg-[#f0f5ff]"
+          type="text"
+          placeholder="🔍 Search For Products, Brands and More"
+        />
       </nav>
     </div>
   );
