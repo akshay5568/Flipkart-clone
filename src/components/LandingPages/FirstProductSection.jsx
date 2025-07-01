@@ -45,34 +45,42 @@ function FirstProductSection() {
   // console.log(products);
 
   return (
-    <div className="flex w-full h-[22vw] bg-[#ffffff] mt-5">
-      <div className="flex flex-nowrap overflow-auto scrollbar-hide w-[90%] h-full gap-21 items-center p-7">
+    <div className="flex w-full sm:h-[22vw] h-[45vw] bg-[#ffffff] rounded mt-5">
+      <div className="flex flex-nowrap overflow-auto scrollbar-hide w-[90%] h-full gap-21  items-center sm:p-7">
         {FistProductList.map((item, index) => {
           return (
-            <div key={index} className="min-w-[15%] w-[15%] h-[15vw]">
+            <div key={index} className="min-w-[15%] sm:w-[15%] sm:h-[15vw] h-fit">
               <NavLink
                 className="min-w-[15%] w-[15%] h-[15vw]"
                 to={`/products/${encodeURIComponent(item.title)}/${item._id}`}
               >
-              <div className="w-[80%] h-[60%] flex justify-center ml-4 items-center">
+              <div className="sm:w-[80%] w-full h-full sm:h-[60%]  flex justify-center ml-4 items-center">
                 <img
-                  className="w-full h-full rounded-md m-auto"
-                  src={item.img}
+                  className=" w-full h-full rounded-md m-auto"
+                  src={item.img} 
                   alt=""
                 />
               </div>
-                <h3 className="pt-[50px] text-sm">
+              <div>
+                <div>
+                  <h3 className="sm:pt-[50px] pt-[50px] sm:flex hidden text-sm text-center">
                   {item.title.length > 20
                     ? item.title.substring(0, 20) + "..."
                     : item.title}
                 </h3>
-                <h3 className="text-center font-semibold">₹{item.price}</h3>
+                </div>
+                 <div className="flex items-center">
+                <h3 className="pt-[30px] sm:pt-[0]  text-center font-semibold">₹{item.price}</h3>
+                 </div>
+              </div>
+               
+               
               </NavLink>
             </div>
           );
         })}
       </div>
-      <div className="w-[15%] h-fit bg-teal-400">
+      <div className="sm:inline hidden w-[15%] h-fit bg-teal-400">
         <NavLink to="/flight">
         <img
           src="https://rukminim2.flixcart.com/fk-p-flap/530/810/image/ce3cf81edb760559.jpg?q=20"

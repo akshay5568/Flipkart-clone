@@ -44,13 +44,13 @@ function TopBar () {
 
     return (
     
-      <div className="w-full h-[8rem] mt-3 flex items-center gap-15 bg-[#ffffff] justify-center">
+      <div className="w-full h-[8rem] sm:mt-3 flex overflow-x-scroll scrollbar-hide items-center sm:gap-15 gap-10 bg-[#ffffff] justify-center">
         {data1.map((item, index) => {
           return (
             <NavLink key={index} to={item.title == "Flight Bookings" ? `/flight` : `/products/${item.title}`}>
               <div>    
-                <img className="w-[55px]" src={item.img} alt="" />
-                <h3 className="text-sm font-semibold">{item.title}</h3>           
+                <img className="sm:w-[55px] w-[40px] m-auto" src={item.img} alt="" />
+                <h3 className="sm:text-sm text-center font-normal sm:font-semibold">{item.title}</h3>           
               </div>
             </NavLink>
           );
