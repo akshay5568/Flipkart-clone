@@ -46,7 +46,7 @@ function FirstProductSection() {
 
   return (
     <div className="sm:flex w-full sm:h-[22vw] h-[100vw] bg-[#ffffff] rounded mt-5">
-      <div className="flex flex-wrap sm:flex-nowrap ml-8 sm:m-0 overflow-auto sm:scrollbar-hide sm:w-[90%] p-3 sm:p-0 h-full sm:gap-21 gap-10  sm:items-center sm:p-7">   
+      <div className="flex flex-wrap sm:flex-nowrap ml-8 sm:m-0 overflow-auto scrollbar-hide sm:w-[90%] p-3 sm:p-0 h-full sm:gap-21 gap-10  sm:items-center sm:p-7">   
         {FistProductList.map((item, index) => {
           return (
             <div key={index} className="sm:min-w-[15%] sm:w-[15%] sm:p-0 sm:border-none border-1 border-gray-300 rounded-md p-3 w-[40%]  sm:h-[15vw] h-[40%]">

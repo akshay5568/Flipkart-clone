@@ -25,10 +25,10 @@ function Container () {
   ]);
 
   return (
-    <div className="w-full h-[32rem] flex flex-wrap gap-7  bg-[#ffffff] justify-center  mt-7">
+    <div className="w-full sm:h-[32rem] p-3 flex flex-wrap gap-7  bg-[#ffffff] justify-center  mt-7">
         {containerProducts.map((item, index) => {
           return (
-            <div className="w-[30%] h-[13rem] bg-red-100">
+            <div className="sm:w-[30%] w-[45%] lg:h-[13rem]">
               <img className="rounded-md" src={item.img} alt="" />
             </div>
           );

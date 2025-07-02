@@ -9,7 +9,7 @@ import { IoIosHelpCircleOutline } from "react-icons/io";
 
 function Footer() {
   return (
-    <div className="w-full h-[40%] bg-[#182337] p-5 px-5">
+    <div className="xl:block hidden w-full h-[25rem] bg-[#182337] p-5 px-5">
       <div className="flex text-white">
         <div className="w-[60%] p-5 flex text-xs px-3 gap-21">
           <div>

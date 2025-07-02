@@ -54,7 +54,7 @@ function SecondProductSection ( ) {
   ]);
 
    return (
-     <div className="w-full sm:h-[20rem] mt-5  bg-[#ffffff] p-3 ">
+     <div className="hidden sm:block w-full sm:h-[20rem] mt-5  bg-[#ffffff] p-3 ">
         <div>
           <h1 className="text-xl">Beauty Auto & More</h1>
         </div>
