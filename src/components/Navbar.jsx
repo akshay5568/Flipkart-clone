@@ -172,7 +172,7 @@ function Navbar() {
             )}
           </div>
 
-          <div className="flex items-center pr-9">
+          <div className="flex items-center sm:pr-9">
             <NavLink to="/">
               <CiMenuKebab />
             </NavLink>

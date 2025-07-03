@@ -82,13 +82,13 @@ function FullProductPage() {
             </div>
 
             <div className="sm:w-[60%] h-fit p-3 sm:mt-0 mt-5">
-              <h1 className="text-gray-600">{item.BrandName}</h1>
+              <h1 className="text-gray-600 text-xs sm:text-sm">{item.BrandName}</h1>
               <h1 className="break-words mt-3">{item.title}</h1>
-              <h1 className="text-gray-600 mt-5">{item.details}</h1>
+              <h1 className="text-gray-600 mt-5 text-xs sm:text-sm">{item.details}</h1>
               <h3 className="text-[#25a541] mt-3">Special Price</h3>
 
               <div className="flex items-center gap-3">
-                <h2 className="text-2xl bg-black-600">₹{item.price}</h2>
+                <h2 className="text-2xl bg-black-600 font-semibold">₹{item.price}</h2>
                 <h2 className="text-[#25a541]">{item.discount}% off</h2>
               </div>
 
