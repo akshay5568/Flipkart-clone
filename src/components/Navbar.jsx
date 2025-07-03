@@ -179,7 +179,7 @@ function Navbar() {
           </div>
         </div>
         <input
-          className="w-[100%] pr-4 sm:hidden p-2 rounded-md bg-[#f0f5ff]"
+          className="w-[95%] pr-4 sm:hidden  p-2 rounded-md bg-[#f0f5ff]"
           type="text"
           placeholder="🔍 Search For Products, Brands and More"
         />

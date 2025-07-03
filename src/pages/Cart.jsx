@@ -74,8 +74,8 @@ function Cart() {
       <div className="w-full h-[22rem] bg-[#f1f3f6]"></div>
     </div>
   ) : (
-    <div className="flex w-full h-fit bg-[#f1f3f6] p-3">
-      <div className="w-[60%] h-fit mt-5 m-auto">
+    <div className="sm:flex w-full h-fit bg-[#f1f3f6] sm:p-3 p-1">
+      <div className="sm:w-[60%] h-fit mt-5 m-auto">
         <div className="m-auto p-3 px-7 mb-3 bg-[#ffffff]">
           <h1>Flipkart({cartData.length})</h1>
         </div>
@@ -89,9 +89,9 @@ function Cart() {
         {cartData.map((item, index) => {
           return (
             <div className="m-auto p-5 px-7 mt-4 bg-[#ffffff]">
-              <div className="flex gap-5">
+              <div className="flex sm:gap-5">
                 <div className="w-[100px] h-[100px]">
-                  <div className="w-[100px] ">
+                  <div className="sm:w-[100px] w-[60px] ">
                     <img
                     className=" mt-3 rounded-md"
                     src={item.img}
@@ -101,7 +101,7 @@ function Cart() {
                 </div>
 
                 <div>
-                  <h1>{item.title}</h1>
+                  <h1 className="sm:text-normal text-sm">{item.title.substring(0,30) + "..."}</h1>
                   <div className="flex gap-3 items-center">
                     <h1 className="text-xs text-gray-500">
                       Seller :{item.BrandName}{" "}
@@ -114,12 +114,12 @@ function Cart() {
                   </div>
 
                   <div className="flex gap-3 items-center mt-4 ">
-                    <h1 className="text-xl">₹{item.price}</h1>
+                    <h1 className="sm:text-xl sm:font-normal font-semibold">₹{item.price}</h1>
                     <h1 className="text-[#388e3c]">{item.discount}% off</h1>
                   </div>
 
                   <button
-                    className="mt-4 hover:text-[#2874f0]"
+                    className="sm:mt-4 sm:inline hidden hover:text-[#2874f0]"
                     onClick={() => removeCartHandler(item._id)}
                   >
                     REMOVE
@@ -127,8 +127,15 @@ function Cart() {
                 </div>
               </div>
 
-              <div className="mt-3 w-full flex justify-end">
-                <button className="px-8 bg-[#fb641b] py-2 rounded text-[#ffffff]">
+              <div className="mt-3 w-full sm:gap-0 gap-5 flex justify-end">
+                 <button
+                    className="sm:mt-4 sm:hidden inline hover:text-[#2874f0]"
+                    onClick={() => removeCartHandler(item._id)}
+                  >
+                    REMOVE
+                  </button>
+
+                <button className="sm:px-8 px-3 bg-[#fb641b] py-2 rounded text-[#ffffff]">
                   PLACE ORDER
                 </button>
               </div>
@@ -138,7 +145,7 @@ function Cart() {
       </div>
       <ToastContainer />
 
-      <div className="w-[25%] h-fit mt-5 bg-[#ffffff] mr-5">
+      <div className="sm:w-[25%] h-fit  mt-5 bg-[#ffffff] sm:mr-5 rounded-xl sm:rounded">
         <h1 className="p-3">PRICE DEATAILS</h1>
         <div className="flex p-3 justify-between">
           <h1>Price({cartData.length} item)</h1>
