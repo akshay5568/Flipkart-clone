@@ -12,7 +12,7 @@ function FullProductPage() {
 
   const products = useSelector((state) => state.products.products);
   const filteredProduct = products.filter((item) => item._id == id);
-  console.log(filteredProduct);
+ 
   
   const dispatch = useDispatch();
 
@@ -34,12 +34,12 @@ function FullProductPage() {
   }, [dispatch]);
 
   const [title] = filteredProduct;
-  console.log(title.title);
+ 
 
   const addToCartHandler = async () => {
 
   const token = localStorage.getItem("token");
-  console.log(token);
+ 
 
     try {
 
@@ -67,21 +67,21 @@ function FullProductPage() {
   return (
     <>
     <Navbar/>
-    <div className="w-full h-fit bg-[#f1f3f6] p-3">
+    <div className="w-full h-fit bg-[#f1f3f6] sm:p-3 ">
       {filteredProduct.map((item, i) => {
         return (
-          <div key={i} className="flex w-[90%] m-auto gap-4 bg-[#ffffff] p-3">
-            <div className="w-[40%] h-fit p-3">
-              <div>
+          <div key={i} className="sm:flex sm:w-[90%]  m-auto sm:gap-4 bg-[#ffffff] sm:p-3">
+            <div className="sm:w-[40%] h-fit sm:p-3">
+              <div className="w-full">
                 <img
-                  className="w-fit h-fit rounded-md object-cover m-auto"
+                  className="sm:w-fit w-[80%] h-fit rounded-md object-cover m-auto"
                   src={item.img}
                   alt=""
                 />
               </div>
             </div>
 
-            <div className="w-[60%] h-[200rem] p-3">
+            <div className="sm:w-[60%] h-fit p-3 sm:mt-0 mt-5">
               <h1 className="text-gray-600">{item.BrandName}</h1>
               <h1 className="break-words mt-3">{item.title}</h1>
               <h1 className="text-gray-600 mt-5">{item.details}</h1>
@@ -99,7 +99,7 @@ function FullProductPage() {
 
               <div className="flex items-center gap-4 mt-5">
                 {token ? <button
-                  className="flex items-center gap-3 bg-[#ff9e01] p-3 px-8 text-white rounded"
+                  className="flex items-center gap-3 bg-[#ff9e01] sm:p-3 p-1 px-8 text-white rounded"
                   onClick={addToCartHandler}
                 >
                   {" "}
@@ -112,7 +112,7 @@ function FullProductPage() {
                   <BsCart3 /> ADD TO CART
                 </button>}
 
-                <button className="flex items-center gap-3 bg-[#fb641b] p-3 px-13 text-white rounded">
+                <button className="flex items-center gap-3 bg-[#fb641b] sm:p-3 p-1 px-13 text-white rounded">
                   <ImPower />
                   BUY NOW
                 </button>

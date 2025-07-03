@@ -101,7 +101,7 @@ function Cart() {
                 </div>
 
                 <div>
-                  <h1 className="sm:text-normal text-sm">{item.title.substring(0,30) + "..."}</h1>
+                  <h1 className="sm:text-normal text-sm">{item.title ? item.title.slice(0,30) + "..." : "Loading.."}</h1>
                   <div className="flex gap-3 items-center">
                     <h1 className="text-xs text-gray-500">
                       Seller :{item.BrandName}{" "}
