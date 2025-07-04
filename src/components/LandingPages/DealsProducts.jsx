@@ -51,9 +51,9 @@ function DealsProducts () {
   return (
     <div className="w-full lg:h-[35rem] h-fit sm:bg-[#ffffff] xl:rounded-md rounded-xl lg:flex gap-7 justify-center mt-4">
 
-        <div className="xl:w-[30%] w-full h-full max-sm:bg-[#bdf5b9] m-auto lg:m-0 xl:rounded-md rounded-xl p-5">
+        <div className="xl:w-[30%] w-full h-full max-sm:bg-[#a5c9d9] m-auto lg:m-0 xl:rounded-md rounded-xl p-3">
           <h1 className="text-xl">Season's Top Picks</h1>
-          <div className="w-full h-[30rem]  p-4 flex flex-wrap gap-4 justify-center">
+          <div className="w-full h-[30rem]  p-3 flex flex-wrap gap-4 justify-center">
             {lastData.map((item, index) => {
               return (
                 <div className="w-[40%] h-[50%] bg-[#ffffff] p-2 rounded-md border-4 border-gray-100 overflow-hidden">
@@ -66,9 +66,9 @@ function DealsProducts () {
           </div>
         </div>
 
-        <div className="xl:w-[30%] w-full m-auto lg:m-0 mt-5 h-full max-sm:bg-[#2bb1f5]  xl:rounded-md rounded-xl p-5">
+        <div className="xl:w-[30%] w-full m-auto lg:m-0 mt-5 h-full max-sm:bg-[#cfdbbf]  xl:rounded-md rounded-xl p-3">
           <h1 className="text-xl">Fashion's Top Deals</h1>
-          <div className="w-full h-[30rem]  p-4 flex flex-wrap gap-4 justify-center">
+          <div className="w-full h-[30rem]  p-3 flex flex-wrap gap-4 justify-center">
             {lastData2.map((item, index) => {
               return (
                 <div className="w-[40%] h-[50%] bg-[#ffffff] p-2 rounded-md border-4 border-gray-100 overflow-hidden">
