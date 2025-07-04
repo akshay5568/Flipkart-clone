@@ -59,36 +59,71 @@ function Navbar() {
 
   return (
     <div className="sm:p-3 w-full h-[9%] bg-[#ffffff]">
-      <nav className="sm:w-full w-full  md:flex text-sm sm:text-base gap-3 pt-1 justify-between item-center">
-        <div  className="flex w-[250px] justify- sm:w-[120px] items-center mr-10">
+      <nav className="sm:w-full w-full  md:flex sm:text-sm text-xs sm:text-base gap-3 pt-1 justify-between item-center">
+        <div className="flex relative w-[250px] justify- sm:w-[120px] items-center mr-10">
           <NavLink to="/">
-          <img
-            src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
-            alt=""
-            className="mr-3 "
-          />
-        </NavLink>
-        <div className="sm:hidden">
-          <IoMdLogIn className="text-2xl sm:hidden" />
-              <div className="w-[7vw] flex items-center justify-center">
-                {token ? (
-                  `${filterUser.map(
-                    (items) => items.name.substring(0, 10) + "..."
-                  )}`
-                ) : (
-                  <NavLink to="/login">Login</NavLink>
-                )}
+            <img
+              src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
+              alt=""
+              className="mr-3 absolute sm:block hidden"
+            />
+          </NavLink>
+      
+        </div>
+<div className="p-2">
+ <div className="sm:hidden mt-5 gap-15 items-center flex">
+   <NavLink to="/">
+                <img
+              src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
+              alt=""
+              className="mr-3 sm:hidden inline"
+            />
+                </NavLink>
+             <div className="w-[10vw] h-[7vw] flex">
+              {user ? (
+                <NavLink to="/myproflie">
+                  <CgProfile className="text-2xl" />
+                </NavLink>
+              ) : (
+                <NavLink to="/login">Login</NavLink>
+              )}
+            </div>
+
+            <div className="flex items-center">
+              <div className="flex items-center">
+                <h6 className="bg-red-400 px-1 rounded-md text-xs">
+                  {user ? cartData : ""}
+                </h6>
+                <BsCart3 className="text-2xl" />
               </div>
-        </div>
-        </div>
-        
+              {user ? (
+                <NavLink
+                  to="/cart"
+                  style={(e) =>
+                    e.isActive ? { color: "tomato" } : { color: "black" }
+                  }
+                >
+                  Cart
+                </NavLink>
+              ) : (
+                <NavLink to="/login">Cart</NavLink>
+              )}
+            </div>
+
+          </div>
+               <input
+          className="w-full sm:hidden mt-5  p-2 rounded-md bg-[#f0f5ff]"
+          type="text"
+          placeholder="🔍 Search For Products, Brands and More"
+        />
+          </div>
         <input
           className="w-[50rem] sm:inline hidden p-2 rounded-md bg-[#f0f5ff]"
           type="text"
           placeholder="🔍 Search For Products, Brands and More"
         />
-
-        <div className="w-full flex sm:gap-20  items-center">
+      
+        <div className="w-full sm:flex hidden sm:gap-20  items-center">
           <div className="w-fit flex  items-center gap-2 w-[8vw] h-[3rem] rounded-md ml-3 justify-center hover:bg-[#2c64e3] hover:text-white duration-300">
             <div className="w-fit flex items-center relative group">
               <IoMdLogIn className="text-2xl sm:inline hidden" />
@@ -137,54 +172,51 @@ function Navbar() {
               </div>
             </div>
           </div>
-        
-        <div className="flex w-full justify-between pl-3 pr-3">
-          <div className="flex items-center sm:gap-2">
-            <div className="flex items-center reletive">
-              <h6 className="bg-red-400 px-1 rounded-md text-xs">
-                {user ? cartData : ""}
-              </h6>
-              <BsCart3 className="text-2xl" />
+
+          <div className="flex w-full justify-between pl-3 pr-3">
+            <div className="flex items-center  sm:gap-2">
+              <div className="flex items-center reletive">
+                <h6 className="bg-red-400 px-1 sm:block hidden rounded-md text-xs">
+                  {user ? cartData : ""}
+                </h6>
+                <BsCart3 className="text-2xl sm:block hidden" />
+              </div>
+              {user ? (
+                <NavLink
+                  className="sm:block hidden"
+                  to="/cart"
+                  style={(e) =>
+                    e.isActive ? { color: "tomato" } : { color: "black" }
+                  }
+                >
+                  Cart
+                </NavLink>
+              ) : (
+                <NavLink to="/login">Cart</NavLink>
+              )}
             </div>
-            {user ? (
-              <NavLink
-                to="/cart"
-                style={(e) =>
-                  e.isActive ? { color: "tomato" } : { color: "black" }
-                }
-              >
-                Cart
-              </NavLink>
-            ) : (
-              <NavLink to="/login">Cart</NavLink>
-            )}
-          </div>
 
-          <div className="w-[11vw] flex items-center gap-2">
-            <CiShop className="text-3xl" />
-            {user ? (
-              <NavLink className="" to="/sell-online">
-                Become a Seller
-              </NavLink>
-            ) : (
-              <NavLink className="" to="/login">
-                Become a Seller
-              </NavLink>
-            )}
-          </div>
+            <div className="w-[11vw] flex items-center gap-2">
+              <CiShop className="text-3xl sm:block hidden"  />
+              {user ? (
+                <NavLink className="sm:block hidden" to="/sell-online">
+                  Become a Seller
+                </NavLink>
+              ) : (
+                <NavLink className="sm:block hidden" to="/login">
+                  Become a Seller
+                </NavLink>
+              )}
+            </div>
 
-          <div className="flex items-center sm:pr-9">
-            <NavLink to="/">
-              <CiMenuKebab />
-            </NavLink>
+            <div className="flex items-center sm:pr-9">
+              <NavLink to="/" className="sm:block hidden">
+                <CiMenuKebab />
+              </NavLink>
+            </div>
           </div>
         </div>
-        </div>
-        <input
-          className="w-[95%] pr-4 sm:hidden  p-2 rounded-md bg-[#f0f5ff]"
-          type="text"
-          placeholder="🔍 Search For Products, Brands and More"
-        />
+   
       </nav>
     </div>
   );
