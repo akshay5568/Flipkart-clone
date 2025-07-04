@@ -71,12 +71,12 @@ function Navbar() {
       
         </div>
 <div className="p-2">
- <div className="sm:hidden mt-5 gap-15 items-center flex">
+ <div className="sm:hidden mt-5 justify-between mr-5 text-xs items-center flex">
    <NavLink to="/">
                 <img
               src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
               alt=""
-              className="mr-3 sm:hidden inline"
+              className="mr-3 sm:hidden inline w-[100px]"
             />
                 </NavLink>
              <div className="w-[10vw] h-[7vw] flex">
@@ -112,7 +112,7 @@ function Navbar() {
 
           </div>
                <input
-          className="w-full sm:hidden mt-5  p-2 rounded-md bg-[#f0f5ff]"
+          className="w-full sm:hidden mt-5  p-3 rounded-xl bg-[#f0f5ff]"
           type="text"
           placeholder="🔍 Search For Products, Brands and More"
         />
