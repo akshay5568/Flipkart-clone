@@ -76,7 +76,7 @@ function MyProfile() {
     <Navbar/>
     <div className="w-full h-fit bg-[#f1f3f6] p-5">
       <div className="sm:flex justify-center gap-4">
-        <div className="sm:w-[20%] h-[10vh] bg-[#ffffff] rounded">
+        <div className="sm:w-[20%] sm:h-[10vh] h-fit pt-3 pb-3 bg-[#ffffff] rounded">
           <div className="w-full h-full flex items-center px-4 gap-7">
             <div>
               <img
