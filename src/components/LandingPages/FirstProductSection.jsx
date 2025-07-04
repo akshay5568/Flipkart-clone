@@ -54,7 +54,7 @@ function FirstProductSection() {
                 className="sm:min-w-[15%] sm:w-[15%] h-[15vw]"
                 to={`/products/${encodeURIComponent(item.title)}/${item._id}`}
               >
-              <div className="sm:w-full w-[70%] sm:h-[40rem]  sm:h-[60%]  flex justify-center ml-4 items-center">   
+              <div className="sm:w-full w-[80%] h-[50%]  sm:h-[60%]  flex justify-center ml-3 items-center">   
                 <img
                   className="w-[80%] h-full rounded-md m-auto"
                   src={item.img} 
@@ -62,21 +62,21 @@ function FirstProductSection() {
                 />
               </div>
 
-              <div className="sm:h-fit  h-[50%] flex items-end justify-center">
-                <div>
-                  <h3 className="sm:pt-[50px] sm:flex hidden text-sm text-center">
+              <div className="w-full flex items-end sm:h-fit h-[40%]  sm:mt-0 mt-5">
+                <div className="w-full h-fit ">
+                  <h3 className="sm:pt-[30px] sm:flex hidden text-sm text-center">
                   {item.title.length > 20
                     ? item.title.substring(0, 20) + "..."
                     : item.title}
                 </h3>
 
-                <h3 className="sm:hidden inline text-sm text-center">
+                <h3 className="w-full sm:hidden inline m-auto text-xs text-center">
                   {item.title.length > 20
                     ? item.title.substring(0, 10) + "..."
                     : item.title}
                 </h3>
 
-                  <h3 className="sm:pt-[0] ml-4 sm:ml-0 text-center font-semibold">₹{item.price}</h3>
+                  <h3 className="sm:pt-[0] ml-4 sm:ml-0 text-center text-xs sm:text-sm font-semibold">₹{item.price}</h3>
                 </div>
  
               </div>

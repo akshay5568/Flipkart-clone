@@ -56,7 +56,7 @@ function DealsProducts () {
           <div className="w-full h-[30rem]  p-4 flex flex-wrap gap-4 justify-center">
             {lastData.map((item, index) => {
               return (
-                <div className="w-[47%] h-[50%] bg-[#ffffff] p-2 rounded-md border-4 border-gray-100 overflow-hidden">
+                <div className="w-[40%] h-[50%] bg-[#ffffff] p-2 rounded-md border-4 border-gray-100 overflow-hidden">
                   <img className="w-full h-[9rem]" src={item.img} alt="" />
                   <h3>{item.title}</h3>
                   <h3 className="text-teal-600">{item.offer}</h3>
@@ -71,7 +71,7 @@ function DealsProducts () {
           <div className="w-full h-[30rem]  p-4 flex flex-wrap gap-4 justify-center">
             {lastData2.map((item, index) => {
               return (
-                <div className="w-[47%] h-[50%] bg-[#ffffff] p-2 rounded-md border-4 border-gray-100 overflow-hidden">
+                <div className="w-[40%] h-[50%] bg-[#ffffff] p-2 rounded-md border-4 border-gray-100 overflow-hidden">
                   <img className="w-full h-[9rem]" src={item.img} alt="" />
                   <h3>{item.title}</h3>
                   <h3 className="text-teal-600">{item.offer}</h3>

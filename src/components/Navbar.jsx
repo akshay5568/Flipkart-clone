@@ -58,8 +58,8 @@ function Navbar() {
   const cartData = useSelector((state) => state.products.cart.length);
 
   return (
-    <div className="p-3 w-full h-[9%] bg-[#ffffff]">
-      <nav className="sm:w-full w-fit  md:flex text-sm sm:text-base gap-3 pt-1 justify-between item-center">
+    <div className="sm:p-3 w-full h-[9%] bg-[#ffffff]">
+      <nav className="sm:w-full w-full  md:flex text-sm sm:text-base gap-3 pt-1 justify-between item-center">
         <div  className="flex w-[250px] justify- sm:w-[120px] items-center mr-10">
           <NavLink to="/">
           <img
@@ -83,12 +83,12 @@ function Navbar() {
         </div>
         
         <input
-          className="w-[40rem] sm:inline hidden p-2 rounded-md bg-[#f0f5ff]"
+          className="w-[50rem] sm:inline hidden p-2 rounded-md bg-[#f0f5ff]"
           type="text"
           placeholder="🔍 Search For Products, Brands and More"
         />
 
-        <div className="w-fit flex gap-20 items-center">
+        <div className="w-full flex sm:gap-20  items-center">
           <div className="w-fit flex  items-center gap-2 w-[8vw] h-[3rem] rounded-md ml-3 justify-center hover:bg-[#2c64e3] hover:text-white duration-300">
             <div className="w-fit flex items-center relative group">
               <IoMdLogIn className="text-2xl sm:inline hidden" />
@@ -137,8 +137,9 @@ function Navbar() {
               </div>
             </div>
           </div>
-
-          <div className="flex items-center gap-2">
+        
+        <div className="flex w-full justify-between pl-3 pr-3">
+          <div className="flex items-center sm:gap-2">
             <div className="flex items-center reletive">
               <h6 className="bg-red-400 px-1 rounded-md text-xs">
                 {user ? cartData : ""}
@@ -177,6 +178,7 @@ function Navbar() {
               <CiMenuKebab />
             </NavLink>
           </div>
+        </div>
         </div>
         <input
           className="w-[95%] pr-4 sm:hidden  p-2 rounded-md bg-[#f0f5ff]"
