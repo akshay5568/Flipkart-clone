@@ -20,7 +20,7 @@ function Poster () {
       ]);
 
       return (
-         <div className="w-full h-[10rem] sm:h-[16rem] sm:rounded rounded-md  mt-3 bg-[#ffffff] flex overflow-x-scroll scrollbar-hide">
+         <div className="w-full h-[10rem] sm:h-[16rem] sm:rounded rounded-xl  mt-3 bg-[#ffffff] flex overflow-x-scroll scrollbar-hide">
         {posterData.map((item, index) => {
           return <img className="w-full h-full" key={index} src={item.img} alt="" />;
         })}

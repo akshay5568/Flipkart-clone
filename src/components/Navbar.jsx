@@ -68,21 +68,23 @@ function Navbar() {
               className="mr-3 absolute sm:block hidden"
             />
           </NavLink>
-      
         </div>
-<div className="p-2">
- <div className="sm:hidden mt-5 justify-between mr-5 text-xs items-center flex">
-   <NavLink to="/">
-                <img
-              src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
-              alt=""
-              className="mr-3 sm:hidden inline w-[100px]"
-            />
-                </NavLink>
-             <div className="w-[10vw] h-[7vw] flex">
+
+        
+        <div className="p-2">
+          <div className="sm:hidden mt-5 justify-between mr-5 text-xs items-center flex">
+            <NavLink to="/">
+              <img
+                src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
+                alt=""
+                className="mr-3 sm:hidden inline w-[100px]"
+              />
+            </NavLink>
+            <div className="w-[10vw] h-[7vw] flex">
               {user ? (
-                <NavLink to="/myproflie">
+                <NavLink to="/myproflie" className="flex items-center gap-1">
                   <CgProfile className="text-2xl" />
+                  <h5>You</h5>
                 </NavLink>
               ) : (
                 <NavLink to="/login">Login</NavLink>
@@ -109,20 +111,19 @@ function Navbar() {
                 <NavLink to="/login">Cart</NavLink>
               )}
             </div>
-
           </div>
-               <input
-          className="w-full sm:hidden mt-5  p-3 rounded-xl bg-[#f0f5ff]"
-          type="text"
-          placeholder="🔍 Search For Products, Brands and More"
-        />
-          </div>
+          <input
+            className="w-full sm:hidden mt-5  p-3 rounded-xl bg-[#f0f5ff]"
+            type="text"
+            placeholder="🔍 Search For Products, Brands and More"
+          />
+        </div>
         <input
           className="w-[50rem] sm:inline hidden p-2 rounded-md bg-[#f0f5ff]"
           type="text"
           placeholder="🔍 Search For Products, Brands and More"
         />
-      
+
         <div className="w-full sm:flex hidden sm:gap-20  items-center">
           <div className="w-fit flex  items-center gap-2 w-[8vw] h-[3rem] rounded-md ml-3 justify-center hover:bg-[#2c64e3] hover:text-white duration-300">
             <div className="w-fit flex items-center relative group">
@@ -197,7 +198,7 @@ function Navbar() {
             </div>
 
             <div className="w-[11vw] flex items-center gap-2">
-              <CiShop className="text-3xl sm:block hidden"  />
+              <CiShop className="text-3xl sm:block hidden" />
               {user ? (
                 <NavLink className="sm:block hidden" to="/sell-online">
                   Become a Seller
@@ -216,7 +217,6 @@ function Navbar() {
             </div>
           </div>
         </div>
-   
       </nav>
     </div>
   );

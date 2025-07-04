@@ -68,12 +68,15 @@ function MyProfile() {
     }, 1000);
   };
 
+  const BeacomSellerForMobile = () => {
+    navigate("/sell-online");
+  }
   return (
     <>
     <Navbar/>
     <div className="w-full h-fit bg-[#f1f3f6] p-5">
-      <div className="flex justify-center gap-4">
-        <div className="w-[20%] h-[10vh] bg-[#ffffff] rounded">
+      <div className="sm:flex justify-center gap-4">
+        <div className="sm:w-[20%] h-[10vh] bg-[#ffffff] rounded">
           <div className="w-full h-full flex items-center px-4 gap-7">
             <div>
               <img
@@ -82,16 +85,18 @@ function MyProfile() {
                 alt=""
               />
             </div>
-            <div>
+            <div className="">
               <h6>Hello,</h6>
               <h3 className="font-semibold">
                 {FilteredUser.map((items) => items.name)}
               </h3>
+
+              <button className="sm:hidden inline mt-3 bg-yellow-300 p-1 rounded-md text-blue-400" onClick={BeacomSellerForMobile}>Want to sell products?</button>
             </div>
           </div>
         </div>
 
-        <div className="w-[70%] h-fit bg-[#ffffff] rounded p-5 px-10">
+        <div className="sm:w-[70%] h-fit bg-[#ffffff] sm:mt-0 mt-3 rounded p-5 px-10">
           <div>
             <div>
               <div className="flex gap-5 mb-5">
@@ -163,6 +168,7 @@ function MyProfile() {
             />
           </div>
         </div>
+
       </div>
     </div>
     </>
