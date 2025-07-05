@@ -21,7 +21,6 @@ function SellerNavbar() {
       Navigate("/login");
     } , 2000)
   };
-
     
   const dispatch = useDispatch();
   useEffect(() => {
