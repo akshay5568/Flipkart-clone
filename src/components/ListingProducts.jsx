@@ -41,12 +41,12 @@ function ListingProducts({ catyegory }) {
           {filterByCategory.map((item, index) => {
             return (
              
-                <div className="lg:w-[25%] w-[43%] h-[50vw] lg:h-[50vh] lg:ml-0 ml-2 border-1 border-gray-200 sm:border-none rounded-md hover:shadow-xl/30 duration-300 ">
+                <div className="lg:w-[25%] w-[43%] h-[50vw] sm:h-[50vh] sm:ml-0 ml-2 border-1 border-gray-200 sm:border-none rounded-xl hover:shadow-xl/30 duration-300 ">
                    <NavLink
                 className="w-fit h-fit duration-300 flex  flex-wrap lg:mt-4"
                 to={`/products/${encodeURIComponent(item.title)}/${item._id}`}
               >
-                  <div className="m-auto flex h-[30vw] lg:h-fit">
+                  <div className="m-auto flex h-[35vw] lg:h-fit">
                     <img
                       className="w-[70%] m-auto lg:mt-5 sm:h-[80%] rounded"
                       src={item.img}
@@ -55,9 +55,9 @@ function ListingProducts({ catyegory }) {
                     {/* <CiHeart className="overflow-hidden text-xl mt-5 mr-3" /> */}
                   </div>
                   
-                 <div className="bg-black text-white sm:bg-white sm:text-black rounded-b-md h-[20vw]  sm:h-fit w-full m-auto">
+                 <div className="bg-black text-white sm:bg-white sm:text-black rounded-b-xl h-[15vw]  sm:h-fit w-full m-auto">
                   <h1 className="mt-5 text-xs ml-3 w-[90%] sm:block hidden">{item.title.substring(0,87) + "..."}</h1>
-                  <h1 className="mt-5 text-xs ml-3 w-[90%] sm:hidden">{item.title.substring(0,10) + "..."}</h1>
+                  <h1 className="mt-3 text-xs ml-3 w-[90%] sm:hidden">{item.title.substring(0,10) + "..."}</h1>
 
                   <h6 className="mt-2 text-xs ml-3 w-[90%] sm:block hidden text-gray-600">
                     {item.details.substring(0,50) + "..."}
@@ -76,7 +76,7 @@ function ListingProducts({ catyegory }) {
                     />
                   </div>
 
-                  <div className="flex gap-3 ml-3 lg:mt-3 items-center">
+                  <div className="flex sm:gap-3 ml-3 lg:mt-3 items-center">
                     <h1 className="text-xs sm:text-xl">₹{item.price}</h1>
                     <h1 className="sm:block hidden text-[#388e3c] text-xs">
                       {item.discount}% off
