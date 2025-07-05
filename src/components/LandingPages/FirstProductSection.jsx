@@ -45,26 +45,26 @@ function FirstProductSection() {
   // console.log(products);
 
   return (
-    <div className="sm:flex w-full sm:h-[22vw] h-[100vw] bg-[#ffffff] rounded mt-5">
-      <div className="flex flex-wrap sm:flex-nowrap ml-8 sm:m-0 overflow-auto scrollbar-hide sm:w-[90%] p-3 sm:p-0 h-full sm:gap-21 gap-10  sm:items-center sm:p-7">   
+    <div className="sm:flex w-full sm:h-[22vw] h-fit bg-[#ffffff] rounded mt-3">
+      <div className="flex flex-wrap sm:flex-nowrap sm:ml-8 sm:m-0 overflow-auto scrollbar-hide sm:w-[90%] p-3 sm:p-0 h-full sm:gap-21 gap-10  sm:items-center sm:p-7">   
         {FistProductList.map((item, index) => {
           return (
-            <div key={index} className="sm:min-w-[15%] sm:w-[15%] sm:p-0 sm:border-none border-1 border-gray-300 rounded-md p-3 w-[40%]  sm:h-[15vw] h-[40%]">
+            <div key={index} className="sm:min-w-[15%] sm:w-[15%] mb-3 sm:p-0 sm:border-none border-1 border-gray-200 rounded-xl sm:p-3 w-[43%]  sm:h-[15vw] h-[40vw]">
               <NavLink
-                className="sm:min-w-[15%] sm:w-[15%] h-[15vw]"
+                className="sm:min-w-[15%] sm:w-[15%] h-full"
                 to={`/products/${encodeURIComponent(item.title)}/${item._id}`}
               >
-              <div className="sm:w-full w-[80%] h-[50%]  sm:h-[60%]  flex justify-center ml-3 items-center">   
+              <div className="sm:w-full w-[70%] h-[70%] sm:h-[80%] mt-2 flex justify-center ml-4 items-center">   
                 <img
-                  className="w-[80%] h-full rounded-md m-auto"
+                  className="w-[76%] sm:h-[70%] h-[50%] rounded-md m-auto"
                   src={item.img} 
                   alt=""
                 />
               </div>
 
-              <div className="w-full flex items-end sm:h-fit h-[40%]  sm:mt-0 mt-5">
+              <div className="w-full flex items-end sm:h-fit h-[30%] bg-[#bdeffe] text-center rounded-b-xl sm:bg-white sm:mt-0">
                 <div className="w-full h-fit ">
-                  <h3 className="sm:pt-[30px] sm:flex hidden text-sm text-center">
+                  <h3 className=" sm:flex hidden text-sm text-center">
                   {item.title.length > 20
                     ? item.title.substring(0, 20) + "..."
                     : item.title}

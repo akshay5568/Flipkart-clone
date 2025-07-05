@@ -99,20 +99,20 @@ function FullProductPage() {
 
               <div className="flex items-center gap-4 mt-5">
                 {token ? <button
-                  className="flex items-center gap-3 bg-[#ff9e01] sm:p-3 p-1 px-8 text-white rounded"
+                  className="flex items-center gap-3 bg-[#ff9e01] sm:p-3 p-3 sm:px-8 text-white rounded"
                   onClick={addToCartHandler}
                 >
                   {" "}
                   <BsCart3 /> ADD TO CART
                 </button> : <button
-                  className="flex items-center gap-3 bg-[#ff9e01] p-3 px-8 text-white rounded"
+                  className="flex items-center gap-3 bg-[#ff9e01] p-3 sm:px-8 text-white rounded"
                   onClick={()=> navigate('/login')}
                 >
                   {" "}
                   <BsCart3 /> ADD TO CART
                 </button>}
 
-                <button className="flex items-center gap-3 bg-[#fb641b] sm:p-3 p-1 px-13 text-white rounded">
+                <button className="flex items-center gap-3 bg-[#fb641b] sm:p-3 p-3 sm:px-13 text-white rounded">
                   <ImPower />
                   BUY NOW
                 </button>
