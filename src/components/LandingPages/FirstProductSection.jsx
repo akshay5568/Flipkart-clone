@@ -62,7 +62,7 @@ function FirstProductSection() {
                 />
               </div>
 
-              <div className="w-full flex items-end sm:h-fit h-[30%] bg-[#bdeffe] text-center rounded-b-xl sm:bg-white sm:mt-0">
+              <div className="w-full flex items-end sm:h-fit h-[30%] bg-black sm:text-black text-white text-center rounded-b-xl sm:bg-white sm:mt-0">      
                 <div className="w-full h-fit ">
                   <h3 className=" sm:flex hidden text-sm text-center">
                   {item.title.length > 20
