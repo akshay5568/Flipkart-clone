@@ -47,13 +47,13 @@ function SellerLogin() {
 
   return (
     <div className="w-full h-fit bg-[#ffffff] p-3">
-      <div className="flex justify-between w-full h-fit">
-        <div className="w-[70%] h-[35vw] m-auto">
+      <div className="md:flex justify-between w-full h-fit">
+        <div className="md:w-[70%] md:h-[35vw] m-auto border-1 border-gray-200 rounded-md">
           <div className="text-center p-3 mt-7">
             <form onSubmit={submitHandler}>
 
               <input
-                className="p-2 w-[50%] border-1 border-gray-400 m-3 rounded-md"   
+                className="p-2 md:w-[50%] w-[70%] border-1 border-gray-400 m-3 rounded-md"   
                 placeholder="Email"
                 type="email"
                 name="email"
@@ -63,7 +63,7 @@ function SellerLogin() {
               />
               <br />
               <input
-                className="p-2 w-[50%] border-1 border-gray-400 m-3 rounded-md"
+                className="p-2 md:w-[50%] w-[70%] border-1 border-gray-400 m-3 rounded-md"
                 placeholder="Password"
                 type="password"
                 name="password"
@@ -90,7 +90,7 @@ function SellerLogin() {
             <ToastContainer />
           </div>
         </div>
-        <div className="w-[30%]">
+        <div className="md:w-[30%] md:mt-0 mt-5">
           <div className="flex items-center gap-5 m-auto w-[70%] h-[25%] border-1 border-gray-400 rounded-md p-2">
             <img
               className="w-[60px] h-[60px] rounded-md"

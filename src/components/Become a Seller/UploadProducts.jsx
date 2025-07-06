@@ -56,12 +56,12 @@ function UploadProducts() {
   };
 
   return (
-    <div className="w-full h-fit">
+    <div className="w-full h-fit md:p-0 p-3">
       <SellerNavbar />
       <h1 className="text-center mt-9 text-2xl font-bold text-gray-600">
         Upload your Products Through Fill This Form
       </h1>
-      <div className="w-[40%] h-fit bg-gray-100 mt-10 rounded-md m-auto mb-9 p-5">
+      <div className="md:w-[40%] h-fit bg-gray-100 mt-10 rounded-md m-auto mb-9 p-5">
         <form action="" onSubmit={handleSubmit} encType="multipart/form-data">
           <label className="font-bold">Title</label>
           <input

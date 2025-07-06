@@ -28,14 +28,14 @@ function Dashboard() {
   return (
     <div>
       <SellerNavbar />
-      <div className="w-full h-full flex">
-        <div className="w-[30%] bg-white">
+      <div className="w-full h-full md:flex">
+        <div className="md:w-[30%] bg-white">
             <div className="text-center mt-9 font-semibold text-xl">
                 <h1>Total Product Lsited : {totalProducts}</h1>
             </div>
         </div>
 
-        <div className="w-[70%] bg-gray-100 p-3">
+        <div className="md:w-[70%] bg-gray-100 md:p-3 p-1">
          
            {data.map((items,index) => {
                return(
@@ -45,7 +45,8 @@ function Dashboard() {
                 <img className="rounded-md" src={items.img} alt="" />
               </div>
               <div>
-                <h1>{items.title.substring(0,87) + "..."}</h1>
+                <h1 className="sm:inline hidden">{items.title.substring(0,87) + "..."}</h1>
+                <h1 className="sm:hidden">{items.title.substring(0,30) + "..."}</h1>
                 <h1 className="font-bold">₹{items.price}</h1>
                 <h1 className="text-[#3f9142]">{items.discount}% off</h1>
                 <div className="flex gap-3 text-[#2c64e3]">
