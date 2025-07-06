@@ -101,8 +101,8 @@ function MyProfile() {
     <>
     <SellerNavbar/>
     <div className="w-full h-fit bg-[#f1f3f6] p-5">
-      <div className="flex justify-center gap-4">
-        <div className="w-[20%] h-[10vh] bg-[#ffffff] rounded">
+      <div className="sm:flex justify-center gap-4 sm:pt-0 pt-25">
+        <div className="sm:w-[20%] h-[10vh] bg-[#ffffff] rounded">
           <div className="w-full h-full flex items-center px-4 gap-7">   
             <div>
               <img
@@ -120,7 +120,7 @@ function MyProfile() {
           </div>
         </div>
 
-        <div className="w-[70%] h-fit bg-[#ffffff] rounded p-5 px-10">
+        <div className="sm:w-[70%] h-fit bg-[#ffffff] rounded p-5 px-10">
           <div>
             <div>
               <div className="flex gap-5 mb-5">

@@ -12,7 +12,7 @@ function BecomeAseller() {
     <SellerNavbar/>
     <div className="w-full h-fit bg-[#ffffff]">
       <div className="w-full relative">
-        <h1 className="absolute top-[35%] text-4xl left-[5%] text-[#333333] font-semibold">
+        <h1 className="lg:absolute top-[35%] lg:text-4xl text-2xl max-md:text-center left-[5%] text-[#333333] font-semibold">
           Sell Online with Flipkart
         </h1>
         <img

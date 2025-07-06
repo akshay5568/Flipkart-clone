@@ -45,16 +45,16 @@ function FirstProductSection() {
   // console.log(products);
 
   return (
-    <div className="sm:flex w-full sm:h-[22vw] h-fit bg-[#ffffff] rounded mt-3">
+    <div className="sm:flex w-full sm:h-[22vw] h-fit bg-[#c5bfda] sm:bg-white sm:rounded rounded-xl mt-3">
       <div className="flex flex-wrap sm:flex-nowrap sm:ml-8 sm:m-0 overflow-auto scrollbar-hide sm:w-[90%] p-3 sm:p-0 h-full sm:gap-21 gap-10  sm:items-center sm:p-7">   
         {FistProductList.map((item, index) => {
           return (
-            <div key={index} className="sm:min-w-[15%] sm:w-[15%] mb-3 sm:p-0 sm:border-none border-1 border-gray-200 rounded-xl sm:p-3 w-[43%]  sm:h-[15vw] h-[40vw]">
+            <div key={index} className="sm:min-w-[15%] sm:w-[15%] bg-[#ffffff] mb-3 sm:p-0 sm:border-none border-1 border-gray-200 rounded-xl sm:p-3 w-[43%]  sm:h-[15vw] h-[40vw]">
               <NavLink
                 className="sm:min-w-[15%] sm:w-[15%] h-full"
                 to={`/products/${encodeURIComponent(item.title)}/${item._id}`}
               >
-              <div className="sm:w-full w-[70%] h-[70%] sm:h-[80%] mt-2 flex justify-center ml-4 items-center">   
+              <div className="sm:w-full w-[70%] h-[75%]  sm:h-[80%] mt-2 flex justify-center ml-4 items-center">   
                 <img
                   className="w-[76%] sm:h-[70%] h-[50%] rounded-md m-auto"
                   src={item.img} 
@@ -62,7 +62,7 @@ function FirstProductSection() {
                 />
               </div>
 
-              <div className="w-full flex items-end sm:h-fit h-[30%] bg-black sm:text-black text-white text-center rounded-b-xl sm:bg-white sm:mt-0">      
+              <div className="w-full flex items-end sm:h-fit h-[25%] bg-black sm:text-black text-white text-center rounded-b-xl sm:bg-white sm:mt-0">      
                 <div className="w-full h-fit ">
                   <h3 className=" sm:flex hidden text-sm text-center">
                   {item.title.length > 20
