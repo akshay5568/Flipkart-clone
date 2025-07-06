@@ -149,7 +149,7 @@ function SellerNavbar() {
           </button>
 
           {hamBurgerButton && (
-            <div className="absolute z-40 w-[50%] h-fit bg-red-100 right-[5%]">
+            <div className="absolute z-40 w-[50%] h-fit bg-white border-1 border-gray-200 right-[5%] rounded-xl p-3">
               <h3 className="text-[#353535] cursor-pointer">
                 <NavLink
                   to="/seller-dashboard"

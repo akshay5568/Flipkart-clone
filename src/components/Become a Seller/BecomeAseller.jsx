@@ -18,9 +18,10 @@ function BecomeAseller() {
         <img
           src="https://static-assets-web.flixcart.com/fk-sp-static/images/prelogin/banner/Desktop_sell.webp"
           alt=""
+          className="lg:mt-0 mt-5"
         />
       </div>
-      <div className="w-full h-fit ">
+      <div className="lg:inline hidden w-full h-fit ">
         <div className="m-auto w-[90%] bg-[#ffffff] h-[10vw] shadow-2xl rounded-md">
           <div className="flex gap-5 justify-between p-3 items-center">
             <div>
@@ -75,13 +76,13 @@ function BecomeAseller() {
         </div>
       </div>
 
-      <div className="w-full h-[35vw] bg-[#eaf3fb] mt-10 p-3">
+      <div className="w-full bg-[#eaf3fb] mt-10 p-3">
         <div className="w-full h-fit mt-5 pb-5">
           <h1 className="text-center text-3xl font-bold text-[#3d464d]">
             Why sell on Flipkart?
           </h1>
         </div>
-        <div className="flex justify-between px-9 mt-5 items-center">
+        <div className="md:flex justify-between px-9 lg:mt-5 mt-13 items-center">
           <div>
             <img
               src="https://img1a.flixcart.com/fk-sp-static/images/Onboarding_logo_Truck.svg"
@@ -129,7 +130,7 @@ function BecomeAseller() {
           </div>
         </div>
 
-        <div className="flex justify-between px-9 mt-9">
+        <div className="md:flex justify-between px-9 mt-9">
           <div>
             <img
               src="https://img1a.flixcart.com/fk-sp-static/images/Onboarding_logo_Calculator.svg"
