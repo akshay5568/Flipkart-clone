@@ -58,9 +58,9 @@ function Navbar() {
   const cartData = useSelector((state) => state.products.cart.length);
 
   return (
-    <div className="sm:p-3 w-full h-[9%] bg-[#ffffff]">
+    <div className="sm:p-3 w-full h-fit bg-[#ffffff]">
       <nav className="sm:w-full w-full  md:flex sm:text-sm text-xs sm:text-base gap-3 pt-1 justify-between items-center">
-        <div className="flex relative sm:w-[250px] items-center mb-7 mr-10">
+        <div className="flex relative sm:w-[250px] items-center sm:mb-7 mr-10">
           <NavLink to="/">
             <img
               src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg"
