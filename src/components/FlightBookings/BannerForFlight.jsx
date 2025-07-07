@@ -10,7 +10,7 @@ function BannerForFlight () {
     ])
     return (
         <div className="w-full h-fit">
-             <div className="w-full h-[35vh] bg-red-600 flex overflow-auto scrollbar-hide">
+             <div className="w-full h-[35vh] bg-red-600 sm:flex hidden overflow-auto scrollbar-hide">
                         {bannerImg.map(item => {
                             return <img src={item.img} alt="" /> 
                         })}

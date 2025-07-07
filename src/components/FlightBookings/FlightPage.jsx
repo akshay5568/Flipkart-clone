@@ -49,13 +49,13 @@ console.log(dummyFlights);
           alt=""
         />
 
-        <div className="bg-white flex justify-center items-center gap-5 w-[90%] h-[20vh] absolute rounded-md top-[50%] left-[5%]">
-          <div className="flex">
-            <form action="" className="flex gap-7">
+        <div className="bg-white flex justify-center items-center gap-5 w-[90%] sm:h-[20vh] absolute rounded-md top-[50%] left-[5%]">
+          <div className="md:flex">
+            <form action="" className="md:flex gap-7 text-center ">
               <input
                 onChange={(e) => setFrom(e.target.value)}
                 value={from}
-                className="border border-gray-300 p-3 px-8 text-start"
+                className="border border-gray-300 p-3 px-8 text-start m-2"
                 type="text"
                 placeholder="From"
               />
@@ -63,7 +63,7 @@ console.log(dummyFlights);
               <input
                 onChange={(e) => setTO(e.target.value)}
                 value={to}
-                className="border border-gray-300 p-3 px-8  text-start"
+                className="border border-gray-300 p-3 px-8  text-start m-2"
                 type="text"
                 placeholder="To"
               />
@@ -73,7 +73,7 @@ console.log(dummyFlights);
            
               <button
                 onClick={(e) => ButtonH(e)}
-                className="border flex items-center gap-1 px-5 bg-[#2874f0] text-white p-3 rounded"
+                className="border flex items-center gap-1 px-5 bg-[#2874f0] text-white p-3 rounded m-auto"
               >
                 <IoMdSearch />
                 SEARCH
