@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SellerNavbar from "./SellerNavbar";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast , ToastContainer} from "react-toastify";
 
 function UploadProducts() {
   const [productDetails, setProductDetails] = useState({
@@ -132,6 +132,7 @@ function UploadProducts() {
             </button>
           </div>
         </form>
+        <ToastContainer/>
       </div>
     </div>
   );

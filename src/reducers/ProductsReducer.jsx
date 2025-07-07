@@ -24,7 +24,7 @@ export const ProductsReducer = createSlice({
     },
 
     removeCarts: (state, action) => {
-      state.cart = state.cart.filter(item =>  item._id !== action.payload);
+      state.cart = state.cart.filter(item =>  item._id !== action.payload);   
     },
 
     setLogin : (state , action ) => {

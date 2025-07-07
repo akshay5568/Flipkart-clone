@@ -19,7 +19,7 @@ import { jwtDecode } from "jwt-decode";
 function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  console.log(token);
+ 
 
   const [isLogin, setLogin] = useState(true);
 

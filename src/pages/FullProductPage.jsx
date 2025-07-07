@@ -24,6 +24,7 @@ function FullProductPage() {
   //     .then((res) => dispatch(addToCart(res.data)))
   //     .catch((err) => console.log(err))
   //  } , [dispatch])
+  
   const token = localStorage.getItem("token");
 
   useEffect(() => {

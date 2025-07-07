@@ -2,11 +2,19 @@ import { useEffect, useState } from "react";
 import SellerNavbar from "./SellerNavbar";
 import axios from "axios";
 import { toast,ToastContainer } from "react-toastify";
-
+import { useSelector,useDispatch } from "react-redux";
+import { setSellerProducts } from "../../reducers/SellerProductsReducer";
+import { removeSellerProducts } from "../../reducers/SellerProductsReducer";
 function Dashboard() {
     const token = localStorage.getItem("token")
-    const [data, setdata] = useState([]);
     const [totalProducts, setTotalProducts] = useState();
+    const data = useSelector((state) => state.sellerProducts.sellerProducts);
+
+  
+     
+    const dispatch = useDispatch();
+
+
     useEffect(() => {
           const callApi = async () => {
              const response =  await axios.post('https://flipkart-backend-h688.onrender.com/products-dashboard' , {} , {   
@@ -14,17 +22,19 @@ function Dashboard() {
                     Authorization: `Bearer ${token}`
                 }
              })
-             setdata(response.data);
+             dispatch(setSellerProducts(response.data));  
              setTotalProducts(response.data.length);
-             
           }
           callApi();
     },[])
-    console.log(data);
+
     const DeleteHandler = async (id) => {
+          dispatch(removeSellerProducts(id))
           await axios.post('https://flipkart-backend-h688.onrender.com/delete-product' , {id});   
           toast.success("Product Deleted Succsesfylly");
     } 
+
+
   return (
     <div>
       <SellerNavbar />
@@ -37,7 +47,7 @@ function Dashboard() {
 
         <div className="md:w-[70%] bg-gray-100 md:p-3 p-1">
          
-           {data.map((items,index) => {
+           {data ? data.map((items,index) => {
                return(
                <div className="w-full h-fit bg-white mb-3">  
                 <div className="flex gap-3 p-5">
@@ -58,7 +68,7 @@ function Dashboard() {
             </div>
              </div>
                )
-           })}
+           }) : "loading..."}
          <ToastContainer/>
         </div>
       </div>
