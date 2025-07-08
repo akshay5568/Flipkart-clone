@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SellerNavbar from "./SellerNavbar";
 import axios from "axios";
-import { toast , ToastContainer} from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 function UploadProducts() {
   const [productDetails, setProductDetails] = useState({
@@ -44,11 +44,15 @@ function UploadProducts() {
     });
 
     try {
-      await axios.post("https://flipkart-backend-h688.onrender.com/products-images", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.post(
+        "https://flipkart-backend-h688.onrender.com/products-images",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
     } catch (err) {
       console.log(err);
     }
@@ -116,15 +120,25 @@ function UploadProducts() {
             required
           ></textarea>
           <br />
-          <input
+          <label className="font-bold">Category</label>
+          <select
             className="w-full p-2 border-1 mb-3"
-            type="text"
-            placeholder="catyegorys"
             name="catyegorys"
             value={productDetails.catyegorys}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="">Select Category</option>
+            <option value="electronics">Electronics</option>
+            <option value="Kilos">Kilos</option>
+            <option value="Mobiles">Mobiles</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Home& Furniture">Home& Furniture</option>
+            <option value="Applincens">Applincens</option>
+            <option value="Beauty, Toys & More">Beauty, Toys & More</option>
+            <option value="Tow Wheelers">Tow Wheelers</option>
+          </select>
+
           <br />
           <div className="text-center">
             <button className="p-1 px-5 rounded-md bg-yellow-300">
@@ -132,7 +146,7 @@ function UploadProducts() {
             </button>
           </div>
         </form>
-        <ToastContainer/>
+        <ToastContainer />
       </div>
     </div>
   );
