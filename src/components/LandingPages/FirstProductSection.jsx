@@ -46,10 +46,10 @@ function FirstProductSection() {
 
   return (
     <div className="sm:flex w-full sm:h-[22vw] h-fit bg-[#c5bfda] sm:bg-white sm:rounded rounded-xl mt-3">
-      <div className="flex flex-wrap sm:flex-nowrap sm:ml-8 sm:m-0 overflow-auto scrollbar-hide sm:w-[90%] p-3 sm:p-0 h-full sm:gap-18 gap-10  sm:items-center max-sm:justify-center sm:p-7">   
+      <div className="flex flex-wrap sm:flex-nowrap sm:ml-8 sm:m-0 overflow-y-auto scrollbar-hide sm:w-[90%] p-3 sm:p-0 max-sm:h-[40vh] sm:gap-18 gap-10  sm:items-center max-sm:justify-center sm:p-7">   
         {FistProductList.map((item, index) => {
           return (
-            <div key={index} className="sm:min-w-[15%] sm:w-[15%] bg-[#ffffff] mb-3 sm:p-0 sm:border-none border-1 border-gray-200 rounded-xl sm:p-3 w-[43%]  sm:h-[15vw] h-[40vw]">
+            <div key={index} className="sm:min-w-[15%] sm:w-[15%] bg-[#ffffff] mb-3 sm:p-0 sm:border-none border-1 border-gray-200 rounded-xl sm:p-3 w-[43%] sm:h-[15vw] h-[40vw]">
               <NavLink
                 className="sm:min-w-[15%] sm:w-[15%] w-full h-full"
                 to={`/products/${encodeURIComponent(item.title)}/${item._id}`}

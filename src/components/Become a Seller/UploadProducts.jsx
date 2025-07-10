@@ -135,7 +135,7 @@ function UploadProducts() {
             <option value="Fashion">Fashion</option>
             <option value="Home& Furniture">Home& Furniture</option>
             <option value="Applincens">Applincens</option>
-            <option value="Beauty, Toys & More">Beauty, Toys & More</option>
+            <option value="Beauty, Toys & More">Beauty, Toys & More</option>   
             <option value="Tow Wheelers">Tow Wheelers</option>
           </select>
 
