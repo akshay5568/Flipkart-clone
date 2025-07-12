@@ -12,7 +12,8 @@ function FullProductPage() {
 
   const products = useSelector((state) => state.products.products);
   const filteredProduct = products.filter((item) => item._id == id);
- 
+  console.log(filteredProduct);
+  
   
   const dispatch = useDispatch();
 

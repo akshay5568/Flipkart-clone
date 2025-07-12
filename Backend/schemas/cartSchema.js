@@ -31,6 +31,9 @@ const cartSchema = new mongoose.Schema({
   catyegorys: {
     type: String,
   },
+  qty: {
+    type:Number,
+  }
 });
 
 module.exports = cartSchema;

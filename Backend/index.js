@@ -62,6 +62,7 @@ app.post("/cart", async (req, res) => {
       discount,
       details,
       catyegorys,
+      qty
     });
     res.status(201).send("Item Added To Cart");
   } catch (err) {

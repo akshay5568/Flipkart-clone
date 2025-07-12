@@ -16,6 +16,12 @@ export const ProductsReducer = createSlice({
     },
 
     addToCart: (state, action) => {
+      // const id = action.payload._id;
+      // const isAlreadyAddItem = state.cart.filter(items => items._id == id);
+
+      // if (isAlreadyAddItem) {
+            
+      // }
       state.cart.push(action.payload);
     },
 

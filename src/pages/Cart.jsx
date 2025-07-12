@@ -118,6 +118,13 @@ function Cart() {
                     <h1 className="text-[#388e3c]">{item.discount}% off</h1>
                   </div>
 
+
+                  <div className="w-[20%] bg-red-100 flex justify-center gap-2">
+                    <button>-</button>
+                    <h6>{7}</h6>
+                    <button>+</button>
+                  </div>
+
                   <button
                     className="sm:mt-4 sm:inline hidden hover:text-[#2874f0]"
                     onClick={() => removeCartHandler(item._id)}
@@ -125,6 +132,7 @@ function Cart() {
                     REMOVE
                   </button>
                 </div>
+                
               </div>
 
               <div className="mt-3 w-full sm:gap-0 gap-5 flex justify-end">
