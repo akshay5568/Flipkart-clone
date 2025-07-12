@@ -134,7 +134,7 @@ function Navbar() {
           />
 
           {searchResult && (
-          <div className="w-[95%] top-30 max-h-[200px] bg-[#ffffff] absolute overflow-y-scroll p-1 m-auto text-left z-40 rounded-md">
+          <div className="w-[95%] top-32 max-h-[200px] sm:hidden bg-[#ffffff] absolute overflow-y-scroll p-1 m-auto text-left z-40 rounded-md">
             {filterProductsByInput.map((result, index) => (
               <NavLink
                  key={index}
@@ -142,7 +142,7 @@ function Navbar() {
               >
                 <span className="pb-2 hover:bg-[#f0f5ff] block">
                   <div className="flex gap-2 items-center">
-                    <CiSearch /> {result.title.substring(0, 30) + "..."}
+                    <CiSearch /> {result.title.substring(0, 50) + "..."}
                   </div>
                 </span>
               </NavLink>
