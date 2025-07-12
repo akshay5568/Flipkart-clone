@@ -45,7 +45,7 @@ function SellerNavbar() {
   };
 
   return (
-    <div className="w-full h-[30%] p-3 shadow-xl/30" onBlur={() => sethamBurgerButton(false)}>
+    <div className="w-full h-[30%] p-3 shadow-xl/30" onBlur={() => setTimeout(() => sethamBurgerButton(false), 300)}>
       <div className="flex justify-between w-full h-fit items-center">
         <div className="flex items-center sm:gap-15">
           <NavLink to="/sell-online">
@@ -143,7 +143,7 @@ function SellerNavbar() {
           )}
         </div>
 
-        <div className="sm:hidden">
+        <div className="sm:hidden z-40">
           <button onClick={hamHandler}>
             <IoMdMenu />
           </button>
