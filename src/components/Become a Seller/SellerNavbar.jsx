@@ -39,13 +39,13 @@ function SellerNavbar() {
   const filterSeller = userInfo.filter((items) => items.userId == id);
 
   const [hamBurgerButton, sethamBurgerButton] = useState(false);
-
+  
   const hamHandler = () => {
     sethamBurgerButton(!hamBurgerButton);
   };
 
   return (
-    <div className="w-full h-[30%] p-3 shadow-xl/30">
+    <div className="w-full h-[30%] p-3 shadow-xl/30" onBlur={() => sethamBurgerButton(false)}>
       <div className="flex justify-between w-full h-fit items-center">
         <div className="flex items-center sm:gap-15">
           <NavLink to="/sell-online">
