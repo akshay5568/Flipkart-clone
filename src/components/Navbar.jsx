@@ -129,7 +129,26 @@ function Navbar() {
             placeholder="🔍 Search For Products, Brands and More"
             value={inputData}
             onChange={(e) => setInputData(e.target.value)}
+           onFocus={() => setSearchResult(true)}
+           onBlur={() => setTimeout(() => setSearchResult(false), 300)}
           />
+
+          {searchResult && (
+          <div className="w-[95%] top-30 max-h-[200px] bg-[#ffffff] absolute overflow-y-scroll p-1 m-auto text-left z-40 rounded-md">
+            {filterProductsByInput.map((result, index) => (
+              <NavLink
+                 key={index}
+                to={`/products/${encodeURIComponent(result.title)}/${result._id}`}
+              >
+                <span className="pb-2 hover:bg-[#f0f5ff] block">
+                  <div className="flex gap-2 items-center">
+                    <CiSearch /> {result.title.substring(0, 30) + "..."}
+                  </div>
+                </span>
+              </NavLink>
+            ))}
+          </div>
+        )}
         </div>
 
         <input
@@ -144,7 +163,7 @@ function Navbar() {
         />
 
         {searchResult && (
-          <div className="w-[30%] left-55 top-15 max-h-[300px] bg-[#ffffff] absolute overflow-y-scroll p-1 m-auto text-left z-40 rounded-md">
+          <div className="w-[30%] sm:inline hidden left-55 top-15 max-h-[300px] bg-[#ffffff] absolute overflow-y-scroll p-1 m-auto text-left z-40 rounded-md">
             {filterProductsByInput.map((result, index) => (
               <NavLink
                  key={index}
