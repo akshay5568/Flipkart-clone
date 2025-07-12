@@ -72,7 +72,7 @@ function FullProductPage() {
     <div className="w-full h-fit bg-[#f1f3f6] sm:p-3 ">
       {filteredProduct.map((item, i) => {
         return (
-          <div key={i} className="sm:flex sm:w-[90%]  m-auto sm:gap-4 bg-[#ffffff] sm:p-3">
+          <div key={i} className="sm:flex sm:w-[90%]  m-auto sm:gap-4 bg-[#ffffff] sm:p-3">   
             <div className="sm:w-[40%] h-fit sm:p-3">
               <div className="w-full">
                 <img
@@ -86,7 +86,7 @@ function FullProductPage() {
             <div className="sm:w-[60%] h-fit p-3 sm:mt-0 mt-5">
               <h1 className="text-gray-600 text-xs sm:text-sm">{item.BrandName}</h1>
               <h1 className="break-words mt-3">{item.title}</h1>
-              <h1 className="text-gray-600 mt-5 text-xs sm:text-sm">{item.details}</h1>
+              <h1 className="text-gray-600 mt-5 text-xs sm:text-sm">{item.details}</h1>   
               <h3 className="text-[#25a541] mt-3">Special Price</h3>
 
               <div className="flex items-center gap-3">
@@ -94,7 +94,7 @@ function FullProductPage() {
                 <h2 className="text-[#25a541]">{item.discount}% off</h2>
               </div>
 
-              <div className="w-[3rem] mt-1 flex items-center text-xs px-3 py-1 gap-1 rounded bg-[#388e3c] text-white">
+              <div className="w-[3rem] mt-1 flex items-center text-xs px-3 py-1 gap-1 rounded bg-[#388e3c] text-white">   
                 <h3 className="">{3}</h3>
                 <FaRegStar />
               </div>

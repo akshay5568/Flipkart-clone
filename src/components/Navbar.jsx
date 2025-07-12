@@ -16,10 +16,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode";
+import { CiSearch } from "react-icons/ci";
+
 function Navbar() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
- 
 
   const [isLogin, setLogin] = useState(true);
 
@@ -57,6 +58,17 @@ function Navbar() {
 
   const cartData = useSelector((state) => state.products.cart.length);
 
+  const [inputData, setInputData] = useState("");
+
+  const products = useSelector((state) => state.products.products);
+
+  const filterProductsByInput = products.filter((result) => {
+    return result.title.toLowerCase().includes(inputData.toLowerCase());
+  });
+ console.log(filterProductsByInput);
+ 
+  const [searchResult, setSearchResult] = useState(false);
+
   return (
     <div className="sm:p-3 w-full h-fit bg-[#ffffff]">
       <nav className="sm:w-full w-full  md:flex sm:text-sm text-xs sm:text-base gap-3 pt-1 justify-between items-center">
@@ -70,7 +82,6 @@ function Navbar() {
           </NavLink>
         </div>
 
-        
         <div className="p-2">
           <div className="sm:hidden mt-5 justify-between mr-5 text-xs items-center flex">
             <NavLink to="/">
@@ -116,13 +127,38 @@ function Navbar() {
             className="w-full sm:hidden mt-5  p-3 rounded-xl bg-[#f0f5ff]"
             type="text"
             placeholder="🔍 Search For Products, Brands and More"
+            value={inputData}
+            onChange={(e) => setInputData(e.target.value)}
           />
         </div>
+
         <input
-          className="w-[50rem] sm:inline hidden p-2 rounded-md bg-[#f0f5ff]"
+          className="w-[50rem] sm:inline hidden p-2 rounded-md bg-[#f0f5ff] relative"
           type="text"
           placeholder="🔍 Search For Products, Brands and More"
+          value={inputData}
+          onChange={(e) => setInputData(e.target.value)}
+          onFocus={() => setSearchResult(true)}
+          onBlur={() => setTimeout(() => setSearchResult(false), 300)}
+         
         />
+
+        {searchResult && (
+          <div className="w-[30%] left-55 top-15 max-h-[300px] bg-[#ffffff] absolute overflow-y-scroll p-1 m-auto text-left">
+            {filterProductsByInput.map((result, index) => (
+              <NavLink
+                 key={index}
+                to={`/products/${encodeURIComponent(result.title)}/${result._id}`}
+              >
+                <span className="pb-2 hover:bg-[#f0f5ff] block">
+                  <div className="flex gap-2 items-center">
+                    <CiSearch /> {result.title.substring(0, 50) + "..."}
+                  </div>
+                </span>
+              </NavLink>
+            ))}
+          </div>
+        )}
 
         <div className="w-full sm:flex hidden sm:gap-20  items-center">
           <div className="w-fit flex  items-center gap-2 w-[8vw] h-[3rem] rounded-md ml-3 justify-center hover:bg-[#2c64e3] hover:text-white duration-300">
