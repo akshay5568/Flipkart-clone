@@ -11,3 +11,19 @@ html,body{
   width: 100%;
   height: 100%;
 }
+
+@keyframes poster {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-poster{
+  animation: poster 20s linear infinite;
+}
+
+

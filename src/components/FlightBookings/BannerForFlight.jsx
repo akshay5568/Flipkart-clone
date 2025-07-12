@@ -8,12 +8,16 @@ function BannerForFlight () {
         {img:'https://rukminim2.flixcart.com/fk-p-flap/4000/3000/image/4f413cf95a8f0669.jpg?q=50'},
         {img:'https://rukminim2.flixcart.com/fk-p-flap/4000/3000/image/74faf923d76a9bda.jpg?q=50'},
     ])
+
+    const poster = [...bannerImg,...bannerImg];
     return (
         <div className="w-full h-fit">
              <div className="w-full h-[35vh] bg-red-600 sm:flex hidden overflow-auto scrollbar-hide">
-                        {bannerImg.map(item => {
-                            return <img src={item.img} alt="" /> 
+                    <div className="flex animate-poster whitespace-nowrap">
+                         {poster.map(item => {
+                            return <img className="w-[90rem] flex-shrink-0" src={item.img} alt="" /> 
                         })}
+                    </div>   
              </div>
 
              <div className="w-full h-fit bg-red-600 mt-2">

@@ -144,7 +144,7 @@ function Navbar() {
         />
 
         {searchResult && (
-          <div className="w-[30%] left-55 top-15 max-h-[300px] bg-[#ffffff] absolute overflow-y-scroll p-1 m-auto text-left">
+          <div className="w-[30%] left-55 top-15 max-h-[300px] bg-[#ffffff] absolute overflow-y-scroll p-1 m-auto text-left z-40 rounded-md">
             {filterProductsByInput.map((result, index) => (
               <NavLink
                  key={index}
