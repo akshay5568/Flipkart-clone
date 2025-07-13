@@ -74,9 +74,9 @@ function FullProductPage() {
         return (
           <div key={i} className="sm:flex sm:w-[90%]  m-auto sm:gap-4 bg-[#ffffff] sm:p-3">   
             <div className="sm:w-[40%] h-fit sm:p-3">
-              <div className="w-full">
+              <div className="w-full group relative">
                 <img
-                  className="sm:w-fit w-[80%] h-fit rounded-md object-cover m-auto"
+                  className="sm:w-fit w-[80%] h-fit rounded-md object-cover m-auto transform transition-transform duration-300 group-hover:scale-120 cursor-zoom-in"
                   src={item.img}
                   alt=""
                 />
