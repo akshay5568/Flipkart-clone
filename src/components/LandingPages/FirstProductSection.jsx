@@ -56,7 +56,7 @@ function FirstProductSection() {
               >
               <div className="sm:w-full w-full h-[75%]  sm:h-[80%] mt-2 flex justify-center items-center">   
                 <img
-                  className="max-sm:w-[60%] sm:h-[70%] h-[70%] rounded-md m-auto"
+                  className="max-sm:w-[60%] sm:h-[70%] transition-transform duration-300 h-[70%] rounded-md m-auto hover:scale-105 cursor-pointer"
                   src={item.img} 
                   alt=""
                 />
