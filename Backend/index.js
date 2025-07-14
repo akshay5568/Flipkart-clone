@@ -52,7 +52,9 @@ app.post("/cart", async (req, res) => {
   try {
     const decode = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decode.userId;
-    const { title, img, price, discount, details, catyegorys, BrandName } = req.body;
+    const { title, img, price, discount, details, catyegorys, BrandName , qty } = req.body;
+    console.log(qty);
+    
     await cart.create({
       userId,
       BrandName,
@@ -62,6 +64,7 @@ app.post("/cart", async (req, res) => {
       discount,
       details,
       catyegorys,
+      qty,
     });
     res.status(201).send("Item Added To Cart");
   } catch (err) {
@@ -135,10 +138,10 @@ app.post("/users", async (req, res) => {
 app.post("/userdelete", async (req, res) => {
   const authHeader = req.headers.authorization;
   const token = req.headers.authorization.split(" ")[1];
-  const decode = jwt.verify(token, process.env.JWT_SECRET);
+  const decode = jwt.verify(token, process.env.JWT_SECRET);   
   const userId = decode.userId;
   const data = req.body;
-  await User.findByIdAndUpdate(userId, data);
+  await User.findByIdAndUpdate(userId, data);   
   res.send("User Updeted Sucsesfully");
 });
 
@@ -250,3 +253,4 @@ app.post('/delete-product' , async (req,res) => {
      await Products.findByIdAndDelete(id);
      res.status(201).send({massage:"Product delted succsesfully"})
 })
+

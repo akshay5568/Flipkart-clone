@@ -20,7 +20,7 @@ function SignUP() {
     console.log(userData);
     try {
       const response = await axios.post(
-        "https://flipkart-backend-h688.onrender.com/signup",
+        `${import.meta.env.VITE_BACKEND_URL}/signup`,
         userData
       );
       if (response.status === 201 || response.status === 200) {

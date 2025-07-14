@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import axios from "axios";
 
 const initialState = {
-  products: [], 
+  products: [],
   cart: [],
-  isLogin : false,
+  isLogin: false,
 };
 
 export const ProductsReducer = createSlice({
@@ -16,28 +16,23 @@ export const ProductsReducer = createSlice({
     },
 
     addToCart: (state, action) => {
-      // const id = action.payload._id;
-      // const isAlreadyAddItem = state.cart.filter(items => items._id == id);
-
-      // if (isAlreadyAddItem) {
-            
-      // }
       state.cart.push(action.payload);
     },
 
-    setToCart : (state,action) => {
+    setToCart: (state, action) => {
       state.cart = action.payload;
     },
 
     removeCarts: (state, action) => {
-      state.cart = state.cart.filter(item =>  item._id !== action.payload);   
+      state.cart = state.cart.filter((item) => item._id !== action.payload);
     },
 
-    setLogin : (state , action ) => {
+    setLogin: (state, action) => {
       state.isLogin = action.payload;
-    }
+    },
   },
 });
 
-export const { addToCart, removeCarts, setProducts , setLogin , setToCart} = ProductsReducer.actions;
+export const { addToCart, removeCarts, setProducts, setLogin, setToCart } =
+  ProductsReducer.actions;
 export default ProductsReducer.reducer;

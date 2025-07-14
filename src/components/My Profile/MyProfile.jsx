@@ -13,7 +13,7 @@ function MyProfile() {
   const dispatch = useDispatch();
   useEffect(() => {
     axios
-      .get("https://flipkart-backend-h688.onrender.com/users")   
+      .get(`${import.meta.env.VITE_BACKEND_URL}/users`)   
       .then((res) => dispatch(addUsers(res.data)))
       .catch((err) => console.log(err));
   }, [dispatch]);
@@ -31,7 +31,7 @@ function MyProfile() {
 
   const navigate = useNavigate();
   const DeleteHandler = async () => {
-    await axios.post("https://flipkart-backend-h688.onrender.com/users", {
+    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/users`, {
       id: id2,
     });
     localStorage.removeItem("token");
@@ -60,7 +60,7 @@ function MyProfile() {
   };
   const saveHandler = async () => {
     await axios.post(
-      "https://flipkart-backend-h688.onrender.com/userdelete",
+      `${import.meta.env.VITE_BACKEND_URL}/userdelete`,
       inputData,
       {
         headers: {

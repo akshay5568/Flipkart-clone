@@ -45,7 +45,7 @@ function UploadProducts() {
 
     try {
       await axios.post(
-        "https://flipkart-backend-h688.onrender.com/products-images",
+        `${import.meta.env.VITE_BACKEND_URL}/products-images`,
         formData,
         {
           headers: {

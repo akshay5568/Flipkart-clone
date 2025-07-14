@@ -13,7 +13,7 @@ function MyProfile() {
   const dispatch = useDispatch();
   useEffect(() => {
     axios
-      .get("https://flipkart-backend-h688.onrender.com/sell-users")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/sell-users`)
       .then((res) => dispatch(addSellUsers(res.data)))
       .catch((err) => console.log(err));
   }, [dispatch]);
@@ -37,7 +37,7 @@ function MyProfile() {
   
      useEffect(() => {
       const fatch = async () => {
-           const respons = await axios.post('https://flipkart-backend-h688.onrender.com/sell-users', {id:userID})       
+           const respons = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/sell-users`, {id:userID})       
            localStorage.setItem("token" , respons.data.token);
              fatch()
       }
@@ -56,7 +56,7 @@ function MyProfile() {
 
   const navigate = useNavigate();
   const DeleteHandler = async () => {
-    await axios.post("https://flipkart-backend-h688.onrender.com/seller-delete", { id: id2 });   
+    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/seller-delete`, { id: id2 });   
     // localStorage.removeItem("token");
     toast.success("Seller Account Was Deleted"); 
 
@@ -85,7 +85,7 @@ function MyProfile() {
 
 
   const saveHandler = async () => {
-    await axios.post("https://flipkart-backend-h688.onrender.com/seller-update", inputData, {         
+    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/seller-update`, inputData, {         
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -17,7 +17,7 @@ function Dashboard() {
 
     useEffect(() => {
           const callApi = async () => {
-             const response =  await axios.post('https://flipkart-backend-h688.onrender.com/products-dashboard' , {} , {   
+             const response =  await axios.post(`${import.meta.env.VITE_BACKEND_URL}/products-dashboard` , {} , {   
                 headers:{
                     Authorization: `Bearer ${token}`
                 }
@@ -30,7 +30,7 @@ function Dashboard() {
 
     const DeleteHandler = async (id) => {
           dispatch(removeSellerProducts(id))
-          await axios.post('https://flipkart-backend-h688.onrender.com/delete-product' , {id});   
+          await axios.post(`${import.meta.env.VITE_BACKEND_URL}/delete-product` , {id});   
           toast.success("Product Deleted Succsesfylly");
     } 
 

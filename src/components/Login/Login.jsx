@@ -27,7 +27,7 @@ function Login() {
     try {
 
       const response = await axios.post(
-        "https://flipkart-backend-h688.onrender.com/login",
+        `${import.meta.env.VITE_BACKEND_URL}/login`,
         loginData
       );
       if (response.status === 200 || response.status === 201) {

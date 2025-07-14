@@ -51,7 +51,7 @@ function Navbar() {
 
   useEffect(() => {
     axios
-      .get("https://flipkart-backend-h688.onrender.com/product")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/product`)
       .then((res) => dispatch(setProducts(res.data)))
       .catch((err) => console.log(err));
   }, [dispatch]);
@@ -65,7 +65,7 @@ function Navbar() {
   const filterProductsByInput = products.filter((result) => {
     return result.title.toLowerCase().includes(inputData.toLowerCase());
   });
- console.log(filterProductsByInput);
+
  
   const [searchResult, setSearchResult] = useState(false);
 

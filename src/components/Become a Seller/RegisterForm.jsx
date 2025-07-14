@@ -20,7 +20,7 @@ function RegisterForm() {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://flipkart-backend-h688.onrender.com/seller-register", sellerData, {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/seller-register`, sellerData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

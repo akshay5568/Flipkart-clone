@@ -10,7 +10,6 @@ function Cart() {
   const [platformFee, setPlatFormFee] = useState(4);
   const cartData = useSelector((state) => state.products.cart);
 
-
   // const removeNestedArray = cartData.flat();
 
   const token = localStorage.getItem("token");
@@ -25,7 +24,7 @@ function Cart() {
      
      useEffect ( () => {
       const token = localStorage.getItem("token");
-      axios.get('https://flipkart-backend-h688.onrender.com/cart' ,{
+      axios.get(`${import.meta.env.VITE_BACKEND_URL}/cart` ,{  
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -39,7 +38,7 @@ function Cart() {
     const token = localStorage.getItem("token");
     dispatch(removeCarts(itemIndex));
     toast.success("Item removed from cart!");
-    await axios.post('https://flipkart-backend-h688.onrender.com/cart/remove',{id:itemIndex} , {
+    await axios.post(`${import.meta.env.VITE_BACKEND_URL}/cart/remove`,{id:itemIndex} , {
       headers: {
           Authorization: `Bearer ${token}`
         }
@@ -121,12 +120,12 @@ function Cart() {
 
                   <div className="w-[20%] bg-red-100 flex justify-center gap-2">
                     <button>-</button>
-                    <h6>{7}</h6>
+                    <h6>{item.qty}</h6>
                     <button>+</button>
                   </div>
 
                   <button
-                    className="sm:mt-4 sm:inline hidden hover:text-[#2874f0]"
+                    className="sm:mt-4 sm:inline hidden hover:text-[#2874f0] cursor-pointer"
                     onClick={() => removeCartHandler(item._id)}
                   >
                     REMOVE

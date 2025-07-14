@@ -14,53 +14,56 @@ function FullProductPage() {
   const filteredProduct = products.filter((item) => item._id == id);
   console.log(filteredProduct);
   
-  
+ 
   const dispatch = useDispatch();
 
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  let quantity = 1;
 
   //   useEffect ( () => {
-  //     axios.get('http://localhost:8080/cart')
+  //     axios.get('https://flipkart-backend-h688.onrender.com/cart', {
+  //       headers:{
+  //         Authorization:`Bearer ${token}`
+  //       }
+  //     })
   //     .then((res) => dispatch(addToCart(res.data)))
   //     .catch((err) => console.log(err))
-  //  } , [dispatch])
-  
+  //  } , [])
+
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     axios
-      .get("https://flipkart-backend-h688.onrender.com/product")
+      .get(`${import.meta.env.VITE_BACKEND_URL}/product`)
       .then((res) => dispatch(setProducts(res.data)))
       .catch((err) => console.log(err));
   }, [dispatch]);
 
   const [title] = filteredProduct;
- 
+
 
   const addToCartHandler = async () => {
-
-  const token = localStorage.getItem("token");
- 
-
+    const token = localStorage.getItem("token");
     try {
-
       dispatch(addToCart(filteredProduct));
-      await axios.post("https://flipkart-backend-h688.onrender.com/cart", {
-        title: title.title,
-        BrandName:title.BrandName,
-        img: title.img,
-        price: title.price,
-        discount: title.discount,
-        details: title.details,
-        catyegorys: title.catyegorys,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
+      await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/cart`,
+        {
+          title: title.title,
+          BrandName: title.BrandName,
+          img: title.img,
+          price: title.price,
+          discount: title.discount,
+          details: title.details,
+          catyegorys: title.catyegorys,
+          qty: quantity,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      }
-    );
+      );
     } catch (err) {
       console.log(err);
     }
@@ -68,62 +71,75 @@ function FullProductPage() {
 
   return (
     <>
-    <Navbar/>
-    <div className="w-full h-fit bg-[#f1f3f6] sm:p-3 ">
-      {filteredProduct.map((item, i) => {
-        return (
-          <div key={i} className="sm:flex sm:w-[90%]  m-auto sm:gap-4 bg-[#ffffff] sm:p-3">   
-            <div className="sm:w-[40%] h-fit sm:p-3">
-              <div className="w-full group relative">
-                <img
-                  className="sm:w-fit w-[80%] h-fit rounded-md object-cover m-auto transform transition-transform duration-300 group-hover:scale-120 cursor-zoom-in"
-                  src={item.img}
-                  alt=""
-                />
+      <Navbar />
+      <div className="w-full h-fit bg-[#f1f3f6] sm:p-3 ">
+        {filteredProduct.map((item, i) => {
+          return (
+            <div
+              key={i}
+              className="sm:flex sm:w-[90%]  m-auto sm:gap-4 bg-[#ffffff] sm:p-3"
+            >
+              <div className="sm:w-[40%] h-fit sm:p-3">
+                <div className="w-full group relative">
+                  <img
+                    className="sm:w-fit w-[80%] h-fit rounded-md object-cover m-auto transform transition-transform duration-300 group-hover:scale-120 cursor-zoom-in"
+                    src={item.img}
+                    alt=""
+                  />
+                </div>
+              </div>
+
+              <div className="sm:w-[60%] h-fit p-3 sm:mt-0 mt-5">
+                <h1 className="text-gray-600 text-xs sm:text-sm">
+                  {item.BrandName}
+                </h1>
+                <h1 className="break-words mt-3">{item.title}</h1>
+                <h1 className="text-gray-600 mt-5 text-xs sm:text-sm">
+                  {item.details}
+                </h1>
+                <h3 className="text-[#25a541] mt-3">Special Price</h3>
+
+                <div className="flex items-center gap-3">
+                  <h2 className="text-2xl bg-black-600 font-semibold">
+                    ₹{item.price}
+                  </h2>
+                  <h2 className="text-[#25a541]">{item.discount}% off</h2>
+                </div>
+
+                <div className="w-[3rem] mt-1 flex items-center text-xs px-3 py-1 gap-1 rounded bg-[#388e3c] text-white">
+                  <h3 className="">{3}</h3>
+                  <FaRegStar />
+                </div>
+
+                <div className="flex items-center gap-4 mt-5">
+                  {token ? (
+                    <button
+                      className="flex items-center gap-3 bg-[#ff9e01] sm:p-3 p-3 sm:px-8 text-white rounded"
+                      onClick={addToCartHandler}
+                    >
+                      {" "}
+                      <BsCart3 /> ADD TO CART
+                    </button>
+                  ) : (
+                    <button
+                      className="flex items-center gap-3 bg-[#ff9e01] p-3 sm:px-8 text-white rounded"
+                      onClick={() => navigate("/login")}
+                    >
+                      {" "}
+                      <BsCart3 /> ADD TO CART
+                    </button>
+                  )}
+
+                  <button className="flex items-center gap-3 bg-[#fb641b] sm:p-3 p-3 sm:px-13 text-white rounded">
+                    <ImPower />
+                    BUY NOW
+                  </button>
+                </div>
               </div>
             </div>
-
-            <div className="sm:w-[60%] h-fit p-3 sm:mt-0 mt-5">
-              <h1 className="text-gray-600 text-xs sm:text-sm">{item.BrandName}</h1>
-              <h1 className="break-words mt-3">{item.title}</h1>
-              <h1 className="text-gray-600 mt-5 text-xs sm:text-sm">{item.details}</h1>   
-              <h3 className="text-[#25a541] mt-3">Special Price</h3>
-
-              <div className="flex items-center gap-3">
-                <h2 className="text-2xl bg-black-600 font-semibold">₹{item.price}</h2>
-                <h2 className="text-[#25a541]">{item.discount}% off</h2>
-              </div>
-
-              <div className="w-[3rem] mt-1 flex items-center text-xs px-3 py-1 gap-1 rounded bg-[#388e3c] text-white">   
-                <h3 className="">{3}</h3>
-                <FaRegStar />
-              </div>
-
-              <div className="flex items-center gap-4 mt-5">
-                {token ? <button
-                  className="flex items-center gap-3 bg-[#ff9e01] sm:p-3 p-3 sm:px-8 text-white rounded"
-                  onClick={addToCartHandler}
-                >
-                  {" "}
-                  <BsCart3 /> ADD TO CART
-                </button> : <button
-                  className="flex items-center gap-3 bg-[#ff9e01] p-3 sm:px-8 text-white rounded"
-                  onClick={()=> navigate('/login')}
-                >
-                  {" "}
-                  <BsCart3 /> ADD TO CART
-                </button>}
-
-                <button className="flex items-center gap-3 bg-[#fb641b] sm:p-3 p-3 sm:px-13 text-white rounded">
-                  <ImPower />
-                  BUY NOW
-                </button>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
     </>
   );
 }
