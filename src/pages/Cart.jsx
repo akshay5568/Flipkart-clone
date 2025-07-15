@@ -33,7 +33,7 @@ function Cart() {
       .catch((err) => console.log(err))
    } , [dispatch])
    
-
+  
   const removeCartHandler = async (itemIndex) => {
     const token = localStorage.getItem("token");
     dispatch(removeCarts(itemIndex));

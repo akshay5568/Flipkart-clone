@@ -52,20 +52,29 @@ app.post("/cart", async (req, res) => {
   try {
     const decode = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decode.userId;
-    const { title, img, price, discount, details, catyegorys, BrandName , qty } = req.body;
-    console.log(qty);
-    
-    await cart.create({
-      userId,
-      BrandName,
-      title,
-      img,
-      price,
-      discount,
-      details,
-      catyegorys,
-      qty,
-    });
+    const { title, img, price, discount, details, catyegorys, BrandName, qty } =
+      req.body;
+
+    const existsOrNot = await cart.findOne({ userId: userId, title: title });
+
+    if (existsOrNot) {
+      console.log("Yes");
+      await cart.updateOne({userId:userId, title:title}, {$inc:{qty:1}})
+    } else {
+      console.log("No");
+      await cart.create({
+        userId,
+        BrandName,
+        title,
+        img,
+        price,
+        discount,
+        details,
+        catyegorys,
+        qty,
+      });
+    }
+
     res.status(201).send("Item Added To Cart");
   } catch (err) {
     console.log(err.data);
@@ -138,10 +147,10 @@ app.post("/users", async (req, res) => {
 app.post("/userdelete", async (req, res) => {
   const authHeader = req.headers.authorization;
   const token = req.headers.authorization.split(" ")[1];
-  const decode = jwt.verify(token, process.env.JWT_SECRET);   
+  const decode = jwt.verify(token, process.env.JWT_SECRET);
   const userId = decode.userId;
   const data = req.body;
-  await User.findByIdAndUpdate(userId, data);   
+  await User.findByIdAndUpdate(userId, data);
   res.send("User Updeted Sucsesfully");
 });
 
@@ -213,44 +222,43 @@ app.post("/seller-update", async (req, res) => {
   res.status(201).send("Seller Updated Sucsessfully");
 });
 
+app.post("/products-images", upload.single("image"), async (req, res) => {
+  const { title, price, discount, details, catyegorys } = req.body;
+  const img = req.file.path;
+  const token = req.headers.authorization.split(" ")[1];
+  const decode = jwtDecode(token, process.env.JWT_SECRET);
+  const id = decode.userId;
+  console.log(id);
+  const sellerInfo = await Seller.findOne({ userId: id });
+  console.log(sellerInfo);
+  const BrandName = sellerInfo.name;
+  const newProduct = new Products({
+    title,
+    sellerId: id,
+    BrandName,
+    img,
+    price,
+    discount,
+    details,
+    catyegorys,
+  });
 
-app.post('/products-images' , upload.single('image') ,  async (req,res) => {   
-    const {title,price,discount,details,catyegorys} = req.body;
-    const img = req.file.path;
-    const token = req.headers.authorization.split(" ")[1];
-    const decode = jwtDecode(token, process.env.JWT_SECRET);
-    const id = decode.userId;
-    console.log(id);
-    const sellerInfo = await Seller.findOne({userId:id});
-    console.log(sellerInfo);
-    const BrandName = sellerInfo.name;
-    const newProduct = new Products({
-      title,
-      sellerId:id,
-      BrandName,
-      img,
-      price,
-      discount,
-      details,
-      catyegorys
-    })
+  await newProduct.save();
+  res
+    .status(201)
+    .send({ message: "Product Created Successfully", product: newProduct });
+});
 
-    await newProduct.save();
-    res.status(201).send({message:'Product Created Successfully', product:newProduct})
+app.post("/products-dashboard", async (req, res) => {
+  const token = req.headers.authorization.split(" ")[1];
+  const decode = jwtDecode(token, process.env.JWT_SECRET);
+  const id = decode.userId;
+  const products = await Products.find({ sellerId: id });
+  res.status(201).json(products);
+});
 
-})
-
-app.post('/products-dashboard' , async (req,res) => {
-    const token = req.headers.authorization.split(" ")[1];
-    const decode = jwtDecode(token,process.env.JWT_SECRET);
-    const id = decode.userId;
-    const products = await Products.find({sellerId:id});
-    res.status(201).json(products);
-})
-
-app.post('/delete-product' , async (req,res) => {
-     const {id} = req.body;
-     await Products.findByIdAndDelete(id);
-     res.status(201).send({massage:"Product delted succsesfully"})
-})
-
+app.post("/delete-product", async (req, res) => {
+  const { id } = req.body;
+  await Products.findByIdAndDelete(id);
+  res.status(201).send({ massage: "Product delted succsesfully" });
+});
