@@ -30,6 +30,10 @@ export const ProductsReducer = createSlice({
     setLogin: (state, action) => {
       state.isLogin = action.payload;
     },
+
+    incQty:(state, action) => {
+        const qty = action.payload;
+    }
   },
 });
 

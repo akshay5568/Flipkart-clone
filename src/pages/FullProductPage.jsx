@@ -7,6 +7,7 @@ import { addToCart, setProducts } from "../reducers/ProductsReducer";
 import axios from "axios";
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
+import { toast , ToastContainer } from "react-toastify";
 function FullProductPage() {
   const { id } = useParams();
 
@@ -64,6 +65,7 @@ function FullProductPage() {
           },
         }
       );
+      toast.success("Item added in cart");
     } catch (err) {
       console.log(err);
     }
@@ -110,6 +112,7 @@ function FullProductPage() {
                   <h3 className="">{3}</h3>
                   <FaRegStar />
                 </div>
+ <ToastContainer/>
 
                 <div className="flex items-center gap-4 mt-5">
                   {token ? (
@@ -120,6 +123,7 @@ function FullProductPage() {
                       {" "}
                       <BsCart3 /> ADD TO CART
                     </button>
+                   
                   ) : (
                     <button
                       className="flex items-center gap-3 bg-[#ff9e01] p-3 sm:px-8 text-white rounded"
@@ -129,7 +133,6 @@ function FullProductPage() {
                       <BsCart3 /> ADD TO CART
                     </button>
                   )}
-
                   <button className="flex items-center gap-3 bg-[#fb641b] sm:p-3 p-3 sm:px-13 text-white rounded">
                     <ImPower />
                     BUY NOW

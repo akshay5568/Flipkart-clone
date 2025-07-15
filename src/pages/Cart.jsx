@@ -15,7 +15,7 @@ function Cart() {
   const token = localStorage.getItem("token");
   
   const TotalPrice = cartData.reduce(
-    (sum, item) => sum + item.price,
+    (sum, item) => sum + item.price * item.qty,
     0
   );
 
@@ -44,6 +44,16 @@ function Cart() {
         }
     });
   };
+
+
+  const incQty = async () => {
+       await axios.post( " " , {}, {
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+       })
+  }
+
 
   let Navigate = useNavigate();
   return (
@@ -118,10 +128,10 @@ function Cart() {
                   </div>
 
 
-                  <div className="w-[20%] bg-red-100 flex justify-center gap-2">
-                    <button>-</button>
-                    <h6>{item.qty}</h6>
-                    <button>+</button>
+                  <div className="w-[45%] flex justify-center items-center mt-3 gap-3">
+                    <button className="bg-amber-300 px-2 rounded-full">-</button>
+                    <h6 className="border-1 px-3 rounded">{item.qty}</h6>
+                    <button className="bg-amber-300 px-2 rounded-full">+</button>
                   </div>
 
                   <button
@@ -142,7 +152,7 @@ function Cart() {
                     REMOVE
                   </button>
 
-                <button className="sm:px-8 px-3 bg-[#fb641b] py-2 rounded text-[#ffffff]">
+                <button className="sm:px-8 px-3 bg-[#fb641b] py-2 text-[#ffffff]">
                   PLACE ORDER
                 </button>
               </div>
