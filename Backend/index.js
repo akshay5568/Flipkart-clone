@@ -262,3 +262,22 @@ app.post("/delete-product", async (req, res) => {
   await Products.findByIdAndDelete(id);
   res.status(201).send({ massage: "Product delted succsesfully" });
 });
+
+app.post('/inc-qty', async (req,res) => {
+   const token = req.headers.authorization.split(" ")[1];
+   const decode = jwtDecode(token, process.env.JWT_SECRET);
+   const userId = decode.userId;
+   const {inc, title} = req.body;
+   await cart.updateOne({userId:userId, title:title} , {$inc:{qty:inc}});
+   res.status(200).send("qty increase");
+})
+
+
+app.post("/dec-qty" , async (req,res) => {
+     const token = req.headers.authorization.split(" ")[1];
+     const decode = jwtDecode(token, process.env.JWT_SECRET);
+     const userId = decode.userId;
+     const {title,dec} = req.body;
+     await cart.updateOne({userId:userId, title:title} , {$inc: {qty:dec}});
+     res.status(200).send("qty decrease");
+})

@@ -1,7 +1,7 @@
 import { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, removeCarts , setToCart } from "../reducers/ProductsReducer";
+import { addToCart, removeCarts , setToCart , incQty , decQty} from "../reducers/ProductsReducer";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import Navbar from "../components/Navbar";
@@ -45,13 +45,24 @@ function Cart() {
     });
   };
 
-
-  const incQty = async () => {
-       await axios.post( " " , {}, {
+  const inc = 1;
+  const dec = -1;
+  const increaceQty = async (title, _id)  => {
+     await axios.post( `${import.meta.env.VITE_BACKEND_URL}/inc-qty` , {inc, title}, {
         headers:{
           Authorization: `Bearer ${token}`
         }
        })
+     dispatch(incQty({_id}));  
+  }
+
+  const decreaseQty = async (title, _id) => {
+     await axios.post(`${import.meta.env.VITE_BACKEND_URL}/dec-qty`, {title , dec} , {
+        headers:{
+           Authorization: `Bearer ${token}`
+        }
+     })
+    dispatch(decQty({_id})); 
   }
 
 
@@ -129,9 +140,9 @@ function Cart() {
 
 
                   <div className="w-[45%] flex justify-center items-center mt-3 gap-3">
-                    <button className="bg-amber-300 px-2 rounded-full">-</button>
+                    <button onClick={()=> decreaseQty(item.title, item._id)} className="bg-amber-300 px-2 rounded-full">-</button>
                     <h6 className="border-1 px-3 rounded">{item.qty}</h6>
-                    <button className="bg-amber-300 px-2 rounded-full">+</button>
+                    <button onClick={()=> increaceQty(item.title, item._id)} className="bg-amber-300 px-2 rounded-full">+</button>
                   </div>
 
                   <button
