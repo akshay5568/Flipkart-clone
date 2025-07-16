@@ -7,15 +7,14 @@ import { addToCart, setProducts } from "../reducers/ProductsReducer";
 import axios from "axios";
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
-import { toast , ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 function FullProductPage() {
   const { id } = useParams();
 
   const products = useSelector((state) => state.products.products);
   const filteredProduct = products.filter((item) => item._id == id);
   console.log(filteredProduct);
-  
- 
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -41,7 +40,6 @@ function FullProductPage() {
   }, [dispatch]);
 
   const [title] = filteredProduct;
-
 
   const addToCartHandler = async () => {
     const token = localStorage.getItem("token");
@@ -112,7 +110,7 @@ function FullProductPage() {
                   <h3 className="">{3}</h3>
                   <FaRegStar />
                 </div>
- <ToastContainer/>
+                <ToastContainer />
 
                 <div className="flex items-center gap-4 mt-5">
                   {token ? (
@@ -123,7 +121,6 @@ function FullProductPage() {
                       {" "}
                       <BsCart3 /> ADD TO CART
                     </button>
-                   
                   ) : (
                     <button
                       className="flex items-center gap-3 bg-[#ff9e01] p-3 sm:px-8 text-white rounded"

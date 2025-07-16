@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import SellerNavbar from "./SellerNavbar";
 import axios from "axios";
 import { toast,ToastContainer } from "react-toastify";
 import { useSelector,useDispatch } from "react-redux";
 import { setSellerProducts } from "../../reducers/SellerProductsReducer";
 import { removeSellerProducts } from "../../reducers/SellerProductsReducer";
+import { NavLink } from "react-router-dom";
 function Dashboard() {
     const token = localStorage.getItem("token")
     const [totalProducts, setTotalProducts] = useState();
     const data = useSelector((state) => state.sellerProducts.sellerProducts);
 
-  
-     
+
+   
     const dispatch = useDispatch();
 
 
@@ -62,7 +63,7 @@ function Dashboard() {
                 <div className="flex gap-3 text-[#2c64e3]">
                   {" "}
                   <button className="cursor-pointer" onClick={() => DeleteHandler(items._id)}>Delete</button>
-                  <button className="cursor-pointer">Edit</button>
+                  <button className="cursor-pointer" ><NavLink to="/edit-product">Edit</NavLink></button>
                 </div>
               </div>
             </div>
