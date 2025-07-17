@@ -37,7 +37,7 @@ function AllRoutes() {
                 <Route path="/seller-login" element={<SellerLogin/>} />    
                 <Route path="/sellerprofile" element={<MySellerProfile/>} />    
                 <Route path="/seller-dashboard" element={<Dashboard/>} />    
-                <Route path="/edit-product" element={<EditProductsDetails/>} />    
+                <Route path="/edit-product/:productid" element={<EditProductsDetails/>} />    
             </Routes>
         </div>
     )

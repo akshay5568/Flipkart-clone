@@ -63,7 +63,7 @@ function Dashboard() {
                 <div className="flex gap-3 text-[#2c64e3]">
                   {" "}
                   <button className="cursor-pointer" onClick={() => DeleteHandler(items._id)}>Delete</button>
-                  <button className="cursor-pointer" ><NavLink to="/edit-product">Edit</NavLink></button>
+                  <button className="cursor-pointer" ><NavLink to={`/edit-product/${items._id}`}>Edit</NavLink></button>
                 </div>
               </div>
             </div>

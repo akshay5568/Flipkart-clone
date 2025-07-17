@@ -281,3 +281,11 @@ app.post("/dec-qty" , async (req,res) => {
      await cart.updateOne({userId:userId, title:title} , {$inc: {qty:dec}});
      res.status(200).send("qty decrease");
 })
+
+
+app.get('/edit-products-:id', async (req,res) => {
+    const productid = req.params.id;
+    const productDetails = await Products.findById(productid)
+    res.json(productDetails)
+})
+
