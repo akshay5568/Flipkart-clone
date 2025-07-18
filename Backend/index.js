@@ -120,7 +120,6 @@ app.post("/signup", async (req, res) => {
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
-  console.log(user);
   if (!user) return res.status(400).send("User Does not Exist");
 
   const isMatch = await bcrypt.compare(password, user.password);
@@ -196,11 +195,8 @@ app.get("/sell-users", async (req, res) => {
 
 app.post("/sell-users", async (req, res) => {
   const { id } = req.body;
-  console.log(id);
   const user = await Seller.findOne({ userId: id });
-  console.log(user);
   const token = jwt.sign({ SellerId: user._id }, process.env.JWT_SECRET);
-  console.log(token);
   res.status(200).send({ token });
 });
 
@@ -228,9 +224,7 @@ app.post("/products-images", upload.single("image"), async (req, res) => {
   const token = req.headers.authorization.split(" ")[1];
   const decode = jwtDecode(token, process.env.JWT_SECRET);
   const id = decode.userId;
-  console.log(id);
   const sellerInfo = await Seller.findOne({ userId: id });
-  console.log(sellerInfo);
   const BrandName = sellerInfo.name;
   const newProduct = new Products({
     title,
@@ -246,7 +240,7 @@ app.post("/products-images", upload.single("image"), async (req, res) => {
   await newProduct.save();
   res
     .status(201)
-    .send({ message: "Product Created Successfully", product: newProduct });
+    .send({ message: "Product Listed Successfully", product: newProduct });
 });
 
 app.post("/products-dashboard", async (req, res) => {
@@ -289,3 +283,10 @@ app.get('/edit-products-:id', async (req,res) => {
     res.json(productDetails)
 })
 
+
+app.post('/update-product-:id', async (req,res) => {
+   const id = req.params.id;
+   const {title,price,details,catyegorys,discount} = req.body;
+   await Products.findByIdAndUpdate(id, {title,price,details,catyegorys,discount})
+   res.status(200).send("Product updated");
+})

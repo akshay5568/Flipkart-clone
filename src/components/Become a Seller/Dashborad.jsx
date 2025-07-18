@@ -18,7 +18,7 @@ function Dashboard() {
 
     useEffect(() => {
           const callApi = async () => {
-             const response =  await axios.post(`${import.meta.env.VITE_BACKEND_URL}/products-dashboard` , {} , {   
+             const response =  await axios.post(`${import.meta.env.VITE_BACKEND_URL}/products-dashboard` , {} , {      
                 headers:{
                     Authorization: `Bearer ${token}`
                 }

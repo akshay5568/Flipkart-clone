@@ -129,7 +129,7 @@ function UploadProducts() {
             required
           >
             <option value="">Select Category</option>
-            <option value="electronics">Electronics</option>
+            <option value="Electronics">Electronics</option>
             <option value="Kilos">Kilos</option>
             <option value="Mobiles">Mobiles</option>
             <option value="Fashion">Fashion</option>
