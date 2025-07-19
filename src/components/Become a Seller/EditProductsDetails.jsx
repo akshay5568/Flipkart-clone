@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SellerNavbar from "./SellerNavbar";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";   
 
 function EditProductsDetails() {
   const { productid } = useParams();
@@ -27,8 +27,19 @@ function EditProductsDetails() {
 
   const handleSubmit = async (e) => {
       e.preventDefault();
-      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/update-product-${productid}`, newProInfo)
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/update-product-${productid}`, newProInfo)   
+
+      setNewProInfo({
+        title:"",
+        price:undefined,
+        details:"",
+        discount:undefined,
+        catyegorys:""
+      })
+      
       toast.success("Product Updated")
+
+
   }
 
   

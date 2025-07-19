@@ -46,9 +46,9 @@ function ListingProducts({ catyegory }) {
                 className="w-fit h-fit duration-300 flex  flex-wrap lg:mt-4"
                 to={`/products/${encodeURIComponent(item.title)}/${item._id}`}
               >
-                  <div className="m-auto flex h-[35vw] lg:h-[13vw]">
+                  <div className="m-auto w-fit flex h-[35vw] lg:h-[13vw]">
                     <img
-                      className="w-[80%] m-auto lg:mt-5 sm:h-[80%] rounded"
+                      className="w-[90%] m-auto lg:mt-5 sm:h-[80%] rounded"
                       src={item.img}
                       alt=""
                     />
