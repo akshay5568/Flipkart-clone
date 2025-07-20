@@ -290,3 +290,5 @@ app.post('/update-product-:id', async (req,res) => {
    await Products.findByIdAndUpdate(id, {title,price,details,catyegorys,discount})
    res.status(200).send("Product updated");
 })
+
+

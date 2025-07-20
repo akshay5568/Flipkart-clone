@@ -31,9 +31,9 @@ function EditProductsDetails() {
 
       setNewProInfo({
         title:"",
-        price:undefined,
+        price:"",
         details:"",
-        discount:undefined,
+        discount:"",
         catyegorys:""
       })
       

@@ -28,7 +28,6 @@ function Cart() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/cart`, {
         headers: {
@@ -39,12 +38,12 @@ function Cart() {
       .catch((err) => console.log(err));
   }, [dispatch]);
 
+
   const removeCartHandler = async (itemIndex) => {
-    const token = localStorage.getItem("token");
     dispatch(removeCarts(itemIndex));
     toast.success("Item removed from cart!");
     await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/cart/remove`,
+      `${import.meta.env.VITE_BACKEND_URL}/cart/remove`,   
       { id: itemIndex },
       {
         headers: {
@@ -53,6 +52,7 @@ function Cart() {
       }
     );
   };
+
 
   const inc = 1;
   const dec = -1;
@@ -69,6 +69,7 @@ function Cart() {
     dispatch(incQty({ _id }));
   };
 
+
   const decreaseQty = async (title, _id) => {
     await axios.post(
       `${import.meta.env.VITE_BACKEND_URL}/dec-qty`,
@@ -81,6 +82,7 @@ function Cart() {
     );
     dispatch(decQty({ _id }));
   };
+
 
   let Navigate = useNavigate();
   return (
