@@ -47,7 +47,7 @@ function EditProductsDetails() {
     <div>
       <SellerNavbar />
       <div className="w-full m-auto mt-5">
-        <div className="w-[40%] m-auto">
+        <div className="md:w-[40%] max-sm:p-3 m-auto">
           <form action="" className="p-5 bg-gray-100" onSubmit={handleSubmit}>
             <label className="font-bold">Title</label>
             <input
