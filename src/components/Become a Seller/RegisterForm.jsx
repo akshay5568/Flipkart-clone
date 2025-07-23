@@ -35,7 +35,7 @@ function RegisterForm() {
         navigate("/upload-products");
       }, 1000);
     } catch (err) {
-      toast.error(err.response.data);
+      toast.error(err.response.data);   
       setSellerData({
         name: "",
         email: "",
@@ -52,11 +52,11 @@ function RegisterForm() {
   return (
     <div className="w-full h-fit bg-[#ffffff] p-3">
       <div className="md:flex justify-between w-full h-fit">
-        <div className="md:w-[70%] md:h-[35vw] m-auto border-1 border-gray-300 rounded-md">
+        <div className="md:w-[70%] md:h-[35vw] m-auto border-1 border-gray-300 rounded-md">   
           <div className="text-center p-3 mt-7">
             <form onSubmit={submitHandler}>
               <input
-                className="p-2 md:w-[50%] w-[70%] border-1 border-gray-400 m-3 rounded-md"
+                className="p-2 md:w-[50%] w-[70%] border-1 border-gray-400 m-3 rounded-md"   
                 placeholder="BrandName"
                 type="text"
                 name="name"

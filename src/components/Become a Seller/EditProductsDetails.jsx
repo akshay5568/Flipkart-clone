@@ -63,7 +63,7 @@ function EditProductsDetails() {
               type="number"
               className="border-1 p-2 w-full mb-3"
               defaultValue={ProductDetails?.price}
-              onChange={(e) => setNewProInfo({...newProInfo, price:e.target.value})}
+              onChange={(e) => setNewProInfo({...newProInfo, price:e.target.value})}   
               required
             />
             <br />

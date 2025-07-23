@@ -127,7 +127,7 @@ app.post("/login", async (req, res) => {
   if (!isMatch) return res.status(401).send("Invaild Credeainsiol");
 
   const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-    expiresIn: "7d",
+    expiresIn: "365d",
   });
   res.status(200).send({ token });
 });
